@@ -3,21 +3,21 @@
         <div class="small-5 medium-5 large-3 columns message-list">
             <div class="page-title page-title-small noshadow nopadding-right" >
                 <div class="page-title-border-right relative">
-                    <p>Ticket #{{data.ticket.uid}}</p>
+                    <p>Tickets #{{data.ticket.uid}}</p>
                     <div id="__ticketId" class="hide">{{data.ticket._id}}</div>
                     <div id="__ticketStatus" class="hide">{{data.ticket.status}}</div>
                     <div class="floating-ticket-status" data-ticketId="{{data.ticket._id}}">
                         {{#is data.ticket.status 0}}
-                                <div class="ticket-status ticket-new"><span>New</span></div>
+                                <div class="ticket-status ticket-new"><span>Mới</span></div>
                         {{/is}}
                         {{#is data.ticket.status 1}}
-                                <div class="ticket-status ticket-open"><span>Open</span></div>
+                                <div class="ticket-status ticket-open"><span>Mở</span></div>
                         {{/is}}
                         {{#is data.ticket.status 2}}
-                                <div class="ticket-status ticket-pending"><span>Pending</span></div>
+                                <div class="ticket-status ticket-pending"><span>Đang chờ</span></div>
                         {{/is}}
                         {{#is data.ticket.status 3}}
-                                <div class="ticket-status ticket-closed"><span>Closed</span></div>
+                                <div class="ticket-status ticket-closed"><span>Đã đóng</span></div>
                         {{/is}}
                     </div>
                 </div>
@@ -26,7 +26,7 @@
             <div class="page-left full-height">
                 <div class="ticket-details-wrap clearfix">
                     <div class="ticket-assignee-wrap clearfix" style="position: relative;">
-                        <h4>Assignee</h4>
+                        <h4>Người được giao</h4>
                         {{#if data.ticket.assignee}}
                             <div class="ticket-assignee clearfix" data-ticketId="{{data.ticket._id}}">
                                 <a href="#" data-notifications="assigneeDropdown" data-updateui="assigneeList" style="float: left;" class="no-ajaxy">
@@ -48,7 +48,7 @@
                                     <img src="/uploads/users/defaultProfile.jpg" alt="" />
                                 </a>
                                 <div class="ticket-assignee-details">
-                                    <h3>No User Assigned</h3>
+                                    <h3>Không Có Người Dùng Nào Được Giao</h3>
                                 </div>
                             </div>
                         {{/if}}
@@ -56,34 +56,23 @@
                     <div class="ticket-details row" style="min-height: 0; height: auto; margin-bottom: 25px !important;">
                         <div class="small-6 columns nopadding">
                             <div class="" style="margin-bottom: 10px;">
-                                <span>Type:</span>
+                                <span>Loại:</span>
                                 <p style="font-weight: 600; display: inline; margin-left: 28px;">{{data.ticket.type.name}}</p>
                             </div>
                         </div>
                         <div class="small-6 columns nopadding">
                             <div class="" style="margin-bottom: 10px;">
-                                <span>Priority:</span>
+                                <span>Ưu tiên:</span>
                                 <p style="font-weight: 600; display: inline; margin-left: 15px;">{{data.ticket.priorityname}}</p>
                             </div>
                         </div>
 
                         <div class="small-12 columns nopadding">
                             <div style="margin-bottom: 10px;">
-                                <span>Group:</span>
+                                <span>Nhóm:</span>
                                 <p style="font-weight: 600; display: inline; margin-left: 20px;">{{data.ticket.group.name}}</p>
                             </div>
                         </div>
-
-                        <!--<div class="row nomargin nopadding">-->
-                            <!--<div class="small-12 columns nopadding">-->
-                                <!--<span>Tags:</span>-->
-                                <!--<div class="tag-list1 clearfix">-->
-                                    <!--{{#each data.ticket.tagsArray}}-->
-                                        <!--<div class="item">{{this}}</div>-->
-                                    <!--{{/each}}-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -121,7 +110,7 @@
                                     <img class="profile-pic" src="/uploads/users/defaultProfile.jpg" alt="" />
                                 {{/if}}
                                 <div class="issue-text">
-                                    <h3>Re: {{../data.ticket.subject}}</h3>
+                                    <h3>Trả lời: {{../data.ticket.subject}}</h3>
                                     <a class="comment-email-link" href="mailto:{{owner.email}}">{{{owner.fullname}}} &lt;{{{owner.email}}}&gt;</a>
                                     <br>
                                     <time datetime="{{formatDate data "YYYY-MM-DD hh:mm"}}">{{formatDate date (concat ../data.common.longDateFormat ../data.common.timeFormat true true) ../data.user.preferences.timezone}}</time>
@@ -134,11 +123,11 @@
                         {{/foreach}}
                     </div>
                     <div class="history-items">
-                        <h4 style="padding-left: 50px;">Ticket History</h4>
+                        <h4 style="padding-left: 50px;">Lịch sử Tickets</h4>
                         {{#foreach data.ticket.history}}
                             <div style="font-size: 12px; margin-bottom: 15px; margin-top: 20px; margin-left: 50px; ">
                                 <div style="font-weight: bold;">{{description}}</div>
-                                <div>By {{owner.fullname}} - {{formatDate date (concat ../data.common.longDateFormat ../data.common.timeFormat true true) ../data.user.preferences.timezone}}</div>
+                                <div>Được tạo bởi {{owner.fullname}} - {{formatDate date (concat ../data.common.longDateFormat ../data.common.timeFormat true true) ../data.user.preferences.timezone}}</div>
                                 <hr />
                             </div>
 

@@ -2,14 +2,14 @@
     <div class="setting-item-wrap uk-margin-medium-bottom" ng-show="showNoTools">
         <div class="panel trupanel nopadding no-hover-shadow uk-clearfix" style="min-height: 60px;">
             <div class="uk-width-1-1">
-                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">MongoDB Tools Not Found</h6>
+                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Không Tìm Thấy Công Cụ MongoDB</h6>
                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                    Unable to locate MongoDB tools. Please make sure MongoDB tools are installed. <br />
+                    Không thể tìm thấy công cụ MongoDB. Vui lòng đảm bảo rằng công cụ MongoDB đã được cài đặt. <br />
                 </h5>
                 <hr />
                 <div style="padding: 0 15px; margin: 15px 0;">
-                    <h4>Installing MongoDB Tools</h4>
-                    <p style="margin: 0 0 5px 0; font-size: 13px;">MongoDB Tools are required to perform backup and restore. See below for instructions on installing the MongoDB Tools.</p>
+                    <h4>Cài Đặt Công Cụ MongoDB</h4>
+                    <p style="margin: 0 0 5px 0; font-size: 13px;">Công cụ MongoDB là cần thiết để thực hiện sao lưu và khôi phục. Xem bên dưới để biết hướng dẫn cài đặt Công cụ MongoDB.</p>
                     <br />
                     <h5><strong>Ubuntu 16.04</strong></h5>
                     <pre style="white-space: pre-line">
@@ -43,17 +43,17 @@
     <div class="setting-item-wrap uk-margin-medium-bottom" ng-show="hasTools">
         <div class="panel trupanel nopadding no-hover-shadow uk-clearfix" style="min-height: 60px;">
             <div class="left">
-                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Backup Now</h6>
+                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Sao Lưu Ngay</h6>
                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                    Backup all site data. (Database, Attachments, Profile Pictures)
+                    Sao lưu tất cả dữ liệu trang web. (Cơ sở dữ liệu, Tệp đính kèm, Hình ảnh hồ sơ)
                 </h5>
             </div>
             <div class="right uk-width-1-3 uk-clearfix" style="position:relative; margin-right: 15px; margin-top: 5px;">
                 <div class="uk-width-2-3 uk-float-right" style="margin-top: 10px; text-align: right;">
                     <div class="uk-progress uk-progress-success uk-progress-striped uk-active hide" style="height: 31px; background: transparent;">
-                        <div class="uk-progress-bar" style="width: 115px; line-height: 31px; font-size: 11px; text-transform: uppercase; float: right !important;">Please Wait...</div>
+                        <div class="uk-progress-bar" style="width: 115px; line-height: 31px; font-size: 11px; text-transform: uppercase; float: right !important;">Vui lòng chờ...</div>
                     </div>
-                    <button class="md-btn md-btn-small md-btn-success" style="width: 115px;" ng-click="startbackup($event);">Backup Now</button>
+                    <button class="md-btn md-btn-small md-btn-success" style="width: 115px;" ng-click="startbackup($event);">Sao Lưu Ngay</button>
                 </div>
             </div>
         </div>
@@ -62,9 +62,9 @@
     <div class="setting-item-wrap uk-margin-medium-bottom" ng-show="hasTools">
         <div class="panel trupanel nopadding no-hover-shadow uk-overflow-hidden" style="min-height: 60px; height: auto;">
             <div class="left">
-                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Backups</h6>
+                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Sao Lưu</h6>
                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                    Current Stored Backups
+                    Các Bản Sao Lưu Đã Lưu Trữ Hiện Tại
                 </h5>
             </div>
             <div class="right uk-width-1-3 uk-clearfix" style="position:relative; margin-right: 15px; margin-top: 5px;">
@@ -82,7 +82,7 @@
                 <div class="uk-position-relative">
                     <div class="zone" ng-show="!backupFiles.length">
                         <div class="z-box uk-clearfix">
-                            <h2 class="uk-text-muted uk-text-center">No Backups</h2>
+                            <h2 class="uk-text-muted uk-text-center">Không Có Bản Sao Lưu</h2>
                         </div>
                     </div>
 
@@ -100,9 +100,9 @@
                                 <td class="valign-middle">{[{file.sizeFormat}]}</td>
                                 <td class="uk-text-right valign-middle">
                                     <div class="md-btn-group">
-                                        <a href="/backups/{[{file.filename}]}" class="md-btn md-btn-small md-btn-wave no-ajaxy" target="_blank">Download</a>
-                                        <button class="md-btn md-btn-small md-btn-wave" ng-click="restoreFile($index);">Restore</button>
-                                        <button class="md-btn md-btn-small md-btn-wave md-btn-danger" ng-click="deleteBackup($index);">Delete</button>
+                                        <a href="/backups/{[{file.filename}]}" class="md-btn md-btn-small md-btn-wave no-ajaxy" target="_blank">Tải Xuống</a>
+                                        <button class="md-btn md-btn-small md-btn-wave" ng-click="restoreFile($index);">Khôi Phục</button>
+                                        <button class="md-btn md-btn-small md-btn-wave md-btn-danger" ng-click="deleteBackup($index);">Xóa</button>
                                     </div>
                                 </td>
                             </tr>
@@ -116,9 +116,9 @@
     <div class="setting-item-wrap uk-margin-medium-bottom">
         <div class="panel trupanel nopadding no-hover-shadow uk-overflow-hidden" style="min-height: 60px; height: auto;">
             <div class="left">
-                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Restore Deleted Tickets</h6>
+                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Khôi phục tickets đã xóa</h6>
                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                    Tickets marked as deleted are shown below.
+                    Các tickets được đánh dấu là đã xóa được hiển thị bên dưới.
                 </h5>
             </div>
             <div class="right uk-width-1-3 uk-clearfix" style="position:relative; margin-right: 15px; margin-top: 5px;">
@@ -129,7 +129,7 @@
                 <div class="uk-position-relative">
                     <div class="zone mb-10" ng-show="!deletedTickets.length">
                         <div class="z-box uk-clearfix">
-                            <h2 class="uk-text-muted uk-text-center">No Deleted Tickets</h2>
+                            <h2 class="uk-text-muted uk-text-center">Không Có Tickets Đã Xóa.</h2>
                         </div>
                     </div>
 

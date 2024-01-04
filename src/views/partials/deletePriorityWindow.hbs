@@ -3,14 +3,15 @@
         <form class="uk-form-stacked" id="deletePriorityForm-{{_id}}" action="#" method="POST">
             <input type="hidden" id="del_priority_name-{{_id}}" name="del_priority_name" value="{{name}}">
             <div class="uk-margin-medium-bottom uk-clearfix">
-                <h2 class="">Remove Priority</h2>
-                <span>Please select the priority you wish to reassign tickets to in order to delete the this priority.</span>
+                <h2 class="">Xóa Ưu Tiên</h2>
+                <span>Vui lòng chọn mức độ ưu tiên mà bạn muốn chuyển các yêu cầu đến để có thể xóa mức độ ưu tiên này.</span>
                 <hr style="margin: 10px 0" />
             </div>
             <div class="uk-margin-medium-bottom uk-clearfix">
                 <div class="uk-float-left" style="width: 100%;">
-                    <label for="priority" class="uk-form-label">Priority</label>
+                    <label for="priority" class="uk-form-label">Ưu Tiên</label>
                     <select class="selectize" name="priority" data-md-selectize-inline>
+                        <!-- Vòng lặp chọn mức độ ưu tiên -->
                         {{#each @root.data.common.priorities}}
                             {{#isnot name ../name}}
                                 <option value="{{{_id}}}">{{name}}</option>
@@ -20,11 +21,11 @@
                 </div>
             </div>
             <div class="uk-margin-medium-bottom uk-clearfix">
-                <span class="uk-text-danger">WARNING: This will change all tickets with a priority of: <strong>{{name}}</strong> to the selected priority above. <br /><strong>This is permanent!</strong></span>
+                <span class="uk-text-danger">CẢNH BÁO: Điều này sẽ thay đổi tất cả các yêu cầu có mức độ ưu tiên là: <strong>{{name}}</strong> sang mức độ ưu tiên được chọn ở trên. <br /><strong>Điều này là vĩnh viễn!</strong></span>
             </div>
             <div class="uk-modal-footer uk-text-right">
-                <button type="button" class="md-btn md-btn-flat uk-modal-close">Cancel</button>
-                <button type="button" class="md-btn md-btn-flat md-btn-flat-danger" data-id="submitDeleteTicketType" ng-click="submitRemovePriority('{{_id}}', $event)">Delete</button>
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">Hủy bỏ</button>
+                <button type="button" class="md-btn md-btn-flat md-btn-flat-danger" data-id="submitDeleteTicketType" ng-click="submitRemovePriority('{{_id}}', $event)">Xóa</button>
             </div>
         </form>
     </div>

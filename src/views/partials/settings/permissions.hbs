@@ -1,23 +1,23 @@
 <div data-settings-id="settings-permissions" {{#ifeq subnav compare='settings-permissions'}} class="active" {{/ifeq}} ng-controller="PermissionsCtrl" ng-init="init();">
-    <!-- Permissions -->
+    <!-- Quyền -->
     <div class="setting-item-wrap uk-margin-medium-bottom">
         <div class="panel trupanel nopadding no-hover-shadow uk-overflow-hidden" style="min-height: 60px; height: auto;">
             <div class="left">
-                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Permissions
+                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Quyền
                     <i class="material-icons"
                        style="color: #888;
                               font-size: 16px;
                               cursor: pointer;
                               line-height: 18px;"
-                       data-uk-tooltip="{cls:'long-text'}" title="Permission order is top down. ex: Admins at top; Users at bottom">help</i>
+                       data-uk-tooltip="{cls:'long-text'}" title="Thứ tự quyền từ trên xuống dưới. Ví dụ: Quản trị viên ở trên cùng; Người dùng ở dưới cùng">help</i>
                 </h6>
                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                    Create / Modify User Permissions
+                    Tạo / Chỉnh sửa Quyền Người Dùng
                 </h5>
             </div>
             <div class="right" style="position:relative;">
                 <div style="margin: 12px 15px 0 0;">
-                    <button class="uk-float-right md-btn md-btn-flat md-btn-flat-success md-btn-wave-light" ng-click="showCreateRoleWindow($event);">Create</button>
+                    <button class="uk-float-right md-btn md-btn-flat md-btn-flat-success md-btn-wave-light" ng-click="showCreateRoleWindow($event);">Tạo</button>
                 </div>
             </div>
             <hr class="nomargin-top clear">
@@ -42,23 +42,23 @@
                                     <div class="setting-item-wrap uk-margin-medium-bottom">
                                         <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
                                             <div class="left">
-                                                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Admin
+                                                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Quản trị viên
                                                     <i class="material-icons"
                                                        style="color: #888;
                                                               font-size: 16px;
                                                               cursor: pointer;
                                                               line-height: 18px;"
-                                                       data-uk-tooltip="{cls:'long-text'}" title="Role is considered an admin. Enabling management of the trudesk instance.">help</i>
+                                                       data-uk-tooltip="{cls:'long-text'}" title="Vai trò được coi là quản trị viên. Cho phép quản lý phiên bản trudesk">Giúp đỡ</i>
                                                 </h6>
                                                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                                                    Is this role defined as an admin role?
+                                                     Vai trò này có được định nghĩa là vai trò quản trị viên không?
                                                 </h5>
                                             </div>
                                             <div class="right" style="position:relative;">
                                                 <!-- Switch -->
                                                 <div class="md-switch md-green" style="margin: 20px 0 0 0;">
                                                     <label>
-                                                        Yes
+                                                        Có
                                                         <input type="checkbox" id="perm-is-admin-{{id}}" name="perm-is-admin" {{#compare isAdmin '===' true}} checked {{/compare}}>
                                                         <span class="lever"></span>
                                                     </label>
@@ -79,14 +79,14 @@
                                                        data-uk-tooltip="{cls:'long-text'}" title="Role is considered an agent role. Enabling agent views and displaying in agent lists.">help</i>
                                                 </h6>
                                                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                                                    Is this role defined as an agent role?
+                                                    Vai trò này có được định nghĩa là vai trò quản trị viên không?
                                                 </h5>
                                             </div>
                                             <div class="right" style="position:relative;">
                                                 <!-- Switch -->
                                                 <div class="md-switch md-green" style="margin: 20px 0 0 0;">
                                                     <label>
-                                                        Yes
+                                                        Có
                                                         <input type="checkbox" id="perm-is-agent-{{id}}" name="perm-is-agent" {{#compare isAgent '===' true}} checked {{/compare}}>
                                                         <span class="lever"></span>
                                                     </label>
@@ -98,16 +98,16 @@
                                     <div class="setting-item-wrap uk-margin-medium-bottom">
                                         <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
                                             <div class="left">
-                                                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Enable Hierarchy</h6>
+                                                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Bật Cấu trúc phân cấp</h6>
                                                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                                                    Allow this role to manage resources owned by roles defined under it
+                                                    Cho phép vai trò này quản lý tài nguyên thuộc sở hữu của các vai trò được xác định theo nó
                                                 </h5>
                                             </div>
                                             <div class="right" style="position:relative;">
                                                 <!-- Switch -->
                                                 <div class="md-switch md-green" style="margin: 20px 0 0 0;">
                                                     <label>
-                                                        Enabled
+                                                        Đã bật
                                                         <input type="checkbox" id="perm-enable-hierarchy-{{id}}" name="perm-enable-hierarchy" {{#compare hierarchy '===' true}} checked {{/compare}}>
                                                         <span class="lever"></span>
                                                     </label>
@@ -122,14 +122,14 @@
                                             <div class="left">
                                                 <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Tickets</h6>
                                                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                                                    Ticket Permissions
+                                                    Quyền đối với Ticket
                                                 </h5>
                                             </div>
                                             <div class="right" style="position:relative;">
                                                 <!-- Switch -->
                                                 <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                     <label>
-                                                        All
+                                                        Tất cả
                                                         <input type="checkbox" id="perm-tickets-all-{{id}}" name="perm-tickets-all" {{#canUserRole _id 'ticket:*'}} checked {{/canUserRole}}>
                                                         <span class="lever"></span>
                                                     </label>
@@ -140,13 +140,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Create</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Tạo</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-tickets-create-{{id}}" name="perm-tickets-create" {{#canUserRole _id "ticket:create"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -160,13 +160,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">View</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Xem</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-tickets-view-{{id}}" name="perm-tickets-view" {{#canUserRole _id "ticket:view"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -180,13 +180,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Edit</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Chỉnh sửa</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-tickets-edit-{{id}}" name="perm-tickets-edit" {{#canUserRole _id "ticket:edit"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -200,13 +200,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Delete</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Xóa</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-tickets-delete-{{id}}" name="perm-tickets-delete" {{#canUserRole _id "ticket:delete"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -222,9 +222,9 @@
                                     <div class="setting-item-wrap uk-margin-medium-bottom">
                                         <div class="panel trupanel nopadding no-hover-shadow uk-overflow-hidden" style="min-height: 60px; height: auto;">
                                             <div class="left">
-                                                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Accounts</h6>
+                                                <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">Tài khoản</h6>
                                                 <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
-                                                    Account Permissions
+                                                    Quyền tài khoản
                                                 </h5>
                                             </div>
                                             <div class="right" style="position:relative;">
@@ -243,13 +243,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Create</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Tạo</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-accounts-create-{{id}}" name="perm-accounts-create" {{#canUserRole _id "account:create"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -263,13 +263,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">View</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Xem</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-accounts-view-{{id}}" name="perm-accounts-view" {{#canUserRole _id "account:view"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -283,13 +283,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Edit</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Sửa</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-accounts-edit-{{id}}" name="perm-accounts-edit" {{#canUserRole _id "account:edit"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -303,13 +303,13 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Delete</h6>
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Xóa</h6>
                                                     </div>
                                                     <div class="right" style="position:relative;">
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-accounts-delete-{{id}}" name="perm-accounts-delete" {{#canUserRole _id "account:delete"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -324,7 +324,7 @@
                                             <div class="panel-body2 bg-warn" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 class="text-dark" style="padding: 0 0 0 15px; margin: 20px 0; font-size: 18px; line-height: 14px;">Special Permissions</h6>
+                                                        <h6 class="text-dark" style="padding: 0 0 0 15px; margin: 20px 0; font-size: 18px; line-height: 14px;">Các quyền đặc biệt</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -335,7 +335,7 @@
                                             <div class="panel-body2" style="padding: 0 10px;">
                                                 <div class="uk-clearfix">
                                                     <div class="left">
-                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Import
+                                                        <h6 style="padding: 0 0 0 15px; margin: 20px 0; font-size: 16px; line-height: 14px;">Import tài khoản
                                                             <i class="material-icons"
                                                                style="color: #888;
                                                               font-size: 14px;
@@ -348,7 +348,7 @@
                                                         <!-- Switch -->
                                                         <div class="md-switch md-green" style="margin: 18px 0 0 0;">
                                                             <label>
-                                                                Allow
+                                                                Cho phép
                                                                 <input type="checkbox" id="perm-accounts-import-{{id}}" name="perm-accounts-import" {{#canUserRole _id "account:import"}} checked {{/canUserRole}}>
                                                                 <span class="lever"></span>
                                                             </label>
@@ -363,7 +363,7 @@
                                     <div style="margin-top: 25px;">
                                         <div class="box uk-clearfix">
                                             <div class="uk-float-right" style="padding-top: 10px;">
-                                                <button type="submit" class="md-btn md-btn-success">Save</button>
+                                                <button type="submit" class="md-btn md-btn-success">Lưu</button>
                                             </div>
                                         </div>
                                     </div>
@@ -371,15 +371,15 @@
                                     <hr class="mt-10 mb-10" />
 
                                     <div style="margin-top: 25px;">
-                                        <h2 class="text-light">Danger Zone</h2>
+                                        <h2 class="text-light">Vùng nguy hiểm</h2>
                                         <div class="danger-zone">
                                             <div class="dz-box uk-clearfix">
                                                 <div class="uk-float-left">
-                                                    <h5>Delete this Role</h5>
-                                                    <p>Once you delete this permission role, there is no going back. <br /> All users with this role will need a new role during deletion.</p>
+                                                    <h5>Xóa vai này</h5>
+                                                    <p>Sau khi bạn xóa vai trò quyền này, bạn sẽ không thể quay lại. <br /> Tất cả người dùng có vai trò này sẽ cần một vai trò mới trong quá trình xóa.</p>
                                                 </div>
                                                 <div class="uk-float-right" style="padding-top: 10px;">
-                                                    <button type="button" class="md-btn md-btn-small md-btn-danger" ng-click="showDeleteTicketType('{{_id}}', true)">Delete</button>
+                                                    <button type="button" class="md-btn md-btn-small md-btn-danger" ng-click="showDeleteTicketType('{{_id}}', true)">Xóa</button>
                                                 </div>
                                             </div>
                                         </div>

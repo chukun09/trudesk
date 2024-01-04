@@ -2,17 +2,17 @@
     <div class="uk-modal-dialog">
         <form class="uk-form-stacked" id="createTicketTypeForm" ng-submit="createTicketType($event)">
             <div class="">
-                <h2 class="nomargin mb-5">Create Ticket Type</h2>
-                <p class="uk-text-small uk-text-muted">Create a ticket type</p>
-                <label for="typeName">Type Name</label>
+                <h2 class="nomargin mb-5">Tạo loại yêu cầu</h2>
+                <p class="uk-text-small uk-text-muted">Tạo một yêu cầu</p>
+                <label for="typeName">Tên yêu cầu</label>
                 <input type="text" class="md-input" id="typeName" name="typeName"
                        data-validation="length"
                        data-validation-length="min3"
-                       data-validation-error-msg="Please enter a valid type name. Type name must contain at least 3 characters." />
+                       data-validation-error-msg="Vui lòng nhập tên loại hợp lệ. Tên loại phải chứa ít nhất 3 ký tự." />
             </div>
             <div class="uk-modal-footer uk-text-right">
-                <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
-                <button type="button" class="md-btn md-btn md-btn-success" id="submitCreateTicketType" ng-click="createTicketType($event)">Create</button>
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+                <button type="button" class="md-btn md-btn md-btn-success" id="submitCreateTicketType" ng-click="createTicketType($event)">Tạo</button>
             </div>
         </form>
     </div>

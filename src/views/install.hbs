@@ -267,102 +267,101 @@
 <div class="wrapper">
     <div class="slides">
         <div class="slide">
-            <h2 style="margin-bottom: 18px;">Welcome</h2>
+            <h2 style="margin-bottom: 18px;">Chào mừng</h2>
             <p style="text-align: left;">
-                Lets get you up and running. Lets guide you through the process of installing Trudesk.
-                Don't worry, its pretty painless.
+                Hãy bắt đầu cài đặt Trudesk cùng chúng tôi. Chúng tôi sẽ hướng dẫn bạn qua quá trình cài đặt. Đừng lo lắng, nó khá đơn giản.
             </p>
 
-            <button class="btn md-btn md-btn-wave md-btn-success" data-next>Lets Start</button>
+            <button class="btn md-btn md-btn-wave md-btn-success" data-next>Bắt đầu</button>
         </div>
 
         {{#isNotTrue isDocker}}
             <div class="slide hide">
-                <h2 style="margin-bottom: 25px;">ElasticSearch Connection</h2>
+                <h2 style="margin-bottom: 25px;">Kết nối với ElasticSearch</h2>
                 <p style="text-align: left;">
-                    It allows us to search. Its optional, but you should probably set up the connection.
+                    Nó cho phép chúng tôi tìm kiếm. Điều này là tùy chọn, nhưng bạn nên cài đặt kết nối này.
                 </p>
                 <form id="elasticConnection" class="uk-form-stacked uk-clearfix">
                     <div class="uk-margin-medium-bottom">
-                        <label for="elastic-host">Server</label>
+                        <label for="elastic-host">Máy chủ</label>
                         <input id="elastic-host" name="elastic-host" class="md-input" type="text" value="http://localhost" />
                     </div>
                     <div class="uk-margin-medium-bottom">
-                        <label for="elastic-port">Port</label>
+                        <label for="elastic-port">Cổng</label>
                         <input id="elastic-port" name="elastic-port" class="md-input" type="text" value="9200"/>
                     </div>
-                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="test-elastic-connection">Test Connection!</button>
+                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="test-elastic-connection">Kiểm tra kết nối!</button>
                 </form>
 
                 <div class="uk-clearfix">
-                    <a href="#" id="btn-skip-elastic" class="no-ajaxy uk-float-left">Skip ElasticSearch</a>
-                    <a href="https://www.elastic.co/products/elasticsearch" class="no-ajaxy" target="_blank">What is ElasticSearch?</a>
+                    <a href="#" id="btn-skip-elastic" class="no-ajaxy uk-float-left">Bỏ qua ElasticSearch</a>
+                    <a href="https://www.elastic.co/products/elasticsearch" class="no-ajaxy" target="_blank">ElasticSearch là gì?</a>
                 </div>
             </div>
             <div class="slide hide">
-                <h2 style="margin-bottom: 25px;">MongoDB Connection</h2>
+                <h2 style="margin-bottom: 25px;">Kết nối với MongoDB</h2>
                 <p style="text-align: left;">
-                    We've got to store the data somewhere. We've chosen MongoDB as our backend storage.
-                    Just enter your connection information below and lets get connected.
+                    Chúng tôi cần nơi để lưu trữ dữ liệu. Chúng tôi đã chọn MongoDB làm cơ sở dữ liệu backend của chúng tôi.
+                    Chỉ cần nhập thông tin kết nối của bạn bên dưới và chúng tôi sẽ kết nối.
                 </p>
                 <form id="mongoConnection" class="uk-form-stacked uk-clearfix">
                     <div class="uk-margin-medium-bottom">
-                        <label for="mongo-server">Server</label>
+                        <label for="mongo-server">Máy chủ</label>
                         <input id="mongo-server" name="mongo-server" class="md-input" type="text" value="localhost" />
                     </div>
                     <div class="uk-margin-medium-bottom">
-                        <label for="mongo-port">Port</label>
+                        <label for="mongo-port">Cổng</label>
                         <input id="mongo-port" name="mongo-port" class="md-input" type="text" value="27017"/>
                     </div>
                     <div class="uk-margin-medium-bottom">
-                        <label for="mongo-username">Username</label>
+                        <label for="mongo-username">Tên người dùng</label>
                         <input id="mongo-username" name="mongo-username" class="md-input" type="text" value="trudesk"/>
                     </div>
                     <div class="uk-margin-medium-bottom">
-                        <label for="mongo-password">Password</label>
+                        <label for="mongo-password">Mật khẩu</label>
                         <input id="mongo-password" name="mongo-password" class="md-input" type="password" value="#TruDesk1$" />
                     </div>
                     <div class="uk-margin-medium-bottom">
-                        <label for="mongo-database">Database</label>
+                        <label for="mongo-database">Cơ sở dữ liệu</label>
                         <input id="mongo-database" name="mongo-database" class="md-input" type="text"  value="trudesk"/>
                     </div>
-                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="test-mongo-connection">Test Connection!</button>
+                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="test-mongo-connection">Kiểm tra kết nối!</button>
                 </form>
-                <a href="https://www.mongodb.com/" class="no-ajaxy" target="_blank">What is MongoDB?</a>
+                <a href="https://www.mongodb.com/" class="no-ajaxy" target="_blank">MongoDB là gì?</a>
             </div>
         {{/isNotTrue}}
         {{#isNotTrue isDocker}}
             <div class="slide hide">
-                <h2 style="margin-bottom: 25px;">Existing Database?</h2>
+                <h2 style="margin-bottom: 25px;">Cơ sở dữ liệu hiện có?</h2>
                 <p style="text-align: left; margin-bottom: 20px;">
-                    Is this mongodb connection an existing database or a new database?
+                    Kết nối MongoDB này có phải là cơ sở dữ liệu hiện có hay là cơ sở dữ liệu mới?
                 </p>
-                <button class="btn md-btn md-btn-wave md-btn-success" type="button" style="margin: 0 0 10px 0 !important;" data-next>New Database</button>
-                <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="existing-database-btn" style="margin: 0;">Existing Database</button>
+                <button class="btn md-btn md-btn-wave md-btn-success" type="button" style="margin: 0 0 10px 0 !important;" data-next>Cơ sở dữ liệu mới</button>
+                <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="existing-database-btn" style="margin: 0;">Cơ sở dữ liệu hiện có</button>
             </div>
         {{/isNotTrue}}
 
         <div class="slide hide">
-            <h2 style="margin-bottom: 25px;">Setup Account</h2>
+            <h2 style="margin-bottom: 25px;">Thiết lập tài khoản</h2>
             <p style="text-align: left;">
-                Now that we got you connected, its time to create an Administrator.
+                Bây giờ chúng tôi đã kết nối bạn, đến lúc tạo một Quản trị viên.
             </p>
 
             <form id="adminAccount" class="uk-form-stacked uk-clearfix">
                 <div class="uk-margin-medium-bottom">
-                    <label for="admin-username">Username</label>
+                    <label for="admin-username">Tên người dùng</label>
                     <input type="text" id="admin-username" name="admin-username" class="md-input" />
                 </div>
                 <div class="uk-margin-medium-bottom">
-                    <label for="admin-fullname">Full Name</label>
+                    <label for="admin-fullname">Họ và tên đầy đủ</label>
                     <input type="text" id="admin-fullname" name="admin-fullname" class="md-input" />
                 </div>
                 <div class="uk-margin-medium-bottom">
-                    <label for="admin-password">Password</label>
+                    <label for="admin-password">Mật khẩu</label>
                     <input type="password" id="admin-password" name="admin-password" class="md-input" />
                 </div>
                 <div class="uk-margin-medium-bottom">
-                    <label for="admin-cpassword">Confirm Password</label>
+                    <label for="admin-cpassword">Xác nhận mật khẩu</label>
                     <input type="password" id="admin-cpassword" name="admin-cpassword" class="md-input" />
                 </div>
                 <div class="uk-margin-medium-bottom">
@@ -370,12 +369,12 @@
                     <input type="email" id="admin-email" name="admin-email" class="md-input" />
                 </div>
 
-                <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="set-admin-account">Create Admin</button>
+                <button class="btn md-btn md-btn-wave md-btn-primary" type="button" id="set-admin-account">Tạo Quản trị viên</button>
             </form>
         </div>
         <div id="installingSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px;">Installing...</h2>
-            <p style="text-align: left;">Putting it all together. Trudesk is currently building itself and powering up its engine. Please wait, this may take a minute.</p>
+            <h2 style="margin-bottom: 25px;">Đang cài đặt...</h2>
+            <p style="text-align: left;">Đang kết hợp tất cả. Trudesk đang tự xây dựng và khởi động. Vui lòng đợi, điều này có thể mất một phút.</p>
             <div class="loader">
                 <svg style="width: 140px; " viewBox="0 0 288.9 70.1">
                     <line class="l1" x1="0" y1="0" x2="288" y2="0"></line>
@@ -383,8 +382,8 @@
             </div>
         </div>
         <div id="savingConfig" class="slide hide">
-            <h2 style="margin-bottom: 25px;">Saving Configuration...</h2>
-            <p style="text-align: left;">Currently writing trudesk configuration file to an existing MongoDB connection. Please wait, this should only take a second.</p>
+            <h2 style="margin-bottom: 25px;">Đang lưu cấu hình...</h2>
+            <p style="text-align: left;">Đang lưu tệp cấu hình trudesk vào kết nối MongoDB hiện có. Vui lòng đợi, điều này chỉ mất một giây.</p>
             <div class="loader">
                 <svg style="width: 140px; " viewBox="0 0 288.9 70.1">
                     <line class="l1" x1="0" y1="0" x2="288" y2="0"></line>
@@ -392,24 +391,23 @@
             </div>
         </div>
         <div id="restartSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px;">Time to Restart</h2>
-            <p style="text-align: left;"><i>So here we are, together sharpening a knife.</i> Trudesk needs to restart to come out of install mode. Just restart it and you should get a login screen. (hopefully)!</p>
-            <button class="btn md-btn md-btn-wave" type="button" id="restartTrudesk">restart me!</button>
+            <h2 style="margin-bottom: 25px;">Đã đến lúc khởi động lại</h2>
+            <p style="text-align: left;"><i>Nên đây, chúng ta cùng nhau mài mũi dao.</i> Trudesk cần khởi động lại để thoát khỏi chế độ cài đặt. Chỉ cần khởi động lại và bạn sẽ thấy màn hình đăng nhập. (hy vọng là vậy)!</p>
+            <button class="btn md-btn md-btn-wave" type="button" id="restartTrudesk">Khởi động lại!</button>
         </div>
         <div id="errorSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px;">Crap! Something funky happened.</h2>
+            <h2 style="margin-bottom: 25px;">Xin lỗi! Đã xảy ra lỗi gì đó.</h2>
             <p style="text-align: justify;">
-                Alright. This entire install script is in <i>beta</i>. Didn't I mention that? Anyway, there are a couple of options below to try and resolve the issue. There are some common pit falls and workarounds
-                in the docs that may help. Submitting the issue will help identify any bugs in the script and will help others as well.
+                Được rồi. Toàn bộ tập lệnh cài đặt này đang ở chế độ <i>beta</i>. Tôi đã đề cập đến điều đó chưa? Dù sao, có một số tùy chọn dưới đây để thử giải quyết vấn đề. Có một số lỗi phổ biến và cách xử lý trong tài liệu hướng dẫn có thể giúp. Việc gửi vấn đề sẽ giúp xác định bất kỳ lỗi nào trong tập lệnh và sẽ giúp người khác cũng.
             </p>
             <pre style="text-align: left; font-size: 11px; font-weight: normal; margin-bottom: 15px;"></pre>
             <div style="width: 100%;">
                 <a href="https://www.github.com/polonel/trudesk/issues/new" target="_blank" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave md-btn-danger" type="button" style="width: 100%; margin-bottom: 10px !important;">I think I should submit this issue.</button>
+                    <button class="btn md-btn md-btn-wave md-btn-danger" type="button" style="width: 100%; margin-bottom: 10px !important;">Tôi nghĩ tôi nên gửi vấn đề này.</button>
                 </a>
-                <button class="btn md-btn md-btn-wave md-btn-success" type="button" style="width: 100%; margin-bottom: 10px !important;" onclick="location.reload();">I think i will start over.</button>
+                <button class="btn md-btn md-btn-wave md-btn-success" type="button" style="width: 100%; margin-bottom: 10px !important;" onclick="location.reload();">Tôi nghĩ tôi sẽ bắt đầu</button>
                 <a href="https://github.com/polonel/trudesk/blob/master/README.md" target="_blank" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave" type="button" style="width: 100%; margin-bottom: 10px !important;">or maybe i should read the docs!</button>
+                    <button class="btn md-btn md-btn-wave" type="button" style="width: 100%; margin-bottom: 10px !important;">Hoặc có lẽ tôi nên đọc tài liệu!</button>
                 </a>
             </div>
         </div>

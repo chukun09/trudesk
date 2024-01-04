@@ -2,7 +2,7 @@
     <div class="uk-modal-dialog">
         <form class="uk-form-stacked" id="createPriorityForm" action="#" method="POST" ng-submit="createPrioritySubmit($event);">
             <div class="uk-margin-medium-bottom uk-clearfix">
-                <h2 class="">Create Priority</h2>
+                <h2 class="">Tạo mức độ ưu tiên</h2>
                 <span></span>
             </div>
 
@@ -11,7 +11,7 @@
                     <form>
                         <div class="z-box uk-grid uk-grid-collapse uk-clearfix">
                             <div class="uk-width-1-3">
-                                <label for="">Priority Name</label>
+                                <label for="">Tên mức độ ưu tiên</label>
                                 <input type="text" class="md-input" name="p-name"
                                        data-validation="length"
                                        data-validation-length="min3"
@@ -19,7 +19,7 @@
                                 />
                             </div>
                             <div class="uk-width-1-3 uk-padding-small-sides">
-                                <label for="">SLA Overdue (minutes)</label>
+                                <label for="">SLA quá hạn (phút)</label>
                                 <input type="text" class="md-input" name="p-overdueIn" value="2880"
                                        data-validation="number"
                                        data-validation-allowing="range[1;525600]"
@@ -27,7 +27,7 @@
                                 />
                             </div>
                             <div class="uk-width-1-3">
-                                <button class="generateHtmlColorBtn uk-button uk-button-small uk-color-button mr-5 mt-10" style="background: #29B955; " ng-click="generateRandomColor(null, $event);"><i class="material-icons">refresh</i></button>
+                                <button class="generateHtmlColorBtn uk-button uk-button-small uk-color-button mr-5 mt-10" style="background: #29B955; " ng-click="generateRandomColor(null, $event);"><i class="material-icons">Tải lại</i></button>
                                 <div class="md-input-wrapper uk-float-left" style="width: 70%;">
                                     <label for="">Color</label>
                                     <input type="text" class="md-input" name="p-htmlColor" value="#29B955"
@@ -39,8 +39,8 @@
                             </div>
                         </div>
                         <div class="uk-modal-footer uk-text-right">
-                            <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
-                            <button type="submit" class="md-btn md-btn-flat md-btn-flat-success">Create</button>
+                            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+                            <button type="submit" class="md-btn md-btn-flat md-btn-flat-success">Tạo</button>
                         </div>
                     </form>
                 </div>

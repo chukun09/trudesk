@@ -1,4 +1,4 @@
-<div class="uk-grid uk-grid-collpase nopadding reportsBreakdownGroup" ng-controller="reportsCtrl">
+<div class="uk-grid uk-grid-collapse nopadding reportsBreakdownGroup" ng-controller="reportsCtrl">
     <div class="uk-width-1-1 page-title">
         <p class="left uk-margin-medium-left">{{title}}</p>
 
@@ -6,7 +6,7 @@
 
             <div style="margin-top: 8px;">
                 <select id="select_group" name="select_group" data-md-selectize>
-                    <option value="0">Select Group</option>
+                    <option value="0">Chọn Nhóm</option>
                     {{#each data.common.groups}}
                         <option value="{{_id}}">{{name}}</option>
                     {{/each}}
@@ -24,7 +24,7 @@
                             <div class="right uk-margin-top uk-margin-small-right">
                                 <span class="peity-bar">5,3,9,6,5,9,7</span>
                             </div>
-                            <span class="uk-text-muted uk-text-small">Total Tickets (Lifetime)</span>
+                            <span class="uk-text-muted uk-text-small">Tổng Số Tickets (Cả Đời)</span>
 
                             <h2 class="uk-margin-remove">
                                 <span id="ticketCount">--</span>
@@ -36,10 +36,10 @@
                 <div class="uk-width-1-3">
                     <div class="panel trupanel nopadding tru-card-intro" style="min-height: 85px;">
                         <div class="tru-card-content">
-                            <div class="right uk-margin-top ukmargin-small-right">
+                            <div class="right uk-margin-top uk-margin-small-right">
                                 <span id="pie_complete" class="peity-pie">0/100</span>
                             </div>
-                            <span class="uk-text-muted uk-text-small">Tickets Completed</span>
+                            <span class="uk-text-muted uk-text-small">Tickets Hoàn Thành</span>
 
                             <h2 class="uk-margin-remove">
                                 <span id="text_complete">--</span>%
@@ -50,13 +50,13 @@
                 <div class="uk-width-1-3">
                     <div class="panel trupanel nopadding tru-card-intro" style="min-height: 85px;">
                         <div class="tru-card-content">
-                            <div class="right uk-margin-top ukmargin-small-right">
+                            <div class="right uk-margin-top uk-margin-small-right">
                                 <span id="responseTime_graph" class="peity-line">5,3,9,6,5,9,7,3,5,2</span>
                             </div>
-                            <span class="uk-text-muted uk-text-small">Avg Response Time</span>
+                            <span class="uk-text-muted uk-text-small">Thời Gian Phản Hồi Trung Bình</span>
 
                             <h2 class="uk-margin-remove">
-                                <span id="responseTime_text">--</span> hours
+                                <span id="responseTime_text">--</span> giờ
                             </h2>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
             <div class="breakdown-wrap uk-margin-medium-bottom">
                 <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 300px;">
                     <div class="left">
-                        <h6 style="padding: 15px; margin: 0; font-size: 14px;">Ticket Breakdown</h6>
+                        <h6 style="padding: 15px; margin: 0; font-size: 14px;">Phân Tích Chi Tiết Tickets</h6>
                     </div>
                     <hr class="nomargin-top">
                     <div class="panel-body2">
@@ -79,17 +79,17 @@
             <div class="uk-grid uk-margin-medium-bottom">
                 <div class="uk-width-1-2">
                     <div id="recentTickets" class="panel trupanel nopadding" style="min-height: 265px;">
-                        <h6 style="padding: 15px; margin: 0; font-size: 14px;">Most Recent Tickets</h6>
+                        <h6 style="padding: 15px; margin: 0; font-size: 14px;">Tickets Mới Nhất</h6>
                         <hr class="nomargin">
                         <div class="tru-card-content">
                             <div class="uk-overflow-container">
                                 <table class="uk-table">
                                     <thead>
                                     <tr>
-                                        <th class="uk-text-nowrap">Ticket</th>
-                                        <th class="uk-text-nowrap">Status</th>
-                                        <th class="uk-text-nowrap">Subject</th>
-                                        <th class="uk-text-nowrap uk-text-right">Last Updated</th>
+                                        <th class="uk-text-nowrap">Tickets</th>
+                                        <th class="uk-text-nowrap">Trạng Thái</th>
+                                        <th class="uk-text-nowrap">Chủ Đề</th>
+                                        <th class="uk-text-nowrap uk-text-right">Cập Nhật Lần Cuối</th>
                                     </tr>
                                     </thead>
                                     <tbody class="recent-tickets">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="uk-width-1-2">
                     <div id="grpTags" class="panel trupanel nopadding" style="min-height: 265px;" data-match-height="#recentTickets">
-                        <h6 style="padding: 15px; margin: 0; font-size: 14px;">Tags</h6>
+                        <h6 style="padding: 15px; margin: 0; font-size: 14px;">Thẻ</h6>
                         <hr class="nomargin">
                         <div class="tru-card-content">
                             <div id="topTags" style="width: 100%;"></div>

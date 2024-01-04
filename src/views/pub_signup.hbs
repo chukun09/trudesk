@@ -274,22 +274,22 @@
 <div class="wrapper">
     <div class="slides">
         <div class="slide">
-            <h2 style="margin-bottom: 18px;">Create Account</h2>
+            <h2 style="margin-bottom: 18px;">Tạo Tài Khoản</h2>
             <p style="text-align: left;">
-                This wizard will walk you through the process of creating an account to access trudesk.
+                Hướng dẫn này sẽ hướng dẫn bạn qua quá trình tạo tài khoản để truy cập vào Trudesk.
             </p>
 
-            <button class="btn md-btn md-btn-wave md-btn-success" data-next>Lets Get Started</button>
+            <button class="btn md-btn md-btn-wave md-btn-success" data-next>Bắt đầu</button>
         </div>
 
         <div id="userInfoSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px;">User Information</h2>
+            <h2 style="margin-bottom: 25px;">Thông Tin Người Dùng</h2>
             <p style="text-align: left;">
-                Please fill out the information below. All fields are required.
+                Vui lòng điền thông tin dưới đây. Tất cả các trường đều bắt buộc.
             </p>
             <form id="userInfo" class="uk-form-stacked uk-clearfix">
                 <div class="uk-margin-medium-bottom">
-                    <label for="user-fullname">Full Name</label>
+                    <label for="user-fullname">Họ và Tên</label>
                     <input id="user-fullname" name="user-fullname" class="md-input" type="text" required />
                 </div>
                 <div class="uk-margin-medium-bottom">
@@ -297,31 +297,31 @@
                     <input id="user-email" name="user-email" class="md-input" type="email" required />
                 </div>
                 <div class="uk-margin-medium-bottom">
-                    <label for="user-password">Password</label>
+                    <label for="user-password">Mật Khẩu</label>
                     <input id="user-password" name="user-password" class="md-input" type="password" required />
                 </div>
                 <div class="uk-margin-medium-bottom">
-                    <label for="user-cPassword">Confirm Password</label>
+                    <label for="user-cPassword">Xác Nhận Mật Khẩu</label>
                     <input id="user-cPassword" name="user-cPassword" class="md-input" type="password" required />
                 </div>
                 <div class="uk-margin-medium-bottom">
                     <div id="captchaImage" style="margin-bottom: 10px;"></div>
-                    <label for="captcha">Please enter the letters you see above.</label>
+                    <label for="captcha">Vui lòng nhập các ký tự bạn thấy ở trên.</label>
                     <input type="text" id="captcha" name="captcha" class="md-input" required />
                 </div>
                 <div style="width: 25%; float: left;">
-                    <button class="btn md-btn md-btn-wave md-btn-primary1" type="button" data-prev>Back</button>
+                    <button class="btn md-btn md-btn-wave md-btn-primary1" type="button" data-prev>Quay lại</button>
                 </div>
                 <div style="width: 70%; float: right;">
-                    <button id="checkEmail" class="btn md-btn md-btn-wave md-btn-success" type="button">Next</button>
+                    <button id="checkEmail" class="btn md-btn md-btn-wave md-btn-success" type="button">Tiếp theo</button>
                 </div>
             </form>
 
-            <a href="#" class="no-ajaxy" id="privacyPolicyBtn">Privacy Policy</a>
+            <a href="#" class="no-ajaxy" id="privacyPolicyBtn">Chính sách riêng tư</a>
         </div>
         <div class="slide hide">
-            <h2 style="margin-bottom: 25px;">Creating Account...</h2>
-            <p style="text-align: center;">Please wait while we create your account.</p>
+            <h2 style="margin-bottom: 25px;">Đang Tạo Tài Khoản...</h2>
+            <p style="text-align: center;">Vui lòng chờ trong khi chúng tôi tạo tài khoản của bạn.</p>
             <div class="loader">
                 <svg style="width: 140px; " viewBox="0 0 288.9 70.1">
                     <line class="l1" x1="0" y1="0" x2="288" y2="0"></line>
@@ -329,55 +329,55 @@
             </div>
         </div>
         <div id="errorSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px;">Crap! Something funky happened.</h2>
+            <h2 style="margin-bottom: 25px;">Darn! Đã xảy ra lỗi kỳ lạ.</h2>
             <p style="text-align: justify;">
-                Something didn't work out the way it should. Please try again or submit a bug report below.
+                Có vẻ như có điều gì đó không hoạt đúng cách. Vui lòng thử lại hoặc gửi báo cáo lỗi bên dưới.
             </p>
             <pre style="text-align: left; font-size: 11px; font-weight: normal; margin-bottom: 15px;"></pre>
             <div style="width: 100%;">
                 <a href="https://www.github.com/polonel/trudesk/issues/new" target="_blank" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave md-btn-danger" type="button" style="width: 100%; margin-bottom: 10px !important;">I think I should submit this issue.</button>
+                    <button class="btn md-btn md-btn-wave md-btn-danger" type="button" style="width: 100%; margin-bottom: 10px !important;">Tôi nghĩ tôi nên gửi báo cáo lỗi này.</button>
                 </a>
-                <button class="btn md-btn md-btn-wave md-btn-success" type="button" style="width: 100%; margin-bottom: 10px !important;" onclick="location.reload();">I think i will start over.</button>
+                <button class="btn md-btn md-btn-wave md-btn-success" type="button" style="width: 100%; margin-bottom: 10px !important;" onclick="location.reload();">Tôi nghĩ tôi sẽ bắt đầu lại.</button>
                 <a href="https://github.com/polonel/trudesk/blob/master/README.md" target="_blank" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave" type="button" style="width: 100%; margin-bottom: 10px !important;">or maybe i should read the docs!</button>
+                    <button class="btn md-btn md-btn-wave" type="button" style="width: 100%; margin-bottom: 10px !important;">hoặc có lẽ tôi nên đọc tài liệu!</button>
                 </a>
             </div>
         </div>
         <div id="emailExistsSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px;">Email Already Exists</h2>
+            <h2 style="margin-bottom: 25px;">Email Đã Tồn Tại</h2>
             <p style="text-align: justify;">
-                The email <span id="emailSpan" style="font-weight: bold;">email@email.com</span> already exists. If you already have an account using this email please login and submit your ticket.
+                Email <span id="emailSpan" style="font-weight: bold;">email@email.com</span> đã tồn tại. Nếu bạn đã có tài khoản sử dụng email này, vui lòng đăng nhập và gửi yêu cầu của bạn.
             </p>
             <div style="width: 100%; margin-top: 50px;">
                 <a href="/login" class="no-ajaxy" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" style="width: 100%; margin-bottom: 10px !important;">Login</button>
+                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" style="width: 100%; margin-bottom: 10px !important;">Đăng nhập</button>
                 </a>
-                <button class="btn md-btn md-btn-wave" type="button" style="width: 100%; margin-bottom: 10px !important;" data-prev>Back</button>
+                <button class="btn md-btn md-btn-wave" type="button" style="width: 100%; margin-bottom: 10px !important;" data-prev>Quay lại</button>
             </div>
         </div>
         <div id="accountCreatedSlide" class="slide hide">
-            <h2 style="margin-bottom: 25px; text-align: left;">Thank you <span id="spanfullname" style="color: #2196f3;">[fullname]</span>,</h2>
+            <h2 style="margin-bottom: 25px; text-align: left;">Cảm ơn bạn <span id="spanfullname" style="color: #2196f3;">[fullname]</span>,</h2>
             <p style="text-align: justify;">
-                Your account has been created.
+                Tài khoản của bạn đã được tạo.
             </p>
             <p style="text-align: justify;">
-                Please click the button below in order to login with your email (<span id="spanemail" style="color: #2196f3">[EMAIL]</span>).
+                Vui lòng nhấn nút bên dưới để đăng nhập bằng email của bạn (<span id="spanemail" style="color: #2196f3">[EMAIL]</span>).
             </p>
             <div style="width: 100%; margin-top: 50px;">
                 <a href="/login" class="no-ajaxy" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" style="width: 100%; margin-bottom: 10px !important;">Login</button>
+                    <button class="btn md-btn md-btn-wave md-btn-primary" type="button" style="width: 100%; margin-bottom: 10px !important;">Đăng nhập</button>
                 </a>
             </div>
         </div>
         <div id="accountCreateError" class="hide">
-            <h2 style="margin-bottom: 25px; text-align: left;">An Error has occurred</h2>
+            <h2 style="margin-bottom: 25px; text-align: left;">Đã xảy ra lỗi</h2>
             <p style="text-align: justify;">
-                An Unknown Error has occurred
+                Đã xảy ra lỗi không xác định
             </p>
             <div style="width: 100%; margin-top: 50px;">
                 <a href="/signup" class="no-ajaxy" style="width: 100%; padding: 0; margin: 0;">
-                    <button class="btn md-btn md-btn-wave md-btn-danger" type="button" style="width: 100%; margin-bottom: 10px !important;">Start Over</button>
+                    <button class="btn md-btn md-btn-wave md-btn-danger" type="button" style="width: 100%; margin-bottom: 10px !important;">Bắt đầu lại</button>
                 </a>
             </div>
         </div>
@@ -388,7 +388,7 @@
     <div class="white-box" style="margin-bottom: 15px;">
         {{{data.privacyPolicy}}}
     </div>
-    <button id="privacyPolicyBackBtn" class="btn md-btn md-btn-wave md-btn-primary" type="button" style="width: 100%; margin-bottom: 10px !important;">Back</button>
+    <button id="privacyPolicyBackBtn" class="btn md-btn md-btn-wave md-btn-primary" type="button" style="width: 100%; margin-bottom: 10px !important;">Trở về</button>
 </div>
 
 
