@@ -11,7 +11,7 @@ import { BACKUP_RESTORE_UI_SHOW_OVERLAY, BACKUP_RESTORE_UI_COMPLETE } from 'serv
 class BackupRestoreOverlay extends React.Component {
   @observable overlayActive = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
@@ -20,25 +20,25 @@ class BackupRestoreOverlay extends React.Component {
     this.onRestoreComplete = this.onRestoreComplete.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.socket.on(BACKUP_RESTORE_UI_SHOW_OVERLAY, this.onShowRestoreOverlay)
     this.props.socket.on(BACKUP_RESTORE_UI_COMPLETE, this.onRestoreComplete)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.socket.off(BACKUP_RESTORE_UI_SHOW_OVERLAY, this.onShowRestoreOverlay)
     this.props.socket.off(BACKUP_RESTORE_UI_COMPLETE, this.onRestoreComplete)
   }
 
-  onShowRestoreOverlay () {
+  onShowRestoreOverlay() {
     this.overlayActive = true
   }
 
-  onRestoreComplete () {
+  onRestoreComplete() {
     location.reload()
   }
 
-  render () {
+  render() {
     return (
       <div
         id='restoreBackupOverlay'
@@ -47,7 +47,7 @@ class BackupRestoreOverlay extends React.Component {
       >
         <div className='page-center'>
           <h1 className='text-light' style={{ color: '#444' }}>
-            Restore in Progress...
+            Đang khôi phục...
           </h1>
           <div className='uk-progress uk-progress-striped uk-progress-accent uk-active' style={{ height: '31px' }}>
             <div className='uk-progress-bar' style={{ width: '100%' }} />

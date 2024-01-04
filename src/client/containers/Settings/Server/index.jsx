@@ -32,7 +32,7 @@ import UIKit from 'uikit'
 class ServerSettingsController extends React.Component {
   @observable maintenanceModeEnabled = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
@@ -44,11 +44,11 @@ class ServerSettingsController extends React.Component {
     this.restartServer = this.restartServer.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // helpers.UI.inputs()
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     // helpers.UI.reRenderInputs()
     if (prevProps.settings !== this.props.settings) {
       if (this.maintenanceModeEnabled !== this.getSetting('maintenanceMode'))
@@ -56,7 +56,7 @@ class ServerSettingsController extends React.Component {
     }
   }
 
-  restartServer () {
+  restartServer() {
     this.setState({ restarting: true })
 
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -81,13 +81,13 @@ class ServerSettingsController extends React.Component {
       })
   }
 
-  getSetting (stateName) {
+  getSetting(stateName) {
     return this.props.settings.getIn(['settings', stateName, 'value'])
       ? this.props.settings.getIn(['settings', stateName, 'value'])
       : ''
   }
 
-  onMaintenanceModeChange (e) {
+  onMaintenanceModeChange(e) {
     const self = this
     const val = e.target.checked
 
@@ -95,7 +95,7 @@ class ServerSettingsController extends React.Component {
       UIKit.modal.confirm(
         `<h2>Are you sure?</h2>
         <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This will force logout every user and prevent non-administrators from logging in.</span> 
+            <span class="uk-text-danger" style="font-size: 15px;">Điều này sẽ buộc đăng xuất mọi người dùng và ngăn những người không phải quản trị viên đăng nhập.</span> 
         </p>
         `,
         () => {
@@ -111,7 +111,7 @@ class ServerSettingsController extends React.Component {
             })
         },
         {
-          labels: { Ok: 'Yes', Cancel: 'No' },
+          labels: { Ok: 'Có', Cancel: 'Không' },
           confirmButtonClass: 'md-btn-danger'
         }
       )
@@ -124,16 +124,16 @@ class ServerSettingsController extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const { active } = this.props
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title={'Restart Server'}
-          subtitle={'Restart the Trudesk Instance. '}
+          title={'Khởi Động Lại Máy Chủ'}
+          subtitle={'Khởi động lại Trudesk. '}
           component={
             <Button
-              text={'Restart'}
+              text={'Khởi Động Lại'}
               flat={false}
               waves={true}
               style={'danger'}
@@ -144,18 +144,19 @@ class ServerSettingsController extends React.Component {
           }
         />
         <SettingItem
-          title={'Maintenance Mode'}
-          subtitle={'Only Administrators are allowed to login.'}
+          title={'Chế Độ Bảo Trì'}
+          subtitle={'Chỉ cho phép Quản trị viên đăng nhập.'}
           component={
             <EnableSwitch
               stateName={'maintenanceMode'}
-              label={'Enable'}
+              label={'Bật'}
               checked={this.maintenanceModeEnabled}
               onChange={e => this.onMaintenanceModeChange(e)}
             />
           }
         />
       </div>
+
     )
   }
 }

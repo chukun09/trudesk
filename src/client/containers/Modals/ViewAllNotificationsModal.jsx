@@ -33,12 +33,12 @@ import helpers from 'lib/helpers'
 class ViewAllNotificationsModal extends React.Component {
   @observable notifications = []
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.hideAllpDropDowns()
     axios
       .get('/api/v1/users/notifications')
@@ -51,7 +51,7 @@ class ViewAllNotificationsModal extends React.Component {
       })
   }
 
-  onNotificationClick (e, notification) {
+  onNotificationClick(e, notification) {
     e.preventDefault()
     if (!notification || !notification.data || !notification.data.ticket || !notification.data.ticket.uid) return false
 
@@ -60,19 +60,19 @@ class ViewAllNotificationsModal extends React.Component {
     History.pushState(null, null, `/tickets/${notification.data.ticket.uid}`)
   }
 
-  render () {
+  render() {
     return (
       <BaseModal large={true}>
         <div className='uk-modal-header'>
-          <h2>Notifications</h2>
+          <h2>Thông báo</h2>
         </div>
         <div className='uk-modal-content' style={{ height: '400px', overflow: 'auto' }}>
           <table className='notificationsTable'>
             <thead>
               <tr>
-                <th className={'type'}>Type</th>
-                <th className={'title'}>Title</th>
-                <th className={'date'}>Date</th>
+                <th className={'type'}>Loại</th>
+                <th className={'title'}>Tiêu đề</th>
+                <th className={'date'}>Ngày</th>
               </tr>
             </thead>
             <tbody>
@@ -106,9 +106,10 @@ class ViewAllNotificationsModal extends React.Component {
           </table>
         </div>
         <div className='uk-modal-footer uk-text-right'>
-          <Button text={'Close'} flat={true} waves={true} onClick={() => this.props.hideModal()} />
+          <Button text={'Đóng'} flat={true} waves={true} onClick={() => this.props.hideModal()} />
         </div>
       </BaseModal>
+
     )
   }
 }

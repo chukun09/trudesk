@@ -25,7 +25,7 @@ import helpers from 'lib/helpers'
 import Cookies from 'jscookie'
 
 class NoticeAlertModal extends React.Component {
-  onConfirmClick (e) {
+  onConfirmClick(e) {
     e.preventDefault()
 
     // Set Cookie
@@ -35,7 +35,7 @@ class NoticeAlertModal extends React.Component {
     this.props.hideModal('NOTICE_ALERT')
   }
 
-  render () {
+  render() {
     const { notice, shortDateFormat, timeFormat } = this.props
     const dateFormat = shortDateFormat + ', ' + timeFormat
     return (
@@ -61,10 +61,10 @@ class NoticeAlertModal extends React.Component {
             <p style={{ marginTop: '50px', color: '#222', fontSize: '18px', paddingBottom: '15px' }}>
               {helpers.formatDate(notice.activeDate, dateFormat)}
               <br />
-              Important: {notice.message}
+              Quan trọng: {notice.message}
             </p>
             <Button
-              text={'Confirm'}
+              text={'Xác nhận'}
               flat={true}
               style={'success'}
               extraClass={'uk-float-right'}
@@ -75,6 +75,7 @@ class NoticeAlertModal extends React.Component {
           </div>
         </div>
       </BaseModal>
+
     )
   }
 }

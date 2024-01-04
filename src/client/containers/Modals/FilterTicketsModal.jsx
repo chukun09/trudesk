@@ -27,11 +27,11 @@ import Button from 'components/Button'
 import helpers from 'lib/helpers'
 
 class FilterTicketsModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
     this.props.fetchGroups()
     this.props.fetchAccounts({ page: 0, limit: -1, type: 'agents', showDeleted: false })
@@ -40,16 +40,16 @@ class FilterTicketsModal extends React.Component {
     this.props.fetchTicketStatus()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.unloadGroups()
     this.props.unloadAccounts()
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
     const startDate = e.target.filterDate_Start.value
     const endDate = e.target.filterDate_End.value
@@ -90,7 +90,7 @@ class FilterTicketsModal extends React.Component {
     this.props.hideModal()
   }
 
-  render () {
+  render() {
     const statuses = this.props.ticketStatuses.map(s => ({ text: s.get('name'), value: s.get('_id') })).toArray()
 
     const tags = this.props.ticketTags
@@ -119,16 +119,16 @@ class FilterTicketsModal extends React.Component {
 
     return (
       <BaseModal options={{ bgclose: false }}>
-        <h2 style={{ marginBottom: 20 }}>Ticket Filter</h2>
+        <h2 style={{ marginBottom: 20 }}>Bộ lọc Ticket</h2>
         <form className={'uk-form-stacked'} onSubmit={e => this.onSubmit(e)}>
           <div className='uk-margin-medium-bottom'>
-            <label>Subject</label>
+            <label>Tiêu đề</label>
             <input type='text' name={'subject'} className={'md-input'} />
           </div>
           <div className='uk-grid uk-grid-collapse uk-margin-small-bottom'>
             <div className='uk-width-1-2' style={{ padding: '0 15px 0 0' }}>
               <label htmlFor='filterDate_Start' className='uk-form-label nopadding nomargin'>
-                Date Start
+                Ngày bắt đầu
               </label>
               <input
                 id='filterDate_Start'
@@ -140,7 +140,7 @@ class FilterTicketsModal extends React.Component {
             </div>
             <div className='uk-width-1-2' style={{ padding: '0 0 0 15px' }}>
               <label htmlFor='filterDate_End' className='uk-form-label nopadding nomargin'>
-                Date End
+                Ngày kết thúc
               </label>
               <input
                 id='filterDate_End'
@@ -154,7 +154,7 @@ class FilterTicketsModal extends React.Component {
           <div className='uk-grid uk-grid-collapse uk-margin-small-bottom'>
             <div className='uk-width-1-1'>
               <label htmlFor='filterStatus' className='uk-form-label' style={{ paddingBottom: 0, marginBottom: 0 }}>
-                Status
+                Trạng thái
               </label>
               <SingleSelect items={statuses} showTextbox={false} multiple={true} ref={r => (this.statusSelect = r)} />
             </div>
@@ -162,7 +162,7 @@ class FilterTicketsModal extends React.Component {
           <div className='uk-grid uk-grid-collapse uk-margin-small-bottom'>
             <div className='uk-width-1-1'>
               <label htmlFor='filterStatus' className='uk-form-label' style={{ paddingBottom: 0, marginBottom: 0 }}>
-                Ticket Tags
+                Nhãn Ticket
               </label>
               <SingleSelect items={tags} showTextbox={true} multiple={true} ref={r => (this.tagsSelect = r)} />
             </div>
@@ -170,7 +170,7 @@ class FilterTicketsModal extends React.Component {
           <div className='uk-grid uk-grid-collapse uk-margin-small-bottom'>
             <div className='uk-width-1-1'>
               <label htmlFor='filterStatus' className='uk-form-label' style={{ paddingBottom: 0, marginBottom: 0 }}>
-                Ticket Type
+                Loại Ticket
               </label>
               <SingleSelect items={types} showTextbox={false} multiple={true} ref={r => (this.typesSelect = r)} />
             </div>
@@ -178,7 +178,7 @@ class FilterTicketsModal extends React.Component {
           <div className='uk-grid uk-grid-collapse uk-margin-small-bottom'>
             <div className='uk-width-1-1'>
               <label htmlFor='filterStatus' className='uk-form-label' style={{ paddingBottom: 0, marginBottom: 0 }}>
-                Assignee
+                Người được giao việc
               </label>
               <SingleSelect
                 items={assignees}
@@ -191,17 +191,18 @@ class FilterTicketsModal extends React.Component {
           <div className='uk-grid uk-grid-collapse uk-margin-small-bottom'>
             <div className='uk-width-1-1'>
               <label htmlFor='filterStatus' className='uk-form-label' style={{ paddingBottom: 0, marginBottom: 0 }}>
-                Groups
+                Nhóm
               </label>
               <SingleSelect items={groups} showTextbox={false} multiple={true} ref={r => (this.groupSelect = r)} />
             </div>
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Cancel'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Apply Filter'} style={'primary'} flat={false} type={'submit'} />
+            <Button text={'Hủy'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Áp dụng Bộ lọc'} style={'primary'} flat={false} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

@@ -27,33 +27,33 @@ import TicketStatusBody from 'containers/Settings/Tickets/ticketStatusBody'
 
 @observer
 class TicketStatusContainer extends React.Component {
-  onCreateStatusClicked (e) {
+  onCreateStatusClicked(e) {
     this.props.showModal('CREATE_STATUS')
   }
 
-  onStatusOrderChanged (e) {
+  onStatusOrderChanged(e) {
     const children = $(e.target).children('li')
     const arr = []
     for (let i = 0; i < children.length; i++) arr.push($(children[i]).attr('data-key'))
 
     axios
       .put('/api/v1/tickets/status/order', { order: arr })
-      .then(res => {})
+      .then(res => { })
       .catch(err => {
         console.log(err)
         helpers.UI.showSnackbar(err.message || err.response?.statusText, true)
       })
   }
 
-  render () {
+  render() {
     return (
       <div>
         <SplitSettingsPanel
-          title={'Ticket Status'}
-          subtitle={'Ticket status sets the state of a ticket. (Active, Pending, Resolved, etc.)'}
+          title={'Trạng Thái Ticket'}
+          subtitle={'Trạng thái Ticket xác định trạng thái của một Ticket. (Hoạt động, Đang chờ, Đã giải quyết, v.v.)'}
           rightComponent={
             <Button
-              text={'Create'}
+              text={'Tạo'}
               style={'success'}
               flat={true}
               waves={true}
@@ -63,33 +63,34 @@ class TicketStatusContainer extends React.Component {
           menuItems={
             this.props.statuses
               ? this.props.statuses.map(status => {
-                  return {
-                    key: status.get('_id'),
-                    title: status.get('name'),
-                    content: (
-                      <div>
-                        <h3 style={{ display: 'inline-block' }}>{status.get('name')}</h3>
-                        <span
-                          style={{
-                            display: 'inline-block',
-                            marginLeft: 5,
-                            width: 10,
-                            height: 10,
-                            background: status.get('htmlColor'),
-                            borderRadius: 3
-                          }}
-                        />
-                      </div>
-                    ),
-                    bodyComponent: <TicketStatusBody status={status} />
-                  }
-                })
+                return {
+                  key: status.get('_id'),
+                  title: status.get('name'),
+                  content: (
+                    <div>
+                      <h3 style={{ display: 'inline-block' }}>{status.get('name')}</h3>
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          marginLeft: 5,
+                          width: 10,
+                          height: 10,
+                          background: status.get('htmlColor'),
+                          borderRadius: 3
+                        }}
+                      />
+                    </div>
+                  ),
+                  bodyComponent: <TicketStatusBody status={status} />
+                }
+              })
               : []
           }
           menuDraggable={true}
           menuOnDrag={e => this.onStatusOrderChanged(e)}
         ></SplitSettingsPanel>
       </div>
+
     )
   }
 }

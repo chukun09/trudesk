@@ -95,7 +95,7 @@ class AboutContainer extends React.Component {
               />
               <circle className='st1' cx='284.9' cy='64.7' r='4' />
             </svg>
-            <div style={{ paddingLeft: 40 }}>
+            {/* <div style={{ paddingLeft: 40 }}>
               <h6>Trudesk version {this.props.viewdata.get('version')}</h6>
               <p style={{ fontSize: '12px' }}>
                 Copyright &copy;2014-2022 Trudesk, Inc. (Chris Brame) <br /> <br />
@@ -238,7 +238,7 @@ class AboutContainer extends React.Component {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

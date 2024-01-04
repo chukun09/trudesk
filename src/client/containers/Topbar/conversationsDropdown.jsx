@@ -28,40 +28,40 @@ import 'history'
 class ConversationsDropdownPartial extends React.Component {
   @observable conversations = []
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
 
     this.onUpdateConversationsNotifications = this.onUpdateConversationsNotifications.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.socket.on(MESSAGES_UPDATE_UI_CONVERSATION_NOTIFICATIONS, this.onUpdateConversationsNotifications)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.socket.off(MESSAGES_UPDATE_UI_CONVERSATION_NOTIFICATIONS, this.onUpdateConversationsNotifications)
   }
 
-  onUpdateConversationsNotifications (data) {
+  onUpdateConversationsNotifications(data) {
     helpers.setupScrollers()
     if (!helpers.arrayIsEqual(this.conversations, data.conversations)) this.conversations = data.conversations
   }
 
-  onConversationClicked (e, id) {
+  onConversationClicked(e, id) {
     e.preventDefault()
 
     History.pushState(null, null, `/messages/${id}`)
   }
 
-  render () {
+  render() {
     const { timezone, shortDateFormat, forwardedRef } = this.props
 
     return (
       <PDropDown
         ref={forwardedRef}
         id={'conversations'}
-        title={'Conversations'}
+        title={'Cuộc trò chuyện'}
         titleHref={'/messages'}
         topOffset={-4}
         leftOffset={4}
@@ -70,7 +70,7 @@ class ConversationsDropdownPartial extends React.Component {
         }}
         rightComponent={
           <a href={'/messages/startconversation'} className={'hoverUnderline'}>
-            Start Conversation
+            Bắt đầu Cuộc trò chuyện
           </a>
         }
         footerComponent={
@@ -81,7 +81,7 @@ class ConversationsDropdownPartial extends React.Component {
                 History.pushState(null, null, '/messages')
               }}
             >
-              View All Conversations
+              Xem Tất cả Cuộc trò chuyện
             </a>
           </div>
         }
@@ -106,7 +106,7 @@ class ConversationsDropdownPartial extends React.Component {
                   >
                     <div className='uk-clearfix'>
                       <div className='profilePic uk-float-left'>
-                        <img src={`/uploads/users/${profilePic}`} alt='Profile Picture' />
+                        <img src={`/uploads/users/${profilePic}`} alt='Ảnh đại diện' />
                       </div>
                       <div className='messageAuthor'>
                         <strong>{conversation.partner.fullname}</strong>
@@ -125,6 +125,7 @@ class ConversationsDropdownPartial extends React.Component {
           </ul>
         </div>
       </PDropDown>
+
     )
   }
 }

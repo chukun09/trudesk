@@ -19,7 +19,7 @@ import PageContent from 'components/PageContent'
 import StepWizard from 'components/StepWizard'
 
 class AccountsImportContainer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.csvRef = createRef()
@@ -69,7 +69,7 @@ class AccountsImportContainer extends React.Component {
     this.ldapWizardRef.current.classList.add('uk-hidden')
   }
 
-  render () {
+  render() {
     return (
       <>
         <PageTitle title={'Accounts Import'} />
@@ -88,12 +88,12 @@ class AccountsImportContainer extends React.Component {
               >
                 <div className='tru-card-content'>
                   <div className='right uk-margin-small-top'>
-                    <i className='material-icons font-size-40'>description</i>
+                    <i className='material-icons font-size-40'>mô tả</i>
                   </div>
                   <h2 className='uk-margin-remove'>
                     <span className='md-color-white uk-margin-small-bottom'>CSV</span>
                     <span className='md-color-white uk-text-small uk-display-block'>
-                      Import accounts from an uploaded csv
+                      Import tài khoản từ file csv
                     </span>
                   </h2>
                 </div>
@@ -119,7 +119,7 @@ class AccountsImportContainer extends React.Component {
                   <h2 className='uk-margin-remove'>
                     <span className='md-color-white uk-margin-small-bottom'>JSON</span>
                     <span className='md-color-white uk-text-small uk-display-block'>
-                      Import accounts from an uploaded json file
+                      Import tài khoản từ file json tải lên
                     </span>
                   </h2>
                 </div>
@@ -140,7 +140,7 @@ class AccountsImportContainer extends React.Component {
                   <h2 className='uk-margin-remove'>
                     <span className='md-color-white uk-margin-small-bottom'>LDAP</span>
                     <span className='md-color-white uk-text-small uk-display-block'>
-                      Import accounts from an enterprise ldap server.
+                      Import tài khoản từ LDAP doanh nghiệp
                     </span>
                   </h2>
                 </div>
@@ -149,8 +149,8 @@ class AccountsImportContainer extends React.Component {
           </div>
 
           <StepWizard
-            title={'CSV Account Import Wizard'}
-            subtitle={'This wizard will walk you through importing accounts from a json file.'}
+            title={'Hướng dãn nhập tài khoản CSV'}
+            subtitle={'Trình hướng dẫn này sẽ hướng dẫn bạn cách nhập tài khoản từ tệp json.'}
             ref={this.csvWizardRef}
             onCancelClicked={this.resetWizards}
           />
@@ -161,34 +161,34 @@ class AccountsImportContainer extends React.Component {
                 style={{ position: 'relative', minHeight: 265 }}
               >
                 <div className='left'>
-                  <h6 style={{ padding: '10px 0 0 15px', margin: 0, fontSize: 16 }}>JSON Account Import Wizard</h6>
+                  <h6 style={{ padding: '10px 0 0 15px', margin: 0, fontSize: 16 }}>Hướng dẫn nhập tài khoản JSON</h6>
                   <h5
                     style={{ padding: '0 0 10px 15px', margin: '-2px 0 0 0', fontSize: 12 }}
                     className='uk-text-muted'
                   >
-                    This wizard will walk you through importing accounts from a json file.
+                    Trình hướng dẫn này sẽ hướng dẫn bạn cách nhập tài khoản từ tệp json.
                   </h5>
                 </div>
                 <div className='right' style={{ margin: 15 }}>
                   <button className='btn md-btn md-btn-warning js-wizard-cancel' onClick={this.resetWizards}>
-                    Cancel
+                    Hủy
                   </button>
                 </div>
                 <hr className='nomargin' />
                 <form className='uk-form-stacked' id='wizard_json_form'>
                   <div id='wizard_json'>
-                    <h3>File Upload</h3>
+                    <h3>Tải file lên</h3>
                     <section>
                       <h2 className='heading-wiz'>
-                        File Upload
-                        <span className='sub-heading'>Upload json file containing user data to import.</span>
+                        Tải file lên
+                        <span className='sub-heading'>Tải lên tệp json chứa dữ liệu người dùng để nhập.</span>
                       </h2>
                       <hr className='md-hr' />
                       <div id='json-upload-drop' className='uk-file-upload'>
                         <p className='uk-text'>Drop file to upload</p>
                         <p className='uk-text-muted uk-text-small uk-margin-small-bottom'>or</p>
                         <a className='uk-form-file md-btn'>
-                          choose file
+                          chọn file
                           <input type='file' id='json-upload-select' />
                         </a>
                       </div>
@@ -197,23 +197,22 @@ class AccountsImportContainer extends React.Component {
                         <div className='uk-progress-bar' style={{ width: 0 }} />
                       </div>
                     </section>
-                    <h3>Review Uploaded Data</h3>
+                    <h3>Xem Dữ liệu Tải Lên</h3>
                     <section>
                       <h2 className='heading-wiz'>
-                        Review Uploaded Data
-                        <span className='sub-heading'>Below is the parsed contents of the uploaded csv file.</span>
+                        Xem Dữ liệu Tải Lên
+                        <span className='sub-heading'>Dưới đây là nội dung được phân tích từ tệp CSV đã tải lên.</span>
                       </h2>
-
                       <textarea className='review-list' id='json-review-list' disabled />
                     </section>
-                    <h3>Import Accounts</h3>
+                    <h3>Nhập Tài Khoản</h3>
                     <section>
                       <h2 className='heading-wiz uk-margin-medium-bottom'>
-                        Importing Accounts..
+                        Đang Nhập Tài Khoản..
                         <span className='sub-heading'>
-                          Please wait while your accounts are imported.
+                          Vui lòng đợi trong khi tài khoản của bạn đang được nhập.
                           <br />
-                          <em>Please do not navigate away from this page. Some UI Elements have been disabled.</em>
+                          <em>Vui lòng không điều hướng ra khỏi trang này. Một số yếu tố giao diện người dùng đã bị tắt.</em>
                         </span>
                       </h2>
                       <div
@@ -246,17 +245,17 @@ class AccountsImportContainer extends React.Component {
                 style={{ position: 'relative', minHeight: 265 }}
               >
                 <div className='left'>
-                  <h6 style={{ padding: '10px 0 0 15px', margin: 0, fontSize: 16 }}>LDAP Account Import Wizard</h6>
+                  <h6 style={{ padding: '10px 0 0 15px', margin: 0, fontSize: 16 }}>Điều hướng Nhập Tài Khoản LDAP</h6>
                   <h5
                     style={{ padding: '0 0 10px 15px', margin: '-2px 0 0 0', fontSize: 12 }}
                     className='uk-text-muted'
                   >
-                    This wizard will walk you through connecting and import users from a LDAP server.
+                    Wizard này sẽ hướng dẫn bạn kết nối và nhập người dùng từ máy chủ LDAP.
                   </h5>
                 </div>
                 <div className='right' style={{ margin: 15 }}>
                   <button className='btn md-btn md-btn-warning js-wizard-cancel' onClick={this.resetWizards}>
-                    Cancel
+                    Hủy
                   </button>
                 </div>
                 <hr className='nomargin' />
@@ -265,19 +264,18 @@ class AccountsImportContainer extends React.Component {
                 </div>
                 <form action='#' className='uk-form-stacked' id='wizard_ldap_connection_form'>
                   <div id='wizard_ldap'>
-                    <h3>Connection Information</h3>
+                    <h3>Thông Tin Kết Nối</h3>
                     <section>
                       <h2 className='heading-wiz'>
-                        Connection Information
+                        Thông Tin Kết Nối
                         <span className='sub-heading'>
-                          To import users from an LDAP server, we need a little connection information.
+                          Để nhập người dùng từ máy chủ LDAP, chúng tôi cần một số thông tin kết nối.
                         </span>
                       </h2>
                       <hr className='md-hr' style={{ marginTop: '14px !important' }} />
-
                       <div className='uk-grid'>
                         <div className='uk-margin-large-bottom uk-width-1-3'>
-                          <label htmlFor='ldap-server'>LDAP Server</label>
+                          <label htmlFor='ldap-server'>Máy Chủ LDAP</label>
                           <input
                             id='ldap-server'
                             type='text'
@@ -288,19 +286,19 @@ class AccountsImportContainer extends React.Component {
                           />
                         </div>
                         <div className='uk-margin-large-bottom uk-width-1-3'>
-                          <label htmlFor='ldap-bind-dn'>Bind DN (CN=Administrator,DC=domain,DC=com)</label>
+                          <label htmlFor='ldap-bind-dn'>DN Kết Nối (CN=Quản trị viên,DC=miền,DC=com)</label>
                           <input type='text' className='md-input' name='ldap-bind-dn' required defaultValue={''} />
                         </div>
                         <div className='uk-margin-large-bottom uk-width-1-3'>
-                          <label htmlFor='ldap-password'>Password</label>
+                          <label htmlFor='ldap-password'>Mật Khẩu</label>
                           <input type='password' className='md-input' name='ldap-password' required defaultValue={''} />
                         </div>
                         <div className='uk-margin-large-bottom uk-width-1-2'>
-                          <label htmlFor='ldap-search-base'>Search Base</label>
+                          <label htmlFor='ldap-search-base'>Thư Mục Tìm Kiếm</label>
                           <input type='text' className='md-input' name='ldap-search-base' required defaultValue={''} />
                         </div>
                         <div className='uk-margin-large-bottom uk-width-1-2'>
-                          <label htmlFor='ldap-filter'>Search Filter (Defaults to Users)</label>
+                          <label htmlFor='ldap-filter'>Bộ Lọc Tìm Kiếm (Mặc định cho Người Dùng)</label>
                           <input
                             type='text'
                             className='md-input'
@@ -311,16 +309,14 @@ class AccountsImportContainer extends React.Component {
                         </div>
                       </div>
                     </section>
-
-                    <h3>Verify Connection</h3>
+                    <h3>Xác Minh Kết Nối</h3>
                     <section>
                       <h2 className='heading-wiz'>
-                        Verify Connection
+                        Xác Minh Kết Nối
                         <span id='wizard_ldap_verify_text' className='sub-heading'>
-                          Please wait while we try to bind to your ldap server...
+                          Vui lòng đợi trong khi chúng tôi thử kết nối đến máy chủ LDAP của bạn...
                         </span>
                       </h2>
-
                       <div
                         id='wizard_ldap_verify_spinner'
                         className='card-spinner uk-hidden'
@@ -328,31 +324,28 @@ class AccountsImportContainer extends React.Component {
                       >
                         <div className='spinner' />
                       </div>
-
                       <div id='wizard_ldap_verify_icon' className='md-large-icon md-color-red uk-text-center uk-hidden'>
                         <i className='material-icons'>&#xE86C;</i>
                       </div>
                     </section>
-                    <h3>Review Accounts</h3>
+                    <h3>Xem Xét Tài Khoản</h3>
                     <section>
                       <h2 className='heading-wiz' style={{ marginBottom: 15 }}>
-                        Review Accounts
+                        Xem Xét Tài Khoản
                         <span className='sub-heading'>
-                          Please review the accounts below before proceeding. The next step will import the accounts.
+                          Vui lòng xem xét các tài khoản dưới đây trước khi tiếp tục. Bước tiếp theo sẽ nhập các tài khoản.
                         </span>
                       </h2>
-
                       <textarea className='review-list' id='ldap-review-list' disabled />
                     </section>
-
-                    <h3>Import Accounts</h3>
+                    <h3>Nhập Tài Khoản</h3>
                     <section>
                       <h2 className='heading-wiz uk-margin-medium-bottom'>
-                        Importing Accounts..
+                        Đang Nhập Tài Khoản..
                         <span className='sub-heading'>
-                          Please wait while your accounts are imported.
+                          Vui lòng đợi trong khi các tài khoản của bạn đang được nhập.
                           <br />
-                          <em>Please do not navigate away from this page. Some UI Elements have been disabled.</em>
+                          <em>Vui lòng không điều hướng ra khỏi trang này. Một số yếu tố giao diện người dùng đã bị tắt.</em>
                         </span>
                       </h2>
                       <div
@@ -378,6 +371,7 @@ class AccountsImportContainer extends React.Component {
               </div>
             </div>
           </div>
+
         </PageContent>
       </>
     )

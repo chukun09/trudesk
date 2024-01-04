@@ -24,36 +24,36 @@ import { deletePriority } from 'actions/tickets'
 import helpers from 'lib/helpers'
 
 class DeletePriorityModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       selectedPriority: ''
     }
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
     if (!this.state.selectedPriority) {
-      helpers.UI.showSnackbar('Unable to get new priority. Aborting...', true)
+      helpers.UI.showSnackbar('Không thể nhận được ưu tiên mới. Đang hủy...', true)
       return true
     }
 
     this.props.deletePriority({ id: this.props.priority.get('_id'), newPriority: this.state.selectedPriority })
   }
 
-  getPriorities () {
+  getPriorities() {
     return this.props.settings && this.props.settings.get('priorities')
       ? this.props.settings.get('priorities').toArray()
       : []
   }
 
-  onSelectChanged (e) {
+  onSelectChanged(e) {
     this.setState({
       selectedPriority: e.target.value
     })
   }
 
-  render () {
+  render() {
     const { priority } = this.props
     const mappedPriorities = this.getPriorities()
       .filter(obj => {
@@ -67,13 +67,13 @@ class DeletePriorityModal extends React.Component {
         <div>
           <form onSubmit={e => this.onSubmit(e)}>
             <div className='uk-margin-medium-bottom uk-clearfix'>
-              <h2>Remove Priority</h2>
-              <span>Please select the priority you wish to reassign tickets to in order to delete this priority</span>
+              <h2>Xóa Mức Ưu Tiên</h2>
+              <span>Vui lòng chọn mức ưu tiên mà bạn muốn chuyển các yêu cầu khác để xóa mức ưu tiên này</span>
               <hr style={{ margin: '10px 0' }} />
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <div className='uk-float-left' style={{ width: '100%' }}>
-                <label className={'uk-form-label'}>Priority</label>
+                <label className={'uk-form-label'}>Mức Ưu Tiên</label>
                 <SingleSelect
                   items={mappedPriorities}
                   showTextbox={false}
@@ -85,17 +85,17 @@ class DeletePriorityModal extends React.Component {
             </div>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <span className='uk-text-danger'>
-                WARNING: This will change all tickets with a priority of: <strong>{priority.get('name')}</strong> to the
-                selected priority above.
+                CẢNH BÁO: Thao tác này sẽ thay đổi tất cả các yêu cầu có mức ưu tiên: <strong>{priority.get('name')}</strong> thành mức ưu tiên được chọn ở trên.
               </span>
             </div>
             <div className='uk-modal-footer uk-text-right'>
-              <Button type={'button'} flat={true} waves={true} text={'Cancel'} extraClass={'uk-modal-close'} />
-              <Button type={'submit'} flat={true} waves={true} text={'Delete'} style={'danger'} />
+              <Button type={'button'} flat={true} waves={true} text={'Hủy'} extraClass={'uk-modal-close'} />
+              <Button type={'submit'} flat={true} waves={true} text={'Xóa'} style={'danger'} />
             </div>
           </form>
         </div>
       </BaseModal>
+
     )
   }
 }

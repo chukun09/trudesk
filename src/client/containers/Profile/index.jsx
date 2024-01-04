@@ -56,18 +56,18 @@ class ProfileContainer extends React.Component {
   // Prefs
   @observable timezone = null
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // This will update the profile with the latest values
     this.props.setSessionUser()
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     // This should load initial state values
     if (prevProps.sessionUser !== this.props.sessionUser) {
       this.fullname = this.props.sessionUser.fullname
@@ -86,7 +86,7 @@ class ProfileContainer extends React.Component {
     }
   }
 
-  _validateEmail (email) {
+  _validateEmail(email) {
     if (!email) return false
     return email
       .toString()
@@ -96,7 +96,7 @@ class ProfileContainer extends React.Component {
       )
   }
 
-  _getTimezones () {
+  _getTimezones() {
     return moment.tz
       .names()
       .map(function (name) {
@@ -120,12 +120,12 @@ class ProfileContainer extends React.Component {
   onSaveProfileClicked = e => {
     e.preventDefault()
     if ((this.fullname && this.fullname.length) > 50 || (this.email && this.email.length > 50)) {
-      helpers.UI.showSnackbar('Field length too long', true)
+      helpers.UI.showSnackbar('Nội dung quá dài', true)
       return
     }
 
     if (!this._validateEmail(this.email)) {
-      helpers.UI.showSnackbar('Invalid Email', true)
+      helpers.UI.showSnackbar('Email không đúng định dạng', true)
       return
     }
 
@@ -150,7 +150,7 @@ class ProfileContainer extends React.Component {
         this.editingProfile = false
         helpers.forceSessionUpdate().then(() => {
           this.props.setSessionUser()
-          helpers.UI.showSnackbar('Profile saved successfully.')
+          helpers.UI.showSnackbar('Lưu thông tin thành công')
         })
       })
   }
@@ -159,17 +159,17 @@ class ProfileContainer extends React.Component {
     e.preventDefault()
 
     if (!this.currentPassword || !this.newPassword || !this.confirmPassword) {
-      helpers.UI.showSnackbar('Invalid Form Data')
+      helpers.UI.showSnackbar('Dữ liệu form không hợp lệ')
       return
     }
 
     if (this.currentPassword.length < 4 || this.newPassword.length < 4 || this.confirmPassword.length < 4) {
-      helpers.UI.showSnackbar('Password length is too short', true)
+      helpers.UI.showSnackbar('Độ dài mật khẩu quá ngắn', true)
       return
     }
 
     if (this.currentPassword.length > 255 || this.newPassword.length > 255 || this.confirmPassword.length > 255) {
-      helpers.UI.showSnackbar('Password length is too long', true)
+      helpers.UI.showSnackbar('Độ dài mật khẩu quá dài', true)
       return
     }
 
@@ -181,7 +181,7 @@ class ProfileContainer extends React.Component {
       })
       .then(res => {
         if (res.data && res.data.success) {
-          helpers.UI.showSnackbar('Password Updated Successfully')
+          helpers.UI.showSnackbar('Cập nhật mật khẩu thành công')
           setTimeout(() => {
             window.location.reload()
           }, 1000)
@@ -245,7 +245,7 @@ class ProfileContainer extends React.Component {
     this.props.showModal('PASSWORD_PROMPT', { user: this.props.sessionUser, onVerifyComplete })
   }
 
-  render () {
+  render() {
     // return (
     //   <div>
     //     <PageTitle title={'Dashboard'} />
@@ -285,7 +285,7 @@ class ProfileContainer extends React.Component {
 
     return (
       <>
-        <PageTitle title={'Profile'} />
+        <PageTitle title={'Thông tin cá nhân'} />
         <PageContent>
           <TruCard
             header={<div />}
@@ -329,7 +329,7 @@ class ProfileContainer extends React.Component {
                     </p>
                   </div>
                   <Button
-                    text={'Edit Profile'}
+                    text={'Chỉnh sửa thông tin'}
                     small={true}
                     waves={true}
                     style={'primary'}
@@ -351,16 +351,16 @@ class ProfileContainer extends React.Component {
               <div>
                 <TruTabWrapper style={{ padding: '0' }}>
                   <TruTabSelectors showTrack={true}>
-                    <TruTabSelector selectorId={0} label={'Profile'} active={true} />
-                    <TruTabSelector selectorId={1} label={'Security'} />
-                    <TruTabSelector selectorId={2} label={'Preferences'} />
+                    <TruTabSelector selectorId={0} label={'Thông tin cá nhân'} active={true} />
+                    <TruTabSelector selectorId={1} label={'Bảo mật'} />
+                    <TruTabSelector selectorId={2} label={'Sở thích'} />
                   </TruTabSelectors>
                   <TruTabSection sectionId={0} active={true} style={{ minHeight: 480 }}>
                     <div style={{ maxWidth: 900, padding: '10px 25px' }}>
-                      <h4 style={{ marginBottom: 15 }}>Work Information</h4>
+                      <h4 style={{ marginBottom: 15 }}>Thông tin công việc</h4>
                       <div style={{ display: 'flex' }}>
                         <InfoItem
-                          label={'Name'}
+                          label={'Họ và tên'}
                           prop={this.props.sessionUser.fullname}
                           paddingLeft={0}
                           paddingRight={30}
@@ -368,14 +368,14 @@ class ProfileContainer extends React.Component {
                           onUpdate={val => (this.fullname = val)}
                         />
                         <InfoItem
-                          label={'Title'}
+                          label={'Chức vụ'}
                           prop={this.props.sessionUser.title}
                           paddingLeft={30}
                           paddingRight={30}
                           onUpdate={val => (this.title = val)}
                         />
                         <InfoItem
-                          label={'Company Name'}
+                          label={'Tên công ty'}
                           prop={this.props.sessionUser.companyName}
                           paddingRight={0}
                           paddingLeft={30}
@@ -384,14 +384,14 @@ class ProfileContainer extends React.Component {
                       </div>
                       <div style={{ display: 'flex', marginTop: 25 }}>
                         <InfoItem
-                          label={'Work Number'}
+                          label={'Số điện thoại công việc'}
                           prop={this.props.sessionUser.workNumber}
                           paddingRight={30}
                           paddingLeft={0}
                           onUpdate={val => (this.workNumber = val)}
                         />
                         <InfoItem
-                          label={'Mobile Number'}
+                          label={'Số điện thoại di động'}
                           prop={this.props.sessionUser.mobileNumber}
                           paddingLeft={30}
                           paddingRight={0}
@@ -399,24 +399,24 @@ class ProfileContainer extends React.Component {
                         />
                       </div>
                       <Spacer top={25} bottom={25} showBorder={true} />
-                      <h4 style={{ marginBottom: 15 }}>Other Information</h4>
+                      <h4 style={{ marginBottom: 15 }}>Thông tin khác</h4>
                       <div style={{ display: 'flex', marginTop: 25 }}>
                         <InfoItem
-                          label={'Facebook Url'}
+                          label={'Đường dẫn Facebook'}
                           prop={this.props.sessionUser.facebookUrl}
                           paddingLeft={0}
                           paddingRight={30}
                           onUpdate={val => (this.facebookUrl = val)}
                         />
                         <InfoItem
-                          label={'LinkedIn Url'}
+                          label={'Đường dẫn LinkedIn'}
                           prop={this.props.sessionUser.linkedinUrl}
                           paddingLeft={30}
                           paddingRight={30}
                           onUpdate={val => (this.linkedinUrl = val)}
                         />
                         <InfoItem
-                          label={'Twitter Url'}
+                          label={'Đường dẫn Twitter'}
                           prop={this.props.sessionUser.twitterUrl}
                           paddingLeft={30}
                           paddingRight={0}
@@ -426,20 +426,21 @@ class ProfileContainer extends React.Component {
                       {this.editingProfile && (
                         <div className={'uk-display-flex uk-margin-large-top'}>
                           <Button
-                            text={'Save'}
+                            text={'Lưu'}
                             style={'primary'}
                             small={true}
                             onClick={e => this.onSaveProfileClicked(e)}
                           />
-                          <Button text={'Cancel'} small={true} onClick={() => (this.editingProfile = false)} />
+                          <Button text={'Hủy'} small={true} onClick={() => (this.editingProfile = false)} />
                         </div>
                       )}
                     </div>
                   </TruTabSection>
+
                   <TruTabSection sectionId={1} style={{ minHeight: 480 }}>
                     <div style={{ maxWidth: 600, padding: '25px 0' }}>
                       <TruAccordion
-                        headerContent={'Change Password'}
+                        headerContent={'Thay đổi mật khẩu'}
                         content={
                           <div>
                             <form onSubmit={e => this.onUpdatePasswordClicked(e)}>
@@ -451,27 +452,27 @@ class ProfileContainer extends React.Component {
                                   info
                                 </i>
                                 <p style={{ lineHeight: '18px' }}>
-                                  After changing your password, you will be logged out of all sessions.
+                                  Sau khi thay đổi mật khẩu, bạn sẽ bị đăng xuất khỏi tất cả các phiên làm việc.
                                 </p>
                               </div>
                               <div>
                                 <div className={'uk-margin-medium-bottom'}>
-                                  <label>Current Password</label>
+                                  <label>Mật khẩu hiện tại</label>
                                   <Input type={'password'} onChange={v => (this.currentPassword = v)} />
                                 </div>
                                 <div className={'uk-margin-medium-bottom'}>
-                                  <label>New Password</label>
+                                  <label>Mật khẩu mới</label>
                                   <Input type={'password'} onChange={v => (this.newPassword = v)} />
                                 </div>
                                 <div className={'uk-margin-medium-bottom'}>
-                                  <label>Confirm Password</label>
+                                  <label>Xác nhận mật khẩu</label>
                                   <Input type={'password'} onChange={v => (this.confirmPassword = v)} />
                                 </div>
                               </div>
                               <div>
                                 <Button
                                   type={'submit'}
-                                  text={'Update Password'}
+                                  text={'Cập nhật mật khẩu'}
                                   style={'primary'}
                                   small={true}
                                   extraClass={'uk-width-1-1'}
@@ -483,24 +484,22 @@ class ProfileContainer extends React.Component {
                         }
                       />
                       <TruAccordion
-                        headerContent={'Two-Factor Authentication'}
+                        headerContent={'Xác thực hai yếu tố'}
                         content={
                           <div>
                             {!this.props.sessionUser.hasL2Auth && (
                               <div>
                                 {!this.l2Step2 && (
                                   <div>
-                                    <h4 style={{ fontWeight: 500 }}>Two-factor authentication is not enabled yet</h4>
+                                    <h4 style={{ fontWeight: 500 }}>Xác thực hai yếu tố chưa được kích hoạt</h4>
                                     <p style={{ fontSize: '12px', fontWeight: 400 }}>
-                                      Enabling two-factor authentication adds an extra layer of security to your
-                                      accounts. Once enabled, you will be required to enter both your password and an
-                                      authentication code in order to sign into your account. After you successfully
-                                      enable two-factor authentication, you will not be able to login unless you enter
-                                      the correct authentication code.
+                                      Khi bật xác thực hai yếu tố, bạn sẽ cần nhập cả mật khẩu và mã xác thực để đăng nhập vào tài
+                                      khoản của mình. Sau khi kích hoạt xác thực hai yếu tố thành công, bạn sẽ không thể đăng nhập
+                                      nếu không nhập mã xác thực đúng.
                                     </p>
                                     <div>
                                       <Button
-                                        text={'Enable'}
+                                        text={'Kích hoạt'}
                                         style={'primary'}
                                         small={true}
                                         waves={true}
@@ -514,14 +513,14 @@ class ProfileContainer extends React.Component {
                                     <div style={{ width: 400 }}>
                                       <div style={{ display: 'flex', marginTop: 15, flexDirection: 'column' }}>
                                         <p style={{ fontWeight: 500, marginBottom: 40 }}>
-                                          Scan the QR code below using any authenticator app such as Authy, Google
-                                          Authenticator, LastPass Authenticator, Microsoft Authenticator
+                                          Quét mã QR bên dưới bằng bất kỳ ứng dụng xác thực nào như Authy, Google Authenticator,
+                                          LastPass Authenticator, Microsoft Authenticator.
                                         </p>
                                         <div style={{ alignSelf: 'center', marginBottom: 40 }}>
                                           <div>
                                             <QRCode
                                               size={180}
-                                              code={this.l2URI || 'INVALID_CODE'}
+                                              code={this.l2URI || 'MÃ_KHÔNG_HỢP_LỆ'}
                                               css={{ marginBottom: 5 }}
                                             />
                                             <a
@@ -537,15 +536,15 @@ class ProfileContainer extends React.Component {
                                                 this.l2ShowCantSeeQR = true
                                               }}
                                             >
-                                              Can&apos;t scan the QR code?
+                                              Không thể quét mã QR?
                                             </a>
                                           </div>
                                         </div>
                                         {this.l2ShowCantSeeQR && (
                                           <div style={{ alignSelf: 'center', marginBottom: 15 }}>
                                             <p style={{ fontSize: '13px' }}>
-                                              If you are unable to scan the QR code, open the authenticator app and
-                                              select the option that allows you to enter the below key manually.
+                                              Nếu bạn không thể quét mã QR, hãy mở ứng dụng xác thực và chọn tùy chọn cho phép bạn
+                                              nhập mã dưới đây thủ công.
                                             </p>
                                             <p style={{ textAlign: 'center' }}>
                                               <span
@@ -564,14 +563,14 @@ class ProfileContainer extends React.Component {
                                           </div>
                                         )}
                                         <p style={{ fontWeight: 500 }}>
-                                          After scanning the QR code, enter the 6-digit verification code below to
-                                          activate two-factor authentication on your account.
+                                          Sau khi quét mã QR, hãy nhập mã xác minh 6 chữ số bên dưới để kích hoạt xác thực hai yếu tố
+                                          cho tài khoản của bạn.
                                         </p>
-                                        <label>Verification Code</label>
+                                        <label>Mã xác minh</label>
                                         <Input type={'text'} onChange={val => (this.l2VerifyText = val)} />
                                         <div style={{ marginTop: 25 }}>
                                           <Button
-                                            text={'Verify and continue'}
+                                            text={'Xác minh và tiếp tục'}
                                             style={'primary'}
                                             small={true}
                                             waves={true}
@@ -588,18 +587,17 @@ class ProfileContainer extends React.Component {
                             {this.props.sessionUser.hasL2Auth && (
                               <div>
                                 <h4 style={{ fontWeight: 500 }}>
-                                  Two-factor authentication is{' '}
+                                  Xác thực hai yếu tố đã{' '}
                                   <span className={'uk-text-success'} style={{ fontWeight: 600 }}>
-                                    enabled
+                                    được kích hoạt
                                   </span>
                                 </h4>
                                 <p style={{ fontSize: '12px' }}>
-                                  By disabling two-factor authentication, your account will be protected with only your
-                                  password.
+                                  Bằng cách tắt xác thực hai yếu tố, tài khoản của bạn sẽ chỉ được bảo vệ bằng mật khẩu.
                                 </p>
                                 <div>
                                   <Button
-                                    text={'Disable'}
+                                    text={'Tắt'}
                                     style={'danger'}
                                     small={true}
                                     onClick={e => this.onDisableMFAClicked(e)}
@@ -612,11 +610,12 @@ class ProfileContainer extends React.Component {
                       />
                     </div>
                   </TruTabSection>
+
                   <TruTabSection sectionId={2} style={{ minHeight: 480 }}>
                     <div style={{ maxWidth: 450, padding: '10px 25px' }}>
-                      <h4 style={{ marginBottom: 15 }}>UI Preferences</h4>
+                      <h4 style={{ marginBottom: 15 }}>Tùy chọn Giao diện</h4>
                       <div className={'uk-clearfix uk-margin-large-bottom'}>
-                        <label style={{ fontSize: '13px' }}>Timezone</label>
+                        <label style={{ fontSize: '13px' }}>Múi giờ</label>
                         <SingleSelect
                           items={this._getTimezones()}
                           defaultValue={this.timezone || undefined}
@@ -625,7 +624,7 @@ class ProfileContainer extends React.Component {
                       </div>
                       <div>
                         <Button
-                          text={'Save Preferences'}
+                          text={'Lưu Tùy chọn'}
                           style={'primary'}
                           small={true}
                           type={'button'}
@@ -634,6 +633,7 @@ class ProfileContainer extends React.Component {
                       </div>
                     </div>
                   </TruTabSection>
+
                 </TruTabWrapper>
               </div>
             }

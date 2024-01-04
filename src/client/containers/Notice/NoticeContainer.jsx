@@ -22,23 +22,23 @@ import helpers from 'lib/helpers'
 import UIKit from 'uikit'
 
 class NoticeContainer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchNotices()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.resizeAll()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.unloadNotices()
   }
 
-  onActivateNotice (noticeId) {
+  onActivateNotice(noticeId) {
     if (!helpers.canUser('notices:activate')) {
       helpers.UI.showSnackbar('Unauthorized', true)
       return
@@ -55,7 +55,7 @@ class NoticeContainer extends React.Component {
       })
   }
 
-  onDeactivateNotice () {
+  onDeactivateNotice() {
     axios
       .get('/api/v1/notices/clearactive')
       .then(() => {
@@ -69,28 +69,29 @@ class NoticeContainer extends React.Component {
       })
   }
 
-  onEditNotice (notice) {
+  onEditNotice(notice) {
     this.props.showModal('EDIT_NOTICE', { notice })
   }
 
-  onDeleteNotice (noticeId) {
+  onDeleteNotice(noticeId) {
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
-        <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
-        </p>
+      `<h2>Bạn có chắc chắn không?</h2>
+      <p style="font-size: 15px;">
+          <span class="uk-text-danger" style="font-size: 15px;">Đây là một hành động không thể hoàn tác.</span>
+      </p>
+      
         `,
       () => {
         this.props.deleteNotice({ _id: noticeId })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Có', Cancel: 'Không' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
   }
 
-  render () {
+  render() {
     const tableItems = this.props.notices.map(notice => {
       const formattedDate =
         helpers.formatDate(notice.get('date'), helpers.getShortDateFormat()) +
@@ -135,14 +136,14 @@ class NoticeContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Notices'}
+          title={'Thông báo'}
           shadow={false}
           rightComponent={
             <div className={'uk-grid uk-grid-collapse'}>
               <div className={'uk-width-1-1 mt-15 uk-text-right'}>
                 {helpers.canUser('notices:deactivate') && (
                   <Button
-                    text={'Deactivate'}
+                    text={'Ngưng hoạt động'}
                     flat={false}
                     small={true}
                     waves={false}
@@ -152,7 +153,7 @@ class NoticeContainer extends React.Component {
                 )}
                 {helpers.canUser('notices:create') && (
                   <Button
-                    text={'Create'}
+                    text={'Tạo'}
                     flat={false}
                     small={true}
                     waves={false}
@@ -174,16 +175,16 @@ class NoticeContainer extends React.Component {
             striped={true}
             headers={[
               <TableHeader key={0} width={45} height={50} text={''} />,
-              <TableHeader key={1} width={'20%'} text={'Name'} />,
-              <TableHeader key={2} width={'60%'} text={'Message'} />,
-              <TableHeader key={3} width={'10%'} text={'Date'} />,
+              <TableHeader key={1} width={'20%'} text={'Tên'} />,
+              <TableHeader key={2} width={'60%'} text={'Thông báo'} />,
+              <TableHeader key={3} width={'10%'} text={'Ngày'} />,
               <TableHeader key={4} width={150} text={''} />
             ]}
           >
             {!this.props.loading && this.props.notices.size < 1 && (
               <TableRow clickable={false}>
                 <TableCell colSpan={10}>
-                  <h5 style={{ margin: 10 }}>No Notices Found</h5>
+                  <h5 style={{ margin: 10 }}>Không tìm thấy thông báo nào</h5>
                 </TableCell>
               </TableRow>
             )}
@@ -191,6 +192,7 @@ class NoticeContainer extends React.Component {
           </Table>
         </PageContent>
       </div>
+
     )
   }
 }

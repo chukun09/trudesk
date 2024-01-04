@@ -35,12 +35,12 @@ class EditDepartmentModal extends React.Component {
   @observable allGroups = false
   @observable publicGroups = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchTeams()
     this.props.fetchGroups({ type: 'all' })
 
@@ -53,21 +53,21 @@ class EditDepartmentModal extends React.Component {
     helpers.formvalidator()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
     if (this.allGroups) this.groupSelect.selectAll()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.unloadTeams()
     this.props.unloadGroups()
   }
 
-  onInputChange (e) {
+  onInputChange(e) {
     this.name = e.target.value
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return false
@@ -84,7 +84,7 @@ class EditDepartmentModal extends React.Component {
     this.props.updateDepartment(payload)
   }
 
-  render () {
+  render() {
     const { department } = this.props
     const departmentTeams = department.get('teams')
     const departmentGroups = department.get('groups')
@@ -103,11 +103,11 @@ class EditDepartmentModal extends React.Component {
     return (
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <div className={'mb-25'}>
-          <h2>Edit Department: {department.get('name')}</h2>
+          <h2>Chỉnh sửa Phòng ban: {department.get('name')}</h2>
         </div>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Department Name</label>
+            <label>Tên Phòng ban</label>
             <input
               type='text'
               className={'md-input'}
@@ -115,26 +115,26 @@ class EditDepartmentModal extends React.Component {
               onChange={e => this.onInputChange(e)}
               data-validation='length'
               data-validation-length={'min2'}
-              data-validation-error-msg={'Please enter a valid department name. (Must contain 2 characters)'}
+              data-validation-error-msg={'Vui lòng nhập tên Phòng ban hợp lệ. (Phải chứa ít nhất 2 ký tự)'}
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label style={{ marginBottom: 5 }}>Teams</label>
+            <label style={{ marginBottom: 5 }}>Các Nhóm</label>
             <MultiSelect
               items={mappedTeams}
               initialSelected={departmentTeams ? departmentTeams.map(d => d.get('_id')).toArray() : []}
-              onChange={() => {}}
+              onChange={() => { }}
               ref={r => (this.teamsSelect = r)}
             />
           </div>
           <hr />
           <div className={'uk-margin-medium-bottom uk-clearfix'}>
             <div className='uk-float-left'>
-              <h4 style={{ paddingLeft: 2 }}>Access all current and new customer groups?</h4>
+              <h4 style={{ paddingLeft: 2 }}>Truy cập tất cả các nhóm khách hàng hiện tại và mới?</h4>
             </div>
             <div className='uk-float-right md-switch md-green' style={{ marginTop: 5 }}>
               <label>
-                Yes
+                Có
                 <input
                   type='checkbox'
                   checked={this.allGroups}
@@ -151,11 +151,11 @@ class EditDepartmentModal extends React.Component {
           </div>
           <div className={'uk-margin-medium-bottom uk-clearfix'}>
             <div className='uk-float-left'>
-              <h4 style={{ paddingLeft: 2 }}>Access all current and new public groups?</h4>
+              <h4 style={{ paddingLeft: 2 }}>Truy cập tất cả các nhóm công khai hiện tại và mới?</h4>
             </div>
             <div className='uk-float-right md-switch md-green' style={{ marginTop: 1 }}>
               <label>
-                Yes
+                Có
                 <input
                   type='checkbox'
                   checked={this.publicGroups}
@@ -168,21 +168,22 @@ class EditDepartmentModal extends React.Component {
             </div>
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label style={{ marginBottom: 5 }}>Customer Groups</label>
+            <label style={{ marginBottom: 5 }}>Nhóm Khách hàng</label>
             <MultiSelect
               items={mappedGroups}
-              onChange={() => {}}
+              onChange={() => { }}
               initialSelected={departmentGroups ? departmentGroups.map(d => d.get('_id')).toArray() : []}
               ref={r => (this.groupSelect = r)}
               disabled={this.allGroups}
             />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Save Department'} flat={true} waves={true} style={'primary'} type={'submit'} />
+            <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Lưu Phòng ban'} flat={true} waves={true} style={'primary'} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

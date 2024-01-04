@@ -33,17 +33,17 @@ class CreateStatusModal extends React.Component {
   @observable slatimer = true
   @observable isResolved = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
     helpers.formvalidator()
   }
 
-  onCreateStatusSubmit (e) {
+  onCreateStatusSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return true
@@ -57,19 +57,19 @@ class CreateStatusModal extends React.Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <BaseModal {...this.props} large={true}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onCreateStatusSubmit(e)}>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Create Status</h2>
+            <h2>Tạo Trạng Thái Mới</h2>
           </div>
 
           <div>
             <div className='uk-clearfix'>
               <div className='z-box uk-grid uk-grid-collpase uk-clearfix'>
                 <div className='uk-width-1-4'>
-                  <label>Status Name</label>
+                  <label>Tên Trạng Thái</label>
                   <input
                     type='text'
                     className={'md-input'}
@@ -77,7 +77,7 @@ class CreateStatusModal extends React.Component {
                     onChange={e => (this.name = e.target.value)}
                     data-validation='length'
                     data-validation-length='min3'
-                    data-validation-error-msg='Invalid name (3+ characters)'
+                    data-validation-error-msg='Tên không hợp lệ (tối thiểu 3 ký tự)'
                   />
                 </div>
 
@@ -109,13 +109,14 @@ class CreateStatusModal extends React.Component {
                 </div>
               </div>
               <div className='uk-modal-footer uk-text-right'>
-                <Button text={'Cancel'} type={'button'} extraClass={'uk-modal-close'} flat={true} waves={true} />
-                <Button text={'Create'} type={'submit'} flat={true} waves={true} style={'success'} />
+                <Button text={'Hủy'} type={'button'} extraClass={'uk-modal-close'} flat={true} waves={true} />
+                <Button text={'Tạo'} type={'submit'} flat={true} waves={true} style={'success'} />
               </div>
             </div>
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

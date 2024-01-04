@@ -31,17 +31,17 @@ class CreatePriorityModal extends React.Component {
   @observable overdueIn = 2880
   @observable htmlColor = '#29B995'
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
     helpers.formvalidator()
   }
 
-  onCreatePrioritySubmit (e) {
+  onCreatePrioritySubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return true
@@ -54,19 +54,19 @@ class CreatePriorityModal extends React.Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <BaseModal {...this.props} ref={i => (this.base = i)}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onCreatePrioritySubmit(e)}>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Create Priority</h2>
+            <h2>Tạo Mức Ưu Tiên</h2>
           </div>
 
           <div>
             <div className='uk-clearfix'>
               <div className='z-box uk-grid uk-grid-collpase uk-clearfix'>
                 <div className='uk-width-1-3'>
-                  <label>Priority Name</label>
+                  <label>Tên Mức Ưu Tiên</label>
                   <input
                     type='text'
                     className={'md-input'}
@@ -74,11 +74,11 @@ class CreatePriorityModal extends React.Component {
                     onChange={e => (this.name = e.target.value)}
                     data-validation='length'
                     data-validation-length='min3'
-                    data-validation-error-msg='Invalid name (3+ characters)'
+                    data-validation-error-msg='Tên không hợp lệ (ít nhất 3 ký tự)'
                   />
                 </div>
                 <div className='uk-width-1-3'>
-                  <label>SLA Overdue (minutes)</label>
+                  <label>SLA Quá Hạn (phút)</label>
                   <input
                     type='text'
                     className={'md-input'}
@@ -86,7 +86,7 @@ class CreatePriorityModal extends React.Component {
                     onChange={e => (this.overdueIn = e.target.value)}
                     data-validation='number'
                     data-validation-allowing='range[1;525600]'
-                    data-validation-error-msg='Invalid SLA Time (1-525600)'
+                    data-validation-error-msg='Thời gian SLA không hợp lệ (1-525600)'
                   />
                 </div>
                 <div className='uk-width-1-3'>
@@ -99,13 +99,14 @@ class CreatePriorityModal extends React.Component {
                 </div>
               </div>
               <div className='uk-modal-footer uk-text-right'>
-                <Button text={'Cancel'} type={'button'} extraClass={'uk-modal-close'} flat={true} waves={true} />
-                <Button text={'Create'} type={'submit'} flat={true} waves={true} style={'success'} />
+                <Button text={'Hủy'} type={'button'} extraClass={'uk-modal-close'} flat={true} waves={true} />
+                <Button text={'Tạo'} type={'submit'} flat={true} waves={true} style={'success'} />
               </div>
             </div>
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

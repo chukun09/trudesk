@@ -28,7 +28,7 @@ class PermSwitchPartial extends React.Component {
             <div className='right' style={{ position: 'relative' }}>
               <div className='md-switch md-green' style={{ margin: '18px 0 0 0' }}>
                 <label>
-                  Allow
+                  Cho phép
                   <input type='checkbox' checked={checked} onChange={onChange} disabled={disabled} />
                   <span className='lever' />
                 </label>

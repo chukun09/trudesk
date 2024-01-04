@@ -99,7 +99,7 @@ class IssuePartial extends React.Component {
       })
       .then(() => {
         this.props.socket.emit(TICKETS_UI_ATTACHMENTS_UPDATE, { _id: this.ticketId })
-        helpers.UI.showSnackbar('Attachment Successfully Uploaded')
+        helpers.UI.showSnackbar('Tải lên tệp đính kèm thành công')
       })
       .catch(error => {
         Log.error(error)

@@ -119,32 +119,32 @@ class PermissionGroupPartial extends React.Component {
           component={
             <EnableSwitch
               stateName={`all_perm_${title}_${role.get('_id')}`}
-              label={'All'}
+              label={'Tất cả'}
               checked={this.all}
               onChange={e => this.onEnableSwitchChanged(e, 'all')}
             />
           }
         >
           <PermSwitchPartial
-            title={'Create'}
+            title={'Tạo'}
             checked={this.create}
             onChange={e => this.onEnableSwitchChanged(e, 'create')}
             disabled={this.all}
           />
           <PermSwitchPartial
-            title={'View'}
+            title={'Xem'}
             onChange={e => this.onEnableSwitchChanged(e, 'view')}
             checked={this.view}
             disabled={this.all}
           />
           <PermSwitchPartial
-            title={'Update'}
+            title={'Sửa'}
             onChange={e => this.onEnableSwitchChanged(e, 'update')}
             checked={this.update}
             disabled={this.all}
           />
           <PermSwitchPartial
-            title={'Delete'}
+            title={'Xóa'}
             onChange={e => this.onEnableSwitchChanged(e, 'delete')}
             checked={this.delete}
             disabled={this.all}
@@ -160,7 +160,7 @@ class PermissionGroupPartial extends React.Component {
                       className='text-dark'
                       style={{ padding: '0 0 0 15px', margin: '20px 0', fontSize: '18px', lineHeight: '14px' }}
                     >
-                      Special Permissions
+                      Quyền đặc biệt
                     </h6>
                   </div>
                 </div>

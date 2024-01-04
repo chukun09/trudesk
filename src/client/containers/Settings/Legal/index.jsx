@@ -55,7 +55,7 @@ class LegalSettingsContainer extends React.Component {
     const { active } = this.props
     return (
       <div className={!active ? 'hide' : ''}>
-        <SettingItem title={'Privacy Policy'} subtitle={'Paste in HTML/Text of your privacy policy.'}>
+        <SettingItem title={'Chính sách bảo mật'} subtitle={'Dán HTML / Văn bản của chính sách bảo mật của bạn.'}>
           <div>
             <EasyMDE
               defaultValue={this.getSetting('privacyPolicy')}

@@ -28,17 +28,17 @@ import PermissionBody from './permissionBody'
 import $ from 'jquery'
 
 class PermissionsSettingsContainer extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchRoles()
   }
 
-  getSetting (name) {
+  getSetting(name) {
     return this.props.settings.getIn(['settings', name, 'value'])
       ? this.props.settings.getIn(['settings', name, 'value'])
       : ''
   }
 
-  onRoleOrderChanged (e) {
+  onRoleOrderChanged(e) {
     const children = $(e.target).children('li')
     const arr = []
     for (let i = 0; i < children.length; i++) arr.push($(children[i]).attr('data-key'))
@@ -46,7 +46,7 @@ class PermissionsSettingsContainer extends React.Component {
     this.props.updateRoleOrder({ roleOrder: arr })
   }
 
-  getRoleMenu () {
+  getRoleMenu() {
     if (this.props.roleOrder && this.props.roleOrder.get('order') && this.props.roles) {
       const menu = this.props.roleOrder.get('order').map(o => {
         return this.props.roles.find(v => {
@@ -60,17 +60,17 @@ class PermissionsSettingsContainer extends React.Component {
     return []
   }
 
-  onCreateRoleClicked (e) {
+  onCreateRoleClicked(e) {
     e.preventDefault()
 
     this.props.showModal('CREATE_ROLE')
   }
 
-  onDefaultUserRoleChange (e) {
+  onDefaultUserRoleChange(e) {
     this.props.updateSetting({ name: 'role:user:default', value: e.target.value, stateName: 'defaultUserRole' })
   }
 
-  render () {
+  render() {
     const mappedRoles = this.props.roles
       .map(role => {
         return { text: role.get('name'), value: role.get('_id') }
@@ -80,8 +80,8 @@ class PermissionsSettingsContainer extends React.Component {
     return (
       <div className={this.props.active ? '' : 'hide'}>
         <SettingItem
-          title={'Default New User Role'}
-          subtitle={'Role assigned to users created during sign-up and public tickets'}
+          title={'Vai Trò Mặc Định Cho Người Dùng Mới'}
+          subtitle={'Vai trò được gán cho người dùng được tạo trong quá trình đăng ký và tạo Ticket công khai'}
           component={
             <SingleSelect
               items={mappedRoles}
@@ -95,17 +95,17 @@ class PermissionsSettingsContainer extends React.Component {
           }
         />
         <SplitSettingsPanel
-          title={'Permissions'}
-          tooltip={'Permission order is top down. ex: Admins at top; Users at bottom.'}
+          title={'Quyền Truy Cập'}
+          tooltip={'Thứ tự quyền được xác định từ trên xuống. ví dụ: Quản trị viên ở đầu; Người dùng ở cuối.'}
           subtitle={
             <div>
-              Create/Modify Role Permissions{' '}
-              <span className={'uk-text-danger'}>Note: Changes take affect after page refresh</span>
+              Tạo/Chỉnh Sửa Quyền Của Vai Trò{' '}
+              <span className={'uk-text-danger'}>Lưu Ý: Thay đổi sẽ có hiệu lực sau khi làm mới trang</span>
             </div>
           }
           rightComponent={
             <Button
-              text={'Create'}
+              text={'Tạo'}
               style={'success'}
               flat={true}
               waves={true}
@@ -121,6 +121,7 @@ class PermissionsSettingsContainer extends React.Component {
           }}
         />
       </div>
+
     )
   }
 }

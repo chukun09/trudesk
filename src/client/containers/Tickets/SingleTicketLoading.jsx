@@ -62,7 +62,7 @@ class SingleTicketLoading extends React.Component {
                     {/* Type */}
                     <div className='uk-width-1-2 uk-float-left nopadding'>
                       <div className='marginright5'>
-                        <span>Type</span>
+                        <span>Loại</span>
                         <div className='input-box' style={{ paddingTop: 8 }}>
                           <div className={'loadingTextAnimation'} />
                         </div>
@@ -71,18 +71,18 @@ class SingleTicketLoading extends React.Component {
                     {/* Priority */}
                     <div className='uk-width-1-2 uk-float-left nopadding'>
                       <div className='marginleft5'>
-                        <span>Priority</span>
+                        <span>Mức độ ưu tiên</span>
                         <div className='input-box'>---</div>
                       </div>
                     </div>
                     {/*  Group */}
                     <div className='uk-width-1-1 nopadding uk-clearfix'>
-                      <span>Group</span>
+                      <span>Nhóm</span>
                       <div className='input-box'>---</div>
                     </div>
                     {/*  Due Date */}
                     <div className='uk-width-1-1 p-0'>
-                      <span>Due Date</span>
+                      <span>Ngày đến hạn</span>
                       <div className='input-box'>---</div>
                     </div>
 
@@ -102,7 +102,7 @@ class SingleTicketLoading extends React.Component {
           <div className='page-title-right noshadow'>
             <div className='page-top-comments uk-float-right'>
               <a role='button' className='btn no-ajaxy'>
-                Add Comment
+                Thêm bình luận
               </a>
             </div>
             <div
@@ -127,17 +127,6 @@ class SingleTicketLoading extends React.Component {
           </div>
           <div className='page-content-right full-height scrollable'>
             <div className='comments-wrapper'>
-              {/*<IssuePartial*/}
-              {/*  ticketId={this.ticket._id}*/}
-              {/*  status={this.ticket.status}*/}
-              {/*  owner={this.ticket.owner}*/}
-              {/*  subject={this.ticket.subject}*/}
-              {/*  issue={this.ticket.issue}*/}
-              {/*  date={this.ticket.date}*/}
-              {/*  dateFormat={`${this.props.common.longDateFormat}, ${this.props.common.timeFormat}`}*/}
-              {/*  attachments={this.ticket.attachments}*/}
-              {/*  editorWindow={this.editorWindow}*/}
-              {/*/>*/}
             </div>
           </div>
         </div>

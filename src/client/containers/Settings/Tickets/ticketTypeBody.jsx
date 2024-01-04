@@ -30,23 +30,23 @@ import ButtonGroup from 'components/ButtonGroup'
 import EditPriorityPartial from './editPriorityPartial'
 
 class TicketTypeBody extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.prioritiesRef = {}
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
   }
 
-  handleTypeRename (event) {
+  handleTypeRename(event) {
     event.preventDefault()
     const name = event.target.name.value
 
     api.tickets
       .renameTicketType(this.props.type.get('_id'), name)
       .then(response => {
-        if (response.success) helpers.UI.showSnackbar('Type Updated Successfully')
+        if (response.success) helpers.UI.showSnackbar('Loại cập nhật thành công')
         this.props.fetchSettings()
       })
       .catch(err => {
@@ -54,11 +54,11 @@ class TicketTypeBody extends React.Component {
       })
   }
 
-  onAddPriorityClick (e, type) {
+  onAddPriorityClick(e, type) {
     this.props.showModal('ADD_PRIORITY_TO_TYPE', { type })
   }
 
-  toggleEditPriority (e, k) {
+  toggleEditPriority(e, k) {
     const obj = this.prioritiesRef[k]
     const $v = $(obj).find('.view-priority')
     const $e = $(obj).find('.edit-priority')
@@ -68,7 +68,7 @@ class TicketTypeBody extends React.Component {
     }
   }
 
-  onRemoveTicketTypePriorityClicked (e, priorityId) {
+  onRemoveTicketTypePriorityClicked(e, priorityId) {
     e.preventDefault()
 
     api.tickets
@@ -88,16 +88,16 @@ class TicketTypeBody extends React.Component {
       })
   }
 
-  showDeleteTicketTypeModal (e, type) {
+  showDeleteTicketTypeModal(e, type) {
     this.props.showModal('DELETE_TICKET_TYPE', { type })
   }
 
-  render () {
+  render() {
     const { type } = this.props
     return (
       <div>
         <div className={'ticket-type-general-wrapper'}>
-          <h2 className={'text-light'}>General</h2>
+          <h2 className={'text-light'}>Chung</h2>
           <hr style={{ margin: '5px 0 25px 0' }} />
           <form
             onSubmit={e => {
@@ -105,11 +105,11 @@ class TicketTypeBody extends React.Component {
             }}
           >
             <div className='uk-input-group'>
-              <label htmlFor='ticket-type-name'>Type Name</label>
+              <label htmlFor='ticket-type-name'>Tên Loại</label>
               <input name={'name'} type='text' className={'md-input'} defaultValue={type.get('name')} />
               <div className='uk-input-group-addon'>
                 <button type='submit' className={'md-btn md-btn-small'}>
-                  Rename
+                  Đổi tên
                 </button>
               </div>
             </div>
@@ -117,19 +117,19 @@ class TicketTypeBody extends React.Component {
         </div>
         <div className='ticket-type-priorities-wrapper uk-margin-medium-top'>
           <h2 className='text-light uk-display-inline-block'>
-            Priorities
+            Ưu tiên
             <i
               className='material-icons'
               style={{ color: '#888', fontSize: '16px', cursor: 'pointer', lineHeight: '18px', marginLeft: '5px' }}
               data-uk-tooltip="{cls:'long-text'}"
-              title={'Priorities linked to this type. <br /> Editing a priority will update all types linked.'}
+              title={'Ưu tiên liên kết với loại này. <br /> Sửa đổi một ưu tiên sẽ cập nhật tất cả các loại liên kết.'}
             >
               help
             </i>
           </h2>
           <div className='uk-float-right'>
             <Button
-              text={'Add'}
+              text={'Thêm'}
               style={'success'}
               flat={true}
               waves={true}
@@ -157,12 +157,12 @@ class TicketTypeBody extends React.Component {
                       component={
                         <ButtonGroup classNames={'uk-float-right'}>
                           <Button
-                            text={'Edit'}
+                            text={'Chỉnh sửa'}
                             small={true}
                             onClick={e => this.toggleEditPriority(e, item.get('_id'))}
                           />
                           <Button
-                            text={'Remove'}
+                            text={'Xóa'}
                             small={true}
                             style={'danger'}
                             onClick={e => this.onRemoveTicketTypePriorityClicked(e, item.get('_id'))}
@@ -178,16 +178,16 @@ class TicketTypeBody extends React.Component {
           </div>
         </div>
         <div className={'uk-margin-large-top'}>
-          <h2 className='text-light'>Danger Zone</h2>
+          <h2 className='text-light'>Vùng Nguy Hiểm</h2>
           <div className='danger-zone'>
             <div className='dz-box uk-clearfix'>
               <div className='uk-float-left'>
-                <h5>Delete this type</h5>
-                <p>Once you delete a ticket type, there is no going back. Please be certain.</p>
+                <h5>Xóa loại này</h5>
+                <p>Sau khi bạn xóa một loại Ticket, không thể khôi phục. Hãy chắc chắn.</p>
               </div>
               <div className='uk-float-right' style={{ paddingTop: '10px' }}>
                 <Button
-                  text={'Delete'}
+                  text={'Xóa'}
                   small={true}
                   style={'danger'}
                   onClick={e => this.showDeleteTicketTypeModal(e, type)}
@@ -197,6 +197,7 @@ class TicketTypeBody extends React.Component {
           </div>
         </div>
       </div>
+
     )
   }
 }

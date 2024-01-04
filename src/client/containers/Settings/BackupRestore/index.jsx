@@ -40,19 +40,19 @@ import Zone from 'components/ZoneBox/zone'
 import ZoneBox from 'components/ZoneBox'
 
 class BackupRestoreSettingsContainer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.initBackupUpload = this.initBackupUpload.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchMongoDBTools()
     this.props.fetchBackups()
     this.props.fetchDeletedTickets()
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     this.initBackupUpload()
     if (!this.deletedTicketsPagination) {
       const $deletedTicketPagination = $('.deletedTicketPagination')
@@ -77,14 +77,14 @@ class BackupRestoreSettingsContainer extends React.Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.deletedTicketsPagination) {
       this.deletedTicketsPagination.element.off('select.uk.pagination')
       this.deletedTicketsPagination = null
     }
   }
 
-  initBackupUpload () {
+  initBackupUpload() {
     const $progressBar = $(this.backupUploadProgressbar)
     const $uploadSelect = $(this.backupUploadSelect)
     const $uploadButton = $(this.backupUploadBtn)
@@ -137,34 +137,35 @@ class BackupRestoreSettingsContainer extends React.Component {
     UIKit.uploadSelect($uploadSelect, settings)
   }
 
-  onBackupNowClicked (e) {
+  onBackupNowClicked(e) {
     e.preventDefault()
     this.props.backupNow()
   }
 
-  oneRestoreClicked (e, backup) {
+  oneRestoreClicked(e, backup) {
     if (!backup) return
 
     const filename = backup.get('filename')
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
-        <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
-            This will earse the database and restore it with the selected backup file: <strong>${filename}</strong>
-        </p>
-        <p style="font-size: 12px;">
-            Any users currently logged in will be presented with a blocking restore page. Preventing any further actions.
-            Once complete all users are required to log in again.</p><br />
-        <p style="font-size: 12px; font-style: italic;">
-            This process may take a while depending on the size of the backup.
-        </p>`,
+      `<h2>Bạn có chắc chắn?</h2>
+      <p style="font-size: 15px;">
+          <span class="uk-text-danger" style="font-size: 15px;">Đây là một hành động vĩnh viễn.</span> 
+          Điều này sẽ xóa cơ sở dữ liệu và khôi phục nó với tệp sao lưu đã chọn: <strong>${filename}</strong>
+      </p>
+      <p style="font-size: 12px;">
+          Những người dùng hiện đang đăng nhập sẽ nhận được một trang khôi phục chặn. Ngăn chặn bất kỳ hành động nào thêm vào.
+          Khi hoàn tất, tất cả người dùng đều phải đăng nhập lại.</p><br />
+      <p style="font-size: 12px; font-style: italic;">
+          Quá trình này có thể mất một thời gian tùy thuộc vào kích thước của bản sao lưu.
+      </p>
+      `,
       () => {
         this.props.socket.emit(BACKUP_RESTORE_SHOW_OVERLAY)
 
         axios
           .post('/api/v1/backup/restore', { file: filename })
           .then(() => {
-            helpers.UI.showSnackbar('Restore Complete. Logging all users out...')
+            helpers.UI.showSnackbar('Khôi phục hoàn tất. Đăng xuất tất cả người dùng ...')
             setTimeout(() => {
               this.props.socket.emit(BACKUP_RESTORE_COMPLETE)
             }, 2000)
@@ -175,27 +176,29 @@ class BackupRestoreSettingsContainer extends React.Component {
           })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Có', Cancel: 'Không' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
   }
 
-  onDeleteBackupClicked (e, backup) {
+  onDeleteBackupClicked(e, backup) {
     UIKit.modal.confirm(
-      `<h2 class="text-light">Are you sure?</h2>
-        <p style="font-size: 14px;">This action is permanent and will destroy the backup file: 
-            <strong>${backup.get('filename')}</strong>
-        </p>`,
+      `<h2 class="text-light">Bạn có chắc chắn?</h2>
+      <p style="font-size: 14px;">Hành động này là vĩnh viễn và sẽ xóa tệp sao lưu: 
+          <strong>${backup.get('filename')}</strong>
+      </p>
+      `,
       () => {
         axios
           .delete(`/api/v1/backup/${backup.get('filename')}`)
           .then(res => {
             if (res.data && res.data.success) {
               this.props.fetchBackups()
-              helpers.UI.showSnackbar('Backup successfully deleted')
+              helpers.UI.showSnackbar('Xóa sao lưu thành công')
             } else {
-              helpers.UI.showSnackbar('Unable to delete backup', true)
+              helpers.UI.showSnackbar('Không thể xóa sao lưu', true)
+
             }
           })
           .catch(err => {
@@ -204,39 +207,39 @@ class BackupRestoreSettingsContainer extends React.Component {
           })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Có', Cancel: 'Không' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
   }
 
-  onRestoreTicketClicked (e, ticket) {
+  onRestoreTicketClicked(e, ticket) {
     if (!ticket) return
 
     this.props.restoreDeletedTicket({ _id: ticket.get('_id') })
   }
 
-  onDeleteTicketClicked (e, ticket) {
+  onDeleteTicketClicked(e, ticket) {
     if (!ticket) return
 
     this.props.permDeleteTicket({ _id: ticket.get('_id') })
   }
 
-  render () {
+  render() {
     const { active } = this.props
 
     return (
       <div className={active ? 'active' : 'hide'}>
         {!this.props.settings.hasMongoDBTools && (
           <SettingItem
-            title={'MongoDB Tools Not Found'}
-            subtitle={'Unable to locate MongoDB tools. Please make sure MongoDB tools are installed.'}
+            title={'Không Tìm Thấy Công Cụ MongoDB'}
+            subtitle={'Không thể tìm thấy công cụ MongoDB. Vui lòng đảm bảo rằng bạn đã cài đặt công cụ MongoDB.'}
           >
             <div>
-              <h4>Installing MongoDB Tools</h4>
+              <h4>Việc Cài Đặt Công Cụ MongoDB</h4>
               <p style={{ margin: '0 0 5px 0', fontSize: '13px' }}>
-                MongoDB Tools are required to perform backup and restore. See below for instructions on installing
-                MongoDB Tools.
+                Công cụ MongoDB là bắt buộc để thực hiện sao lưu và phục hồi. Xem hướng dẫn sau để cài đặt
+                công cụ MongoDB.
               </p>
               <h5>
                 <strong>Ubuntu 18.04</strong>
@@ -263,8 +266,8 @@ class BackupRestoreSettingsContainer extends React.Component {
         {this.props.settings.hasMongoDBTools && (
           <div>
             <SettingItem
-              title={'Backup Now'}
-              subtitle={'Backup all site data. (Database, Attachments, Assets)'}
+              title={'Sao Lưu Ngay Bây Giờ'}
+              subtitle={'Sao lưu toàn bộ dữ liệu trang web. (Cơ sở dữ liệu, Tệp đính kèm, Tài sản)'}
               component={
                 <div className={'uk-float-right mt-10'}>
                   <div
@@ -278,12 +281,12 @@ class BackupRestoreSettingsContainer extends React.Component {
                       className='uk-progress-bar uk-float-right'
                       style={{ width: '115px', fontSize: '11px', textTransform: 'uppercase', lineHeight: '31px' }}
                     >
-                      Please Wait...
+                      Vui lòng đợi...
                     </div>
                   </div>
                   {!this.props.settings.backingup && (
                     <Button
-                      text={'Backup Now'}
+                      text={'Sao Lưu Ngay Bây Giờ'}
                       style={'success'}
                       small={true}
                       styleOverride={{ width: '115px' }}
@@ -294,8 +297,8 @@ class BackupRestoreSettingsContainer extends React.Component {
               }
             />
             <SettingItem
-              title={'Backups'}
-              subtitle={'Currently stored backups'}
+              title={'Sao Lưu'}
+              subtitle={'Các sao lưu đã lưu trữ hiện tại'}
               component={
                 <div className={'uk-float-right mt-10'} style={{ width: '85px' }}>
                   <div
@@ -313,7 +316,7 @@ class BackupRestoreSettingsContainer extends React.Component {
                       style={{ width: '85px' }}
                       ref={i => (this.backupUploadBtn = i)}
                     >
-                      Upload
+                      Tải lên
                       <input ref={i => (this.backupUploadSelect = i)} type={'file'} name={'backupUploadSelect'} />
                     </button>
                   </form>
@@ -323,7 +326,7 @@ class BackupRestoreSettingsContainer extends React.Component {
               {this.props.settings.backups.size < 1 && (
                 <Zone>
                   <ZoneBox>
-                    <h2 className={'uk-text-muted uk-text-center'}>No Backups</h2>
+                    <h2 className={'uk-text-muted uk-text-center'}>Không có sao lưu</h2>
                   </ZoneBox>
                 </Zone>
               )}
@@ -331,8 +334,8 @@ class BackupRestoreSettingsContainer extends React.Component {
                 <table className='uk-table mt-0'>
                   <thead>
                     <tr>
-                      <th>Filename</th>
-                      <th>Size</th>
+                      <th>Tên Tệp</th>
+                      <th>Kích Thước</th>
                       <th />
                     </tr>
                   </thead>
@@ -351,16 +354,16 @@ class BackupRestoreSettingsContainer extends React.Component {
                                 className={'md-btn md-btn-small md-btn-wave no-ajaxy'}
                                 download={backup.get('filename')}
                               >
-                                download
+                                Tải về
                               </a>
                               <Button
-                                text={'Restore'}
+                                text={'Phục Hồi'}
                                 small={true}
                                 waves={true}
                                 onClick={e => this.oneRestoreClicked(e, backup)}
                               />
                               <Button
-                                text={'Delete'}
+                                text={'Xóa'}
                                 small={true}
                                 style={'danger'}
                                 waves={true}
@@ -377,11 +380,11 @@ class BackupRestoreSettingsContainer extends React.Component {
             </SettingItem>
           </div>
         )}
-        <SettingItem title={'Deleted Tickets'} subtitle={'Tickets marked as deleted are shown below.'}>
+        <SettingItem title={'Các Ticket Đã Xóa'} subtitle={'Các Ticket được đánh dấu là đã xóa được hiển thị dưới đây.'}>
           {this.props.settings.deletedTickets.size < 1 && (
             <Zone>
               <ZoneBox>
-                <h2 className='uk-text-muted uk-text-center'>No Deleted Tickets</h2>
+                <h2 className='uk-text-muted uk-text-center'>Không có Ticket bị xóa</h2>
               </ZoneBox>
             </Zone>
           )}
@@ -391,9 +394,9 @@ class BackupRestoreSettingsContainer extends React.Component {
                 <thead>
                   <tr>
                     <th>UID</th>
-                    <th>Subject</th>
-                    <th>Group</th>
-                    <th>Date</th>
+                    <th>Chủ Đề</th>
+                    <th>Nhóm</th>
+                    <th>Ngày</th>
                     <th />
                   </tr>
                 </thead>
@@ -416,14 +419,14 @@ class BackupRestoreSettingsContainer extends React.Component {
                         <td className='uk-text-right valign-middle'>
                           <ButtonGroup>
                             <Button
-                              text={'Delete'}
+                              text={'Xóa'}
                               style={'danger'}
                               small={true}
                               waves={true}
                               onClick={e => this.onDeleteTicketClicked(e, ticket)}
                             />
                             <Button
-                              text={'Restore'}
+                              text={'Phục Hồi'}
                               small={true}
                               waves={true}
                               onClick={e => this.onRestoreTicketClicked(e, ticket)}
@@ -440,6 +443,7 @@ class BackupRestoreSettingsContainer extends React.Component {
           )}
         </SettingItem>
       </div>
+
     )
   }
 }

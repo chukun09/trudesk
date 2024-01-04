@@ -94,10 +94,10 @@ class OnlineUserListPartial extends React.Component {
   render () {
     const { timezone, users } = this.props
     return (
-      <OffCanvas title={'Online Users'} id={'online-user-list'}>
+      <OffCanvas title={'Người dùng đang hoạt động'} id={'online-user-list'}>
         <div style={{ padding: '0 5px' }}>
           <div className='active-now'>
-            <h5>Active Now</h5>
+            <h5>Đang hoạt động</h5>
             <div className='online-list-wrapper'>
               <ul className='online-list'>
                 {entries(this.activeUsers).map(([key, value]) => {
@@ -124,7 +124,7 @@ class OnlineUserListPartial extends React.Component {
             </div>
           </div>
 
-          <h5>More Conversations</h5>
+          <h5>Các cuộc trò chuyện khác</h5>
           <div className='user-list-wrapper' style={{ lineHeight: 'normal' }}>
             <div
               className='online-list-search-box search-box'

@@ -33,7 +33,7 @@ class AccountsSettingsContainer extends React.Component {
   @observable passwordComplexityEnabled = false
   @observable allowUserRegistrationEnabled = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
@@ -45,11 +45,11 @@ class AccountsSettingsContainer extends React.Component {
     this.restartServer = this.restartServer.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // helpers.UI.inputs()
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     // helpers.UI.reRenderInputs()
     if (prevProps.settings !== this.props.settings) {
       if (this.passwordComplexityEnabled !== this.getSetting('accountsPasswordComplexity'))
@@ -59,7 +59,7 @@ class AccountsSettingsContainer extends React.Component {
     }
   }
 
-  restartServer () {
+  restartServer() {
     this.setState({ restarting: true })
 
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -84,27 +84,27 @@ class AccountsSettingsContainer extends React.Component {
       })
   }
 
-  getSetting (stateName) {
+  getSetting(stateName) {
     return this.props.settings.getIn(['settings', stateName, 'value'])
       ? this.props.settings.getIn(['settings', stateName, 'value'])
       : ''
   }
 
-  updateSetting (stateName, name, value) {
+  updateSetting(stateName, name, value) {
     this.props.updateSetting({ stateName, name, value })
   }
 
-  render () {
+  render() {
     const { active } = this.props
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title='Allow User Registration'
-          subtitle='Allow users to create accounts on the login screen.'
+          title='Cho Phép Đăng Ký Người Dùng'
+          subtitle='Cho phép người dùng tạo tài khoản trên màn hình đăng nhập.'
           component={
             <EnableSwitch
               stateName='allowUserRegistration'
-              label='Enable'
+              label='Bật'
               checked={this.allowUserRegistrationEnabled}
               onChange={e => {
                 this.updateSetting('allowUserRegistration', 'allowUserRegistration:enable', e.target.checked)
@@ -113,13 +113,13 @@ class AccountsSettingsContainer extends React.Component {
           }
         />
         <SettingItem
-          title={'Password Complexity'}
-          subtitle={'Require users passwords to meet minimum password complexity'}
-          tooltip={'Minimum 8 characters with uppercase and numeric.'}
+          title={'Độ Phức Tạp Mật Khẩu'}
+          subtitle={'Yêu cầu mật khẩu của người dùng phải đáp ứng độ phức tạp tối thiểu'}
+          tooltip={'Tối thiểu 8 ký tự với chữ hoa và số.'}
           component={
             <EnableSwitch
               stateName={'accountsPasswordComplexity'}
-              label={'Enable'}
+              label={'Bật'}
               checked={this.passwordComplexityEnabled}
               onChange={e => {
                 this.updateSetting('accountsPasswordComplexity', 'accountsPasswordComplexity:enable', e.target.checked)
@@ -128,6 +128,7 @@ class AccountsSettingsContainer extends React.Component {
           }
         />
       </div>
+
     )
   }
 }

@@ -44,12 +44,12 @@ class EditAccountModal extends React.Component {
   selectedRole = ''
   @observable isAgentRole = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.name = this.props.user.fullname
     this.title = this.props.user.title
     this.email = this.props.user.email
@@ -64,22 +64,22 @@ class EditAccountModal extends React.Component {
     this.props.fetchRoles()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.unloadGroups()
     this.props.unloadTeams()
     this.props.unloadDepartments()
   }
 
-  onFileBtnClick (e) {
+  onFileBtnClick(e) {
     e.stopPropagation()
     if (this.uploadImageInput) this.uploadImageInput.click()
   }
 
-  onImageUploadChanged (e) {
+  onImageUploadChanged(e) {
     const self = e.target
     const that = this
     const formData = new FormData()
@@ -98,11 +98,11 @@ class EditAccountModal extends React.Component {
       })
   }
 
-  onInputChanged (e, stateName) {
+  onInputChanged(e, stateName) {
     this[stateName] = e.target.value
   }
 
-  onRoleSelectChange (e) {
+  onRoleSelectChange(e) {
     this.selectedRole = e.target.value
 
     const roleObject = this.props.roles.find(role => {
@@ -112,7 +112,7 @@ class EditAccountModal extends React.Component {
     this.isAgentRole = roleObject.get('isAdmin') || roleObject.get('isAgent')
   }
 
-  onSubmitSaveAccount (e) {
+  onSubmitSaveAccount(e) {
     e.preventDefault()
     if (!this.props.edit) return
     const data = {
@@ -130,7 +130,7 @@ class EditAccountModal extends React.Component {
     this.props.saveEditAccount(data)
   }
 
-  render () {
+  render() {
     const { user, edit } = this.props
     const customer = !this.isAgentRole
     const profilePicture = user.image || 'defaultProfile.jpg'
@@ -141,26 +141,26 @@ class EditAccountModal extends React.Component {
 
     const teams = this.props.teams
       ? this.props.teams
-          .map(team => {
-            return { text: team.get('name'), value: team.get('_id') }
-          })
-          .toArray()
+        .map(team => {
+          return { text: team.get('name'), value: team.get('_id') }
+        })
+        .toArray()
       : []
 
     const departments = this.props.departments
       ? this.props.departments
-          .map(department => {
-            return { text: department.get('name'), value: department.get('_id') }
-          })
-          .toArray()
+        .map(department => {
+          return { text: department.get('name'), value: department.get('_id') }
+        })
+        .toArray()
       : []
 
     const groups = this.props.groups
       ? this.props.groups
-          .map(group => {
-            return { text: group.get('name'), value: group.get('_id') }
-          })
-          .toArray()
+        .map(group => {
+          return { text: group.get('name'), value: group.get('_id') }
+        })
+        .toArray()
       : []
 
     if (!user.teams) user.teams = []
@@ -218,7 +218,7 @@ class EditAccountModal extends React.Component {
           <form className='uk-form-stacked' onSubmit={e => this.onSubmitSaveAccount(e)}>
             <div className='uk-margin-medium-bottom uk-clearfix'>
               <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                <label className={'uk-form-label'}>Name</label>
+                <label className={'uk-form-label'}>Tên</label>
                 <input
                   type='text'
                   className={'md-input'}
@@ -228,7 +228,7 @@ class EditAccountModal extends React.Component {
                 />
               </div>
               <div className='uk-float-left uk-width-1-2'>
-                <label className={'uk-form-label'}>Title</label>
+                <label className={'uk-form-label'}>Chức danh</label>
                 <input
                   type='text'
                   className={'md-input'}
@@ -242,7 +242,7 @@ class EditAccountModal extends React.Component {
               <div>
                 <div className='uk-margin-medium-bottom uk-clearfix'>
                   <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                    <label className={'uk-form-label'}>Password</label>
+                    <label className={'uk-form-label'}>Mật khẩu</label>
                     <input
                       type='password'
                       className={'md-input'}
@@ -251,7 +251,7 @@ class EditAccountModal extends React.Component {
                     />
                   </div>
                   <div className='uk-float-left uk-width-1-2'>
-                    <label className={'uk-form-label'}>Confirm Password</label>
+                    <label className={'uk-form-label'}>Xác nhận mật khẩu</label>
                     <input
                       type='password'
                       className={'md-input'}
@@ -274,7 +274,7 @@ class EditAccountModal extends React.Component {
             </div>
             {edit && (
               <div className='uk-margin-medium-bottom'>
-                <label className={'uk-form-label'}>Role</label>
+                <label className={'uk-form-label'}>Vai trò</label>
                 <SingleSelect
                   items={roles}
                   width={'100'}
@@ -287,11 +287,11 @@ class EditAccountModal extends React.Component {
             )}
             {this.props.groups && customer && (
               <div className='uk-margin-medium-bottom'>
-                <label className='uk-form-label'>Groups</label>
+                <label className='uk-form-label'>Nhóm</label>
                 <MultiSelect
                   items={groups}
                   initialSelected={user.groups.map(i => i._id)}
-                  onChange={() => {}}
+                  onChange={() => { }}
                   ref={r => (this.groupSelect = r)}
                   disabled={!edit}
                 />
@@ -300,31 +300,30 @@ class EditAccountModal extends React.Component {
             {!customer && (
               <div>
                 <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Teams</label>
+                  <label className='uk-form-label'>Nhóm</label>
                   <MultiSelect
                     items={teams}
                     initialSelected={user.teams.map(i => i._id)}
-                    onChange={() => {}}
+                    onChange={() => { }}
                     ref={r => (this.teamsSelect = r)}
                     disabled={!edit}
                   />
                 </div>
-
                 <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Departments</label>
+                  <label className='uk-form-label'>Phòng ban</label>
                   <MultiSelect
                     items={departments}
                     initialSelected={user.departments.map(i => i._id)}
-                    onChange={() => {}}
+                    onChange={() => { }}
                     disabled={true}
                   />
                 </div>
               </div>
             )}
             <div className='uk-modal-footer uk-text-right'>
-              <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+              <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
               <Button
-                text={'Save Account'}
+                text={'Lưu Tài Khoản'}
                 flat={true}
                 waves={true}
                 style={'primary'}
@@ -335,6 +334,7 @@ class EditAccountModal extends React.Component {
           </form>
         </div>
       </BaseModal>
+
     )
   }
 }

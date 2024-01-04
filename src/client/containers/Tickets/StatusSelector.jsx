@@ -91,7 +91,7 @@ class StatusSelector extends React.Component {
     return (
       <div className='floating-ticket-status'>
         <div
-          title='Change Status'
+          title='Đổi trạng thái'
           className={clsx(`ticket-status`, this.props.hasPerm && `cursor-pointer`)}
           style={{ color: 'white', background: currentStatus != null ? currentStatus.get('htmlColor') : '#000000' }}
           onClick={e => this.toggleDropMenu(e)}

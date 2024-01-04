@@ -81,7 +81,7 @@ const fetchTicket = parent => {
 
 const showPriorityConfirm = () => {
   UIkit.modal.confirm(
-    'Selected Priority does not exist for this ticket type. Priority has reset to the default for this type.' +
+    'Ưu tiên đã chọn không tồn tại cho loại ticket này. Ưu tiên đã được đặt lại về mặc định cho loại ticket này' +
       '<br><br><strong>Please select a new priority</strong>',
     () => {},
     { cancelButtonClass: 'uk-hidden' }
@@ -373,7 +373,7 @@ class SingleTicketContainer extends React.Component {
                         {/* Type */}
                         <div className='uk-width-1-2 uk-float-left nopadding'>
                           <div className='marginright5'>
-                            <span>Type</span>
+                            <span>Loại</span>
                             {hasTicketUpdate && (
                               <select
                                 value={this.ticket.type._id}
@@ -415,7 +415,7 @@ class SingleTicketContainer extends React.Component {
                         {/* Priority */}
                         <div className='uk-width-1-2 uk-float-left nopadding'>
                           <div className='marginleft5'>
-                            <span>Priority</span>
+                            <span>Mức độ ưu tiên</span>
                             {hasTicketUpdate && (
                               <select
                                 name='tPriority'
@@ -442,7 +442,7 @@ class SingleTicketContainer extends React.Component {
                         </div>
                         {/*  Group */}
                         <div className='uk-width-1-1 nopadding uk-clearfix'>
-                          <span>Group</span>
+                          <span>Nhóm</span>
                           {hasTicketUpdate && (
                             <select
                               value={this.ticket.group._id}
@@ -465,7 +465,7 @@ class SingleTicketContainer extends React.Component {
                         </div>
                         {/*  Due Date */}
                         <div className='uk-width-1-1 p-0'>
-                          <span>Due Date</span> {hasTicketUpdate && <span>-&nbsp;</span>}
+                          <span>Ngày đến hạn</span> {hasTicketUpdate && <span>-&nbsp;</span>}
                           {hasTicketUpdate && (
                             <div className={'uk-display-inline'}>
                               <a
@@ -478,7 +478,7 @@ class SingleTicketContainer extends React.Component {
                                   })
                                 }}
                               >
-                                Clear
+                                Xóa
                               </a>
                               <DatePicker
                                 name={'ticket_due_date'}
@@ -521,7 +521,7 @@ class SingleTicketContainer extends React.Component {
                                       })
                                     }}
                                   >
-                                    Edit Tags
+                                    Chỉnh sửa Tags
                                   </a>
                                 </div>
                               </Fragment>
@@ -542,7 +542,7 @@ class SingleTicketContainer extends React.Component {
                     {helpers.canUser('agent:*', true) && (
                       <div className='uk-width-1-1 padding-left-right-15'>
                         <div className='tru-card ticket-details pr-0 pb-0' style={{ height: 250 }}>
-                          Ticket History
+                          Lịch sử Ticket
                           <hr style={{ padding: 0, margin: 0 }} />
                           <div className='history-items scrollable' style={{ paddingTop: 12 }}>
                             {this.ticket.history &&
@@ -552,7 +552,7 @@ class SingleTicketContainer extends React.Component {
                                     dateTime={helpers.formatDate(item.date, this.props.common.get('longDateFormat'))}
                                   />
                                   <em>
-                                    Action by: <span>{item.owner.fullname}</span>
+                                    Hành động bởi: <span>{item.owner.fullname}</span>
                                   </em>
                                   <p>{item.description}</p>
                                 </div>
@@ -577,7 +577,7 @@ class SingleTicketContainer extends React.Component {
                           this.transferToThirdParty(e)
                         }}
                       >
-                        Transfer to ThirdParty
+                        Chuyển cho bên thứ ba
                       </a>
                     </div>
                   )}
@@ -590,7 +590,7 @@ class SingleTicketContainer extends React.Component {
                         helpers.scrollToBottom('.page-content-right', true)
                       }}
                     >
-                      Add Comment
+                      Thêm bình luận
                     </a>
                   </div>
                   <div
@@ -649,21 +649,21 @@ class SingleTicketContainer extends React.Component {
                         <TruTabSelectors style={{ marginLeft: 110 }}>
                           <TruTabSelector
                             selectorId={0}
-                            label='All'
+                            label='Tất cả'
                             active={true}
                             showBadge={true}
                             badgeText={this.commentsAndNotes.length}
                           />
                           <TruTabSelector
                             selectorId={1}
-                            label='Comments'
+                            label='Bình luận'
                             showBadge={true}
                             badgeText={this.ticket ? this.ticket.comments && this.ticket.comments.length : 0}
                           />
                           {helpers.canUser('tickets:notes', true) && (
                             <TruTabSelector
                               selectorId={2}
-                              label='Notes'
+                              label='Ghi chú'
                               showBadge={true}
                               badgeText={this.ticket ? this.ticket.notes && this.ticket.notes.length : 0}
                             />
@@ -823,7 +823,7 @@ class SingleTicketContainer extends React.Component {
                                       className='uk-button uk-button-accent'
                                       style={{ padding: '10px 15px' }}
                                     >
-                                      Post Comment
+                                      Đăng bình luận
                                     </button>
                                   </div>
                                 </div>
@@ -848,7 +848,7 @@ class SingleTicketContainer extends React.Component {
                                       className='uk-button uk-button-accent'
                                       style={{ padding: '10px 15px' }}
                                     >
-                                      Save Note
+                                      Lưu ghi chú
                                     </button>
                                   </div>
                                 </div>

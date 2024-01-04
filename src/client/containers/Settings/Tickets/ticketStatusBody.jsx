@@ -33,26 +33,26 @@ class TicketStatusBody extends React.Component {
   @observable htmlColor = ''
   @observable slatimer = ''
   @observable isResolved = ''
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.statusName = this.props.status.get('name') || ''
     this.htmlColor = this.props.status.get('htmlColor') || ''
     this.isResolved = this.props.status.get('isResolved') || false
     this.slatimer = this.props.status.get('slatimer') || false
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.statusName === '') this.statusName = this.props.status.get('name') || ''
     if (this.htmlColor === '') this.htmlColor = this.props.status.get('htmlColor') || ''
     if (this.isResolved === '') this.isResolved = this.props.status.get('isResolved') || false
     if (this.slatimer === '') this.slatimer = this.props.status.get('slatimer') || false
   }
 
-  onSaveClicked (e) {
+  onSaveClicked(e) {
     const id = this.props.status.get('_id')
     const name = this.statusName
     const htmlColor = this.htmlColor
@@ -62,7 +62,7 @@ class TicketStatusBody extends React.Component {
     api.tickets
       .updateStatus({ id, name, htmlColor, isResolved, slatimer })
       .then(res => {
-        helpers.UI.showSnackbar('Status updated')
+        helpers.UI.showSnackbar('Đã cập nhật trạng thái')
         this.props.fetchSettings()
       })
       .catch(e => {
@@ -71,23 +71,23 @@ class TicketStatusBody extends React.Component {
       })
   }
 
-  showDeleteTicketStatusModal (e, status) {
+  showDeleteTicketStatusModal(e, status) {
     this.props.showModal('DELETE_STATUS', { status })
   }
 
-  render () {
+  render() {
     return (
       <div>
         <form>
           <div className={'ticket-status-general-wrapper'}>
-            <h2 className='text-light'>General</h2>
+            <h2 className='text-light'>Chung</h2>
             <hr style={{ margin: '5px 0 25px 0' }} />
             <div style={{ marginBottom: 15 }}>
-              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Status Name</label>
+              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Tên Trạng Thái</label>
               <Input defaultValue={this.statusName} onChange={v => (this.statusName = v)} />
             </div>
             <div style={{ marginBottom: 15 }}>
-              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Status Color</label>
+              <label style={{ display: 'inline-block', cursor: 'pointer' }}>Màu Trạng Thái</label>
               <ColorSelector
                 showLabel={false}
                 hideRevert={true}
@@ -96,48 +96,48 @@ class TicketStatusBody extends React.Component {
               />
             </div>
           </div>
-          <h2 className='text-light mt-25'>Properties</h2>
+          <h2 className='text-light mt-25'>Thuộc Tính</h2>
           <hr style={{ margin: '5px 0 25px 0' }} />
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
             <h4 className={'uk-width-1-2'} style={{ flexGrow: 1 }}>
-              SLA Timer
+              Đếm Thời Gian SLA
             </h4>
             <EnableSwitch
               stateName={`slatimer_${this.props.status.get('_id')}`}
-              label={'Yes'}
+              label={'Có'}
               checked={this.slatimer}
               onChange={e => (this.slatimer = e.target.checked)}
             />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
             <h4 className={'uk-width-1-2'} style={{ flexGrow: 1 }}>
-              Is Resolved
+              Đã Giải Quyết
             </h4>
             <EnableSwitch
               stateName={`isResolved_${this.props.status.get('_id')}`}
-              label={'Yes'}
+              label={'Có'}
               checked={this.isResolved}
               onChange={e => (this.isResolved = e.target.checked)}
             />
           </div>
           <div className={'uk-margin-large-top'} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button text={'Save Status'} style={'success'} onClick={e => this.onSaveClicked(e)} />
+            <Button text={'Lưu Trạng Thái'} style={'success'} onClick={e => this.onSaveClicked(e)} />
           </div>
         </form>
         {!this.props.status.get('isLocked') && (
           <>
             <div className={'uk-margin-large-top'} style={{ display: 'block', height: 15 }} />
             <div className={'uk-margin-large-top'}>
-              <h2 className='text-light'>Danger Zone</h2>
+              <h2 className='text-light'>Vùng Nguy Hiểm</h2>
               <div className='danger-zone'>
                 <div className='dz-box uk-clearfix'>
                   <div className='uk-float-left'>
-                    <h5>Delete this status</h5>
-                    <p>Once you delete a ticket status, there is no going back. Please be certain.</p>
+                    <h5>Xóa trạng thái này</h5>
+                    <p>Một khi bạn xóa một trạng thái Ticket, không có cách nào để khôi phục. Hãy chắc chắn.</p>
                   </div>
                   <div className='uk-float-right' style={{ paddingTop: '10px' }}>
                     <Button
-                      text={'Delete'}
+                      text={'Xóa'}
                       small={true}
                       style={'danger'}
                       onClick={e => this.showDeleteTicketStatusModal(e, this.props.status)}
@@ -149,6 +149,7 @@ class TicketStatusBody extends React.Component {
           </>
         )}
       </div>
+
     )
   }
 }

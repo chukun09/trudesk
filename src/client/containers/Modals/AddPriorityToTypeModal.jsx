@@ -84,63 +84,64 @@ class AddPriorityToTypeModal extends React.Component {
     const { type } = this.props
     return (
       <BaseModal>
-        <form className='uk-form-stacked'>
-          <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Add Priorities</h2>
-            <span>Please select the priorities you wish to add to type: {type.get('name')}</span>
-          </div>
-          <div className='priority-loop zone'>
-            {this.getPriorities().map(priority => {
-              if (some(type.get('priorities').toJS(), priority.toObject())) {
-                return (
-                  <div key={priority.get('_id')} className={'z-box uk-clearfix'}>
-                    <div className='uk-float-left'>
-                      <h5 style={{ color: priority.get('htmlColor'), fontWeight: 'bold' }}>{priority.get('name')}</h5>
-                      <p className={'uk-text-muted'}>
-                        SLA Overdue: <strong>{priority.get('durationFormatted')}</strong>
-                      </p>
-                    </div>
-                    <div className='uk-float-right'>
-                      <i className='material-icons uk-text-success mt-10 mr-15' style={{ fontSize: '28px' }}>
-                        check
-                      </i>
-                    </div>
-                  </div>
-                )
-              } else {
-                return (
-                  <div key={priority.get('_id')} className={'z-box uk-clearfix'}>
-                    <div className='uk-float-left'>
-                      <h5 style={{ color: priority.get('htmlColor'), fontWeight: 'bold' }}>{priority.get('name')}</h5>
-                      <p className={'uk-text-muted'}>
-                        SLA Overdue: <strong>{priority.get('durationFormatted')}</strong>
-                      </p>
-                    </div>
-                    <div className='uk-float-right'>
-                      <a
-                        type={'button'}
-                        className='uk-button uk-button-success mt-10 mr-10 no-ajaxy'
-                        onClick={e => this.onAddClick(e, type, priority)}
-                      >
-                        Add
-                      </a>
-                      <i
-                        className='material-icons uk-text-success mt-10 mr-15'
-                        style={{ display: 'none', opacity: 0, fontSize: '28px' }}
-                      >
-                        check
-                      </i>
-                    </div>
-                  </div>
-                )
-              }
-            })}
-          </div>
-          <div className='uk-modal-footer uk-text-right'>
-            <Button type={'button'} flat={true} waves={true} text={'Close'} extraClass={'uk-modal-close'} />
-          </div>
-        </form>
-      </BaseModal>
+  <form className='uk-form-stacked'>
+    <div className='uk-margin-medium-bottom uk-clearfix'>
+      <h2>Thêm Mức Độ Ưu Tiên</h2>
+      <span>Vui lòng chọn các mức độ ưu tiên bạn muốn thêm vào loại: {type.get('name')}</span>
+    </div>
+    <div className='priority-loop zone'>
+      {this.getPriorities().map(priority => {
+        if (some(type.get('priorities').toJS(), priority.toObject())) {
+          return (
+            <div key={priority.get('_id')} className={'z-box uk-clearfix'}>
+              <div className='uk-float-left'>
+                <h5 style={{ color: priority.get('htmlColor'), fontWeight: 'bold' }}>{priority.get('name')}</h5>
+                <p className={'uk-text-muted'}>
+                  Vượt quá SLA: <strong>{priority.get('durationFormatted')}</strong>
+                </p>
+              </div>
+              <div className='uk-float-right'>
+                <i className='material-icons uk-text-success mt-10 mr-15' style={{ fontSize: '28px' }}>
+                  check
+                </i>
+              </div>
+            </div>
+          )
+        } else {
+          return (
+            <div key={priority.get('_id')} className={'z-box uk-clearfix'}>
+              <div className='uk-float-left'>
+                <h5 style={{ color: priority.get('htmlColor'), fontWeight: 'bold' }}>{priority.get('name')}</h5>
+                <p className={'uk-text-muted'}>
+                  Vượt quá SLA: <strong>{priority.get('durationFormatted')}</strong>
+                </p>
+              </div>
+              <div className='uk-float-right'>
+                <a
+                  type={'button'}
+                  className='uk-button uk-button-success mt-10 mr-10 no-ajaxy'
+                  onClick={e => this.onAddClick(e, type, priority)}
+                >
+                  Thêm
+                </a>
+                <i
+                  className='material-icons uk-text-success mt-10 mr-15'
+                  style={{ display: 'none', opacity: 0, fontSize: '28px' }}
+                >
+                  check
+                </i>
+              </div>
+            </div>
+          )
+        }
+      })}
+    </div>
+    <div className='uk-modal-footer uk-text-right'>
+      <Button type={'button'} flat={true} waves={true} text={'Đóng'} extraClass={'uk-modal-close'} />
+    </div>
+  </form>
+</BaseModal>
+
     )
   }
 }

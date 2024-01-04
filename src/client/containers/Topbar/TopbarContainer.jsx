@@ -46,7 +46,7 @@ class TopbarContainer extends React.Component {
 
   @observable showInfoBanner = true
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
 
@@ -57,7 +57,7 @@ class TopbarContainer extends React.Component {
     this.onSocketClearNotice = this.onSocketClearNotice.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchViewData().then(() => {
       if (this.props.viewdata.get('notice'))
         this.showNotice(this.props.viewdata.get('notice').toJS(), this.props.viewdata.get('noticeCookieName'))
@@ -75,24 +75,24 @@ class TopbarContainer extends React.Component {
     // this.shouldShowBanner()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.socket.off(NOTIFICATIONS_UPDATE, this.onSocketUpdateNotifications)
     this.props.socket.off(USERS_UPDATE, this.onSocketUpdateUsers)
     this.props.socket.off(NOTICE_UI_SHOW, this.onSocketShowNotice)
     this.props.socket.off(NOTICE_UI_CLEAR, this.onSocketClearNotice)
   }
 
-  shouldShowBanner () {
+  shouldShowBanner() {
     const hasSeen = Cookies.get('trudesk_info_banner_closed') === 'true'
     if (hasSeen) this.showInfoBanner = false
   }
 
-  closeInfo () {
+  closeInfo() {
     Cookies.set('trudesk_info_banner_closed', 'true')
     this.showInfoBanner = false
   }
 
-  showNotice (notice, cookieName) {
+  showNotice(notice, cookieName) {
     // We Will move this sooner or later to somewhere more appropriate
     this.props.showNotice(notice)
 
@@ -109,7 +109,7 @@ class TopbarContainer extends React.Component {
     }
   }
 
-  onSocketShowNotice (data) {
+  onSocketShowNotice(data) {
     this.props.showNotice(data)
     const cookieName = data.name + '_' + helpers.formatDate(data.activeDate, 'MMMDDYYYY_HHmmss')
     this.showNotice(data, cookieName)
@@ -117,28 +117,28 @@ class TopbarContainer extends React.Component {
     helpers.resizeAll()
   }
 
-  onSocketClearNotice () {
+  onSocketClearNotice() {
     this.props.clearNotice()
     this.props.hideModal('NOTICE_ALERT')
 
     helpers.resizeAll()
   }
 
-  onSocketUpdateNotifications (data) {
+  onSocketUpdateNotifications(data) {
     if (data.count !== this.notificationCount) this.notificationCount = data.count
   }
 
-  onSocketUpdateUsers (data) {
+  onSocketUpdateUsers(data) {
     delete data[this.props.sessionUser.username]
     const count = size(data)
     if (count !== this.activeUserCount) this.activeUserCount = count
   }
 
-  static onConversationsClicked (e) {
+  static onConversationsClicked(e) {
     e.preventDefault()
   }
 
-  render () {
+  render() {
     const { loadingViewData, viewdata, sessionUser } = this.props
     if (loadingViewData || !sessionUser) return <div />
     return (
@@ -159,7 +159,7 @@ class TopbarContainer extends React.Component {
                     {sessionUser && helpers.canUser('tickets:create') && (
                       <li className='top-bar-icon nopadding'>
                         <button
-                          title={'Create Ticket'}
+                          title={'Tạo Ticket'}
                           className={'anchor'}
                           onClick={() => this.props.showModal('CREATE_TICKET')}
                         >
@@ -176,7 +176,7 @@ class TopbarContainer extends React.Component {
                     <li className='top-bar-icon'>
                       <PDropdownTrigger target={this.conversationsDropdownPartial}>
                         <a
-                          title={'Conversations'}
+                          title={'Cuộc trò chuyện'}
                           className='no-ajaxy uk-vertical-align'
                           onClick={e => TopbarContainer.onConversationsClicked(e)}
                         >
@@ -186,7 +186,7 @@ class TopbarContainer extends React.Component {
                     </li>
                     <li className='top-bar-icon'>
                       <PDropdownTrigger target={this.notificationsDropdownPartial}>
-                        <a title={'Notifications'} className={'no-ajaxy uk-vertical-align'}>
+                        <a title={'Thông báo'} className={'no-ajaxy uk-vertical-align'}>
                           <i className='material-icons'>notifications</i>
                           <span
                             className={'alert uk-border-circle label ' + (this.notificationCount < 1 ? 'hide' : '')}

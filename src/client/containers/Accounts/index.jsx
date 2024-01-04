@@ -116,14 +116,14 @@ class AccountsContainer extends React.Component {
       this.props.accountsState.accounts &&
       this.props.accountsState.accounts.map(user => {
         const userImage = user.get('image') || 'defaultProfile.jpg'
-        let actionMenu = [<DropdownItem key={0} text={'Edit'} onClick={e => this.onEditAccountClicked(e, user)} />]
+        let actionMenu = [<DropdownItem key={0} text={'Chỉnh sửa'} onClick={e => this.onEditAccountClicked(e, user)} />]
         if (user.get('deleted'))
           actionMenu.push(<DropdownItem key={2} text={'Enable'} onClick={e => this.onEnableAccountClicked(e, user)} />)
         else
           actionMenu.push(
             <DropdownItem
               key={1}
-              text={'Delete'}
+              text={'Xóa'}
               extraClass={'uk-text-danger'}
               onClick={e => this.onDeleteAccountClicked(e, user)}
             />
@@ -165,7 +165,7 @@ class AccountsContainer extends React.Component {
                 <ul className='tru-list'>
                   <li>
                     <div className='tru-list-content'>
-                      <span className='tru-list-heading'>Role</span>
+                      <span className='tru-list-heading'>Vai trò</span>
                       <span className='uk-text-small uk-text-muted'>{user.getIn(['role', 'name'])}</span>
                     </div>
                   </li>
@@ -180,7 +180,7 @@ class AccountsContainer extends React.Component {
                   <li>
                     {customer && user.get('groups') && (
                       <div className='tru-list-content'>
-                        <span className='tru-list-heading'>Groups</span>
+                        <span className='tru-list-heading'>Nhóm</span>
                         <span className='uk-text-small uk-text-muted uk-text-truncate'>
                           {user.get('groups').map(group => {
                             return group.get('name') + (user.get('groups').toArray().length > 1 ? ', ' : '')
@@ -202,7 +202,7 @@ class AccountsContainer extends React.Component {
                   {!customer && user.get('departments') && (
                     <li>
                       <div className='tru-list-content'>
-                        <span className='tru-list-heading'>Departments</span>
+                        <span className='tru-list-heading'>Phòng ban</span>
                         <span className='uk-text-small uk-text-muted uk-text-truncate'>
                           {user.get('departments').map(department => {
                             return department.get('name') + (user.get('departments').toArray().length > 1 ? ', ' : '')
@@ -234,7 +234,7 @@ class AccountsContainer extends React.Component {
               <div className={'uk-width-1-4 mt-15 pr-20 uk-clearfix'}>
                 <ButtonGroup classNames={'uk-clearfix uk-float-right'}>
                   <Button
-                    text={'Create'}
+                    text={'Tạo'}
                     hasDropdown={false}
                     flat={false}
                     small={true}

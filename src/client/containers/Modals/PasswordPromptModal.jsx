@@ -39,22 +39,22 @@ class PasswordPromptModal extends React.Component {
       })
   }
 
-  render () {
+  render() {
     const { titleOverride, textOverride } = this.props
     return (
       <BaseModal options={{ bgclose: false }}>
         <div>
-          <h2>{titleOverride || 'Confirm Password'}</h2>
-          <p>{textOverride || 'Please confirm your password.'}</p>
+          <h2>{titleOverride || 'Xác nhận Mật khẩu'}</h2>
+          <p>{textOverride || 'Vui lòng xác nhận mật khẩu của bạn.'}</p>
         </div>
         <div className={'uk-margin-medium-bottom'}>
-          <label>Current Password</label>
+          <label>Mật khẩu hiện tại</label>
           <Input name={'current-password'} type={'password'} onChange={val => (this.confirmPassword = val)} />
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button text={'Cancel'} small={true} flat={true} waves={false} onClick={() => this.props.hideModal()} />
+          <Button text={'Hủy'} small={true} flat={true} waves={false} onClick={() => this.props.hideModal()} />
           <Button
-            text={'Verify Password'}
+            text={'Xác nhận Mật khẩu'}
             style={'primary'}
             small={true}
             waves={true}
@@ -62,6 +62,7 @@ class PasswordPromptModal extends React.Component {
           />
         </div>
       </BaseModal>
+
     )
   }
 }

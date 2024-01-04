@@ -42,12 +42,12 @@ class CreateAccountModal extends React.Component {
   selectedRole = ''
   @observable isAgentRole = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchGroups({ type: 'all' })
     this.props.fetchTeams()
     this.props.fetchRoles()
@@ -56,15 +56,15 @@ class CreateAccountModal extends React.Component {
     helpers.formvalidator()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
   }
 
-  onInputChanged (e, name) {
+  onInputChanged(e, name) {
     this[name] = e.target.value
   }
 
-  onRoleSelectChange (e) {
+  onRoleSelectChange(e) {
     this.selectedRole = e.target.value
 
     const roleObject = this.props.roles.find(role => {
@@ -77,13 +77,13 @@ class CreateAccountModal extends React.Component {
     else this.roleSelectErrorMessage.classList.add('hide')
   }
 
-  onGroupSelectChange () {
+  onGroupSelectChange() {
     const selectedGroups = this.groupSelect.getSelected()
     if (!selectedGroups || selectedGroups.length < 1) this.groupSelectErrorMessage.classList.remove('hide')
     else this.groupSelectErrorMessage.classList.add('hide')
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
 
@@ -121,7 +121,7 @@ class CreateAccountModal extends React.Component {
     this.props.createAccount(payload)
   }
 
-  render () {
+  render() {
     const roles = this.props.roles
       .map(role => {
         return { text: role.get('name'), value: role.get('_id') }
@@ -142,140 +142,128 @@ class CreateAccountModal extends React.Component {
 
     return (
       <BaseModal parentExtraClass={'pt-0'} extraClass={'p-0 pb-25'}>
-        <div className='user-heading' style={{ minHeight: '130px', background: '#1976d2', padding: '24px' }}>
-          <div className='uk-width-1-1'>
-            <div style={{ width: '82px', height: '82px', float: 'left', marginRight: '24px', position: 'relative' }}>
-              <div className='mediumProfilePic' style={{ position: 'relative' }}>
-                <img src={`/uploads/users/defaultProfile.jpg`} alt='Profile Picture' />
-              </div>
-            </div>
-            <div className='user-heading-content'>
-              <h2>
-                <span className={'uk-text-truncate'}>Create Account</span>
-                <span className='sub-heading'>Please provide account details below</span>
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div style={{ margin: '24px 24px 0 24px' }}>
-          <form className='uk-form-stacked' onSubmit={e => this.onFormSubmit(e)}>
-            <div className='uk-margin-medium-bottom'>
-              <label className='uk-form-label'>Username</label>
-              <input
-                type='text'
-                className={'md-input'}
-                value={this.username}
-                onChange={e => this.onInputChanged(e, 'username')}
-                data-validation={'length'}
-                data-validation-length={'min4'}
-                data-validation-error-msg={'Username must contain at least 4 characters.'}
-              />
-            </div>
-            <div className='uk-margin-medium-bottom uk-clearfix'>
-              <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                <label className={'uk-form-label'}>Name</label>
+        <div className={'uk-clearfix'}>
+          <h5 style={{ fontWeight: 300 }}>Thêm Tài Khoản</h5>
+          <div>
+            <form className='nomargin' onSubmit={e => this.onFormSubmit(e)}>
+              <div className='uk-margin-medium-bottom'>
+                <label className='uk-form-label'>Tên Người Dùng</label>
                 <input
                   type='text'
                   className={'md-input'}
-                  value={this.fullname}
-                  onChange={e => this.onInputChanged(e, 'fullname')}
+                  value={this.username}
+                  onChange={e => this.onInputChanged(e, 'username')}
                   data-validation={'length'}
-                  data-validation-length={'min1'}
-                  data-validation-error-msg={'Name must contain at least 1 character.'}
+                  data-validation-length={'min4'}
+                  data-validation-error-msg={'Tên người dùng phải chứa ít nhất 4 ký tự.'}
                 />
               </div>
-              <div className='uk-float-left uk-width-1-2'>
-                <label className={'uk-form-label'}>Title</label>
-                <input
-                  type='text'
-                  className={'md-input'}
-                  value={this.title}
-                  onChange={e => this.onInputChanged(e, 'title')}
-                />
-              </div>
-            </div>
-            <div className='uk-margin-medium-bottom uk-clearfix'>
-              <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
-                <label className={'uk-form-label'}>Password</label>
-                <input
-                  type='password'
-                  className={'md-input'}
-                  name={'password_confirmation'}
-                  value={this.password}
-                  onChange={e => this.onInputChanged(e, 'password')}
-                />
-              </div>
-              <div className='uk-float-left uk-width-1-2'>
-                <label className={'uk-form-label'}>Confirm Password</label>
-                <input
-                  type='password'
-                  className={'md-input'}
-                  name={'password'}
-                  value={this.passwordConfirm}
-                  onChange={e => this.onInputChanged(e, 'passwordConfirm')}
-                  data-validation='confirmation'
-                  data-validation-error-msg={'Password does not match'}
-                />
-              </div>
-            </div>
-            <div className='uk-margin-medium-bottom'>
-              <label className='uk-form-label'>Email</label>
-              <input
-                type='email'
-                className={'md-input'}
-                value={this.email}
-                onChange={e => this.onInputChanged(e, 'email')}
-                data-validation='email'
-              />
-            </div>
-            <div className='uk-margin-medium-bottom'>
-              <label className={'uk-form-label'}>Role</label>
-              <SingleSelect
-                items={roles}
-                width={'100'}
-                showTextbox={false}
-                onSelectChange={e => this.onRoleSelectChange(e)}
-              />
-              <span
-                className='hide help-block'
-                style={{ display: 'inline-block', marginTop: '10px', fontWeight: 'bold', color: '#d85030' }}
-                ref={r => (this.roleSelectErrorMessage = r)}
-              >
-                Please select a role for this user
-              </span>
-            </div>
-            {!this.isAgentRole && (
-              <div>
-                <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Groups</label>
-                  <MultiSelect
-                    items={groups}
-                    onChange={e => this.onGroupSelectChange(e)}
-                    ref={r => (this.groupSelect = r)}
+              <div className='uk-margin-medium-bottom uk-clearfix'>
+                <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
+                  <label className={'uk-form-label'}>Họ Tên</label>
+                  <input
+                    type='text'
+                    className={'md-input'}
+                    value={this.fullname}
+                    onChange={e => this.onInputChanged(e, 'fullname')}
+                    data-validation={'length'}
+                    data-validation-length={'min1'}
+                    data-validation-error-msg={'Họ tên phải chứa ít nhất 1 ký tự.'}
                   />
-                  <span
-                    className={'hide help-block'}
-                    style={{ display: 'inline-block', marginTop: '3px', fontWeight: 'bold', color: '#d85030' }}
-                    ref={r => (this.groupSelectErrorMessage = r)}
-                  >
-                    Please select a group for this user.
-                  </span>
+                </div>
+                <div className='uk-float-left uk-width-1-2'>
+                  <label className={'uk-form-label'}>Chức Vụ</label>
+                  <input
+                    type='text'
+                    className={'md-input'}
+                    value={this.title}
+                    onChange={e => this.onInputChanged(e, 'title')}
+                  />
                 </div>
               </div>
-            )}
-            {this.isAgentRole && (
-              <div>
-                <div className='uk-margin-medium-bottom'>
-                  <label className='uk-form-label'>Teams</label>
-                  <MultiSelect items={teams} onChange={() => {}} ref={r => (this.teamSelect = r)} />
+              <div className='uk-margin-medium-bottom uk-clearfix'>
+                <div className='uk-float-left' style={{ width: '50%', paddingRight: '20px' }}>
+                  <label className={'uk-form-label'}>Mật Khẩu</label>
+                  <input
+                    type='password'
+                    className={'md-input'}
+                    name={'password_confirmation'}
+                    value={this.password}
+                    onChange={e => this.onInputChanged(e, 'password')}
+                  />
+                </div>
+                <div className='uk-float-left uk-width-1-2'>
+                  <label className={'uk-form-label'}>Xác Nhận Mật Khẩu</label>
+                  <input
+                    type='password'
+                    className={'md-input'}
+                    name={'password'}
+                    value={this.passwordConfirm}
+                    onChange={e => this.onInputChanged(e, 'passwordConfirm')}
+                    data-validation='confirmation'
+                    data-validation-error-msg={'Mật khẩu không khớp'}
+                  />
                 </div>
               </div>
-            )}
-            <div className='uk-modal-footer uk-text-right'>
-              <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-              <Button text={'Create Account'} flat={true} waves={true} style={'success'} type={'submit'} />
-            </div>
-          </form>
+              <div className='uk-margin-medium-bottom'>
+                <label className='uk-form-label'>Email</label>
+                <input
+                  type='email'
+                  className={'md-input'}
+                  value={this.email}
+                  onChange={e => this.onInputChanged(e, 'email')}
+                  data-validation='email'
+                />
+              </div>
+              <div className='uk-margin-medium-bottom'>
+                <label className={'uk-form-label'}>Vai Trò</label>
+                <SingleSelect
+                  items={roles}
+                  width={'100'}
+                  showTextbox={false}
+                  onSelectChange={e => this.onRoleSelectChange(e)}
+                />
+                <span
+                  className='hide help-block'
+                  style={{ display: 'inline-block', marginTop: '10px', fontWeight: 'bold', color: '#d85030' }}
+                  ref={r => (this.roleSelectErrorMessage = r)}
+                >
+                  Vui lòng chọn vai trò cho người dùng này
+                </span>
+              </div>
+              {!this.isAgentRole && (
+                <div>
+                  <div className='uk-margin-medium-bottom'>
+                    <label className='uk-form-label'>Nhóm</label>
+                    <MultiSelect
+                      items={groups}
+                      onChange={e => this.onGroupSelectChange(e)}
+                      ref={r => (this.groupSelect = r)}
+                    />
+                    <span
+                      className={'hide help-block'}
+                      style={{ display: 'inline-block', marginTop: '3px', fontWeight: 'bold', color: '#d85030' }}
+                      ref={r => (this.groupSelectErrorMessage = r)}
+                    >
+                      Vui lòng chọn một nhóm cho người dùng này.
+                    </span>
+                  </div>
+                </div>
+              )}
+              {this.isAgentRole && (
+                <div>
+                  <div className='uk-margin-medium-bottom'>
+                    <label className='uk-form-label'>Nhóm</label>
+                    <MultiSelect items={teams} onChange={() => { }} ref={r => (this.teamSelect = r)} />
+                  </div>
+                </div>
+              )}
+              <div className='uk-modal-footer uk-text-right'>
+                <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+                <Button text={'Tạo Tài Khoản'} flat={true} waves={true} style={'success'} type={'submit'} />
+              </div>
+            </form>
+          </div>
         </div>
       </BaseModal>
     )

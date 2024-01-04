@@ -94,14 +94,14 @@ const colorMap = {
 }
 
 class AppearanceSettings extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       selectedColorScheme: 'light'
     }
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     const colorScheme = this.calcColorScheme()
     if (this.state.selectedColorScheme !== colorScheme)
       this.setState({
@@ -109,17 +109,17 @@ class AppearanceSettings extends React.Component {
       })
   }
 
-  getSettingsValue (name) {
+  getSettingsValue(name) {
     return this.props.settings.getIn(['settings', name, 'value'])
       ? this.props.settings.getIn(['settings', name, 'value'])
       : ''
   }
 
-  updateSetting (name, value, stateName) {
+  updateSetting(name, value, stateName) {
     this.props.updateSetting({ name, value, stateName })
   }
 
-  calcColorScheme () {
+  calcColorScheme() {
     let colorScheme = 'light'
     if (this.getSettingsValue('colorSecondary') === '#2f3640') colorScheme = 'dark'
     else if (this.getSettingsValue('colorHeaderBG') === '#112d4e') colorScheme = 'bluejean'
@@ -132,7 +132,7 @@ class AppearanceSettings extends React.Component {
     return colorScheme
   }
 
-  onBuiltInColorSelectChange (e) {
+  onBuiltInColorSelectChange(e) {
     if (!e.target || !e.target.value) return
     this.headerBGColorSelect.setState(
       { selectedColor: colorMap[e.target.value].headerBG },
@@ -160,7 +160,7 @@ class AppearanceSettings extends React.Component {
     )
   }
 
-  saveColorScheme () {
+  saveColorScheme() {
     const colors = [
       { name: 'color:headerbg', value: this.headerBGColorSelect.state.selectedColor },
       { name: 'color:headerprimary', value: this.headerPrimaryColorSelect.state.selectedColor },
@@ -173,21 +173,21 @@ class AppearanceSettings extends React.Component {
     this.props.updateColorScheme(colors)
   }
 
-  render () {
+  render() {
     const { active } = this.props
 
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title='Site Logo'
+          title='Logo Trang'
           subtitle={
             <div>
-              Upload site logo to display in top navigation. <i>Note: Resize to max width of 140px</i>
+              Tải lên logo trang web để hiển thị trong thanh điều hướng trên cùng. <i>Lưu ý: Resize đến chiều rộng tối đa 140px</i>
             </div>
           }
           component={
             <UploadButtonWithX
-              buttonText={'Upload Logo'}
+              buttonText={'Tải lên Logo'}
               uploadAction={'/settings/general/uploadlogo'}
               extAllowed={'*.(jpg|jpeg|gif|png)'}
               showX={this.getSettingsValue('hasCustomLogo')}
@@ -202,15 +202,15 @@ class AppearanceSettings extends React.Component {
         />
 
         <SettingItem
-          title='Page Logo'
+          title='Logo Trang'
           subtitle={
             <div>
-              Upload logo to display within page views. <i>Note: Used on login page (min-width: 400px)</i>
+              Tải lên logo để hiển thị trong các chế độ xem trang. <i>Lưu ý: Sử dụng trên trang đăng nhập (tối thiểu: 400px)</i>
             </div>
           }
           component={
             <UploadButtonWithX
-              buttonText={'Upload Logo'}
+              buttonText={'Tải lên Logo'}
               uploadAction={'/settings/general/uploadpagelogo'}
               extAllowed={'*.(jpg|jpeg|gif|png)'}
               showX={this.getSettingsValue('hasCustomPageLogo')}
@@ -222,11 +222,11 @@ class AppearanceSettings extends React.Component {
         />
 
         <SettingItem
-          title='Favicon'
-          subtitle={'Upload a custom favicon'}
+          title='Biểu tượng trang (Favicon)'
+          subtitle={'Tải lên biểu tượng trang web tùy chỉnh'}
           component={
             <UploadButtonWithX
-              buttonText={'Upload Favicon'}
+              buttonText={'Tải lên Biểu tượng'}
               uploadAction={'/settings/general/uploadfavicon'}
               extAllowed={'*.(jpg|jpeg|gif|png|ico)'}
               showX={this.getSettingsValue('hasCustomFavicon')}
@@ -239,12 +239,13 @@ class AppearanceSettings extends React.Component {
             />
           }
         />
+
         <SettingItem
-          title='Color Scheme'
-          subtitle='Select the colors for your color scheme.'
+          title='Màu Sắc'
+          subtitle='Chọn màu sắc cho chủ đề màu của bạn.'
           component={
             <Button
-              text={'Save'}
+              text={'Lưu'}
               flat={true}
               style={'success'}
               extraClass={'uk-float-right mt-10'}
@@ -257,21 +258,21 @@ class AppearanceSettings extends React.Component {
           <Zone>
             <ZoneBox>
               <SettingSubItem
-                title='Built-in Color Scheme'
-                subtitle='Select a predefined color scheme'
+                title='Chủ Đề Màu Tích Hợp'
+                subtitle='Chọn một chủ đề màu được xác định trước'
                 component={
                   <SingleSelect
                     width='60%'
                     showTextbox={false}
                     items={[
-                      { text: 'Light (Default)', value: 'light' },
-                      { text: 'Dark', value: 'dark' },
-                      { text: 'Blue Jean', value: 'bluejean' },
-                      { text: 'Midnight', value: 'midnight' },
-                      { text: 'Moonlight', value: 'moonlight' },
-                      { text: 'Purple Rain', value: 'purplerain' },
-                      { text: 'Sandstone', value: 'sandstone' },
-                      { text: "Winter's Fire", value: 'winterfire' }
+                      { text: 'Sáng (Mặc định)', value: 'light' },
+                      { text: 'Tối', value: 'dark' },
+                      { text: 'Xanh Jean', value: 'bluejean' },
+                      { text: 'Bình Minh', value: 'midnight' },
+                      { text: 'Ánh Trăng', value: 'moonlight' },
+                      { text: 'Mưa Tím', value: 'purplerain' },
+                      { text: 'Cát Trắng', value: 'sandstone' },
+                      { text: 'Lửa Giữa Mùa Đông', value: 'winterfire' }
                     ]}
                     defaultValue={this.state.selectedColorScheme}
                     onSelectChange={e => {
@@ -283,8 +284,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Header Background'
-                subtitle='Background color of the header'
+                title='Nền Header'
+                subtitle='Màu nền của header'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -298,8 +299,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Header Primary'
-                subtitle='Text and icon color within the header'
+                title='Màu Chính Header'
+                subtitle='Màu chữ và biểu tượng trong header'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -313,8 +314,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Primary'
-                subtitle='Most text and icons'
+                title='Màu Chính'
+                subtitle='Hầu hết văn bản và biểu tượng'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -328,8 +329,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Secondary'
-                subtitle='The main background color'
+                title='Màu Thứ Cấp'
+                subtitle='Màu nền chính'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -343,8 +344,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Tertiary'
-                subtitle='Accent color, used for links, some buttons, and notifications'
+                title='Màu Thứ Ba'
+                subtitle='Màu sắc nổi bật, sử dụng cho liên kết, một số nút và thông báo'
                 component={
                   <ColorSelector
                     ref={cs => {
@@ -358,8 +359,8 @@ class AppearanceSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Quaternary'
-                subtitle='Sidebar background color'
+                title='Màu Thứ Tư'
+                subtitle='Màu nền thanh bên'
                 component={
                   <ColorSelector
                     ref={cs => {

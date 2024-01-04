@@ -22,29 +22,29 @@ import helpers from 'lib/helpers'
 class ReportsContainer extends React.Component {
   @observable selectedReport = ''
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.resizeFullHeight()
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     helpers.resizeFullHeight()
   }
 
-  onSelectReportClicked (e, type) {
+  onSelectReportClicked(e, type) {
     e.preventDefault()
     this.selectedReport = type
   }
 
-  render () {
+  render() {
     return (
       <>
-        <PageTitle title={'Generate Report'} />
+        <PageTitle title={'Tạo Báo Cáo'} />
         <Grid>
           <GridItem width={'1-4'} extraClass={'full-height'}>
             <TruCard
@@ -53,7 +53,7 @@ class ReportsContainer extends React.Component {
               extraContentClass={'nopadding'}
               content={
                 <div>
-                  <h6 style={{ padding: '15px 30px', margin: 0, fontSize: '14px' }}>Select Report</h6>
+                  <h6 style={{ padding: '15px 30px', margin: 0, fontSize: '14px' }}>Chọn Loại Báo Cáo</h6>
                   <hr className={'nomargin'} />
                   <div style={{ padding: '15px 30px' }}>
                     <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
@@ -63,7 +63,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_groups')}
                         >
-                          Tickets by Groups
+                          Vé theo Nhóm
                         </a>
                       </li>
                       <li>
@@ -72,7 +72,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_priorities')}
                         >
-                          Tickets by Priorities
+                          Vé theo Mức Ưu Tiên
                         </a>
                       </li>
                       <li>
@@ -81,7 +81,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_status')}
                         >
-                          Tickets by Status
+                          Vé theo Trạng Thái
                         </a>
                       </li>
                       <li>
@@ -90,7 +90,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_tags')}
                         >
-                          Tickets by Tags
+                          Vé theo Nhãn
                         </a>
                       </li>
                       <li>
@@ -99,7 +99,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_types')}
                         >
-                          Tickets by Types
+                          Vé theo Loại
                         </a>
                       </li>
                       <li>
@@ -108,7 +108,7 @@ class ReportsContainer extends React.Component {
                           className={'no-ajaxy'}
                           onClick={e => this.onSelectReportClicked(e, 'tickets_by_assignee')}
                         >
-                          Tickets by Assignee
+                          Vé theo Người Giao
                         </a>
                       </li>
                     </ul>
@@ -122,7 +122,7 @@ class ReportsContainer extends React.Component {
               <div>
                 {!this.selectedReport && (
                   <h3 className={'uk-text-muted'} style={{ fontWeight: 300, opacity: 0.7 }}>
-                    Please select a report type
+                    Vui lòng chọn loại báo cáo
                   </h3>
                 )}
                 {this.selectedReport === 'tickets_by_groups' && <ReportTicketByGroups />}

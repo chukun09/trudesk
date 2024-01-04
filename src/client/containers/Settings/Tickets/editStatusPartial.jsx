@@ -77,7 +77,7 @@ class EditStatusPartial extends React.Component {
         <form onSubmit={e => this.onSubmitEditStatus(e, status)}>
           <div className='uk-grid uk-grid-collapse uk-clearfix'>
             <div className='uk-width-1-4'>
-              <label>Status Name</label>
+              <label>Tên trạng thái</label>
               <input name={'name'} type='text' className={'md-input'} defaultValue={status.get('name')} />
             </div>
             <div className='uk-width-1-4 uk-padding-small-sides'>
@@ -90,8 +90,8 @@ class EditStatusPartial extends React.Component {
             </div>
             <div className='uk-width-1-4'>
               <div className='md-btn-group uk-float-right uk-text-right mt-5'>
-                <Button small={true} text={'Cancel'} onClick={() => this.toggleEditStatus()} />
-                <Button text={'Save'} small={true} style={'success'} type={'submit'} />
+                <Button small={true} text={'Hủy'} onClick={() => this.toggleEditStatus()} />
+                <Button text={'Lưu'} small={true} style={'success'} type={'submit'} />
               </div>
             </div>
           </div>

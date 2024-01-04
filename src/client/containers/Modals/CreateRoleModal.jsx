@@ -27,45 +27,45 @@ import BaseModal from './BaseModal'
 class CreateRoleModal extends React.Component {
   @observable name = ''
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  onNameChange (e) {
+  onNameChange(e) {
     this.name = e.target.value
   }
 
-  onCreateRoleClicked (e) {
+  onCreateRoleClicked(e) {
     e.preventDefault()
 
     this.props.createRole({ name: this.name })
   }
 
-  render () {
+  render() {
     return (
       <BaseModal>
         <div className={'uk-form-stacked'}>
           <div>
-            <h2 className={'nomargin mb-5'}>Create Role</h2>
-            <p className='uk-text-muted'>Once created, the role will become editable in the permission editor</p>
+            <h2 className={'nomargin mb-5'}>Tạo Vai Trò</h2>
+            <p className='uk-text-muted'>Sau khi tạo, vai trò sẽ trở thành có thể chỉnh sửa trong trình chỉnh quyền</p>
 
-            <label>Role Name</label>
+            <label>Tên Vai Trò</label>
             <input
               type='text'
               className={'md-input'}
               name={'name'}
               data-validation='length'
               data-validation-length='min3'
-              data-validation-error-msg='Please enter a valid role name. Role name must contain at least 3 characters.'
+              data-validation-error-msg='Vui lòng nhập tên vai trò hợp lệ. Tên vai trò phải chứa ít nhất 3 ký tự.'
               value={this.name}
               onChange={e => this.onNameChange(e)}
             />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} extraClass={'uk-modal-close'} flat={true} waves={true} />
+            <Button text={'Đóng'} extraClass={'uk-modal-close'} flat={true} waves={true} />
             <Button
-              text={'Create'}
+              text={'Tạo'}
               type={'button'}
               flat={true}
               waves={true}
@@ -75,6 +75,7 @@ class CreateRoleModal extends React.Component {
           </div>
         </div>
       </BaseModal>
+
     )
   }
 }

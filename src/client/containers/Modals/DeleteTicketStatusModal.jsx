@@ -23,36 +23,36 @@ import SingleSelect from 'components/SingleSelect'
 import helpers from 'lib/helpers'
 
 class DeleteTicketStatusModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       selectedStatus: ''
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  getTicketStatuses () {
+  getTicketStatuses() {
     return this.props.settings && this.props.settings.get('status') ? this.props.settings.get('status').toArray() : []
   }
 
-  onSelectChanged (e) {
+  onSelectChanged(e) {
     this.setState({
       selectedStatus: e.target.value
     })
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     if (!this.state.selectedStatus) {
-      helpers.UI.showSnackbar('Unable to get new ticket status. Aborting...', true)
+      helpers.UI.showSnackbar('Không thể nhận trạng thái ticket. Đang hủy...', true)
       return true
     }
 
     this.props.deleteStatus({ id: this.props.status.get('_id'), newStatusId: this.state.selectedStatus })
   }
 
-  render () {
+  render() {
     const { status } = this.props
     const mappedStatuses = this.getTicketStatuses()
       .filter(obj => {
@@ -65,14 +65,12 @@ class DeleteTicketStatusModal extends React.Component {
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Remove Ticket Status</h2>
-            <span>
-              Please select the ticket status you wish to reassign tickets to in order to delete this ticket status.
-            </span>
+            <h2>Xóa Trạng Thái Ticket</h2>
+            <span>Vui lòng chọn trạng thái ticket mà bạn muốn gán lại cho các ticket khác để xóa trạng thái này.</span>
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <div className='uk-float-left' style={{ width: '100%' }}>
-              <label className={'uk-form-label nopadding nomargin'}>Status</label>
+              <label className={'uk-form-label nopadding nomargin'}>Trạng thái</label>
               <SingleSelect
                 showTextbox={false}
                 items={mappedStatuses}
@@ -83,18 +81,18 @@ class DeleteTicketStatusModal extends React.Component {
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <span className='uk-text-danger'>
-              WARNING: This will change all tickets with status <strong>{status.get('name')}</strong> to the selected
-              ticket status.
+              CẢNH BÁO: Thao tác này sẽ thay đổi tất cả các ticket có trạng thái <strong>{status.get('name')}</strong> thành trạng thái ticket đã chọn.
               <br />
-              <strong>This is permanent!</strong>
+              <strong>Thao tác này không thể hoàn tác!</strong>
             </span>
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Cancel'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Delete'} style={'danger'} flat={true} type={'submit'} />
+            <Button text={'Hủy'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Xóa'} style={'danger'} flat={true} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

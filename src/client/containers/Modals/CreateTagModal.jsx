@@ -21,20 +21,20 @@ import Button from 'components/Button'
 import { createTag } from 'actions/tickets'
 
 class CreateTagModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       name: ''
     }
   }
 
-  onNameChange (e) {
+  onNameChange(e) {
     this.setState({
       name: e.target.value
     })
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
     if (this.props.page === 'settings')
       return this.props.createTag({ name: this.state.name, currentPage: this.props.currentPage })
@@ -42,32 +42,33 @@ class CreateTagModal extends React.Component {
     this.props.createTag({ name: this.state.name })
   }
 
-  render () {
+  render() {
     return (
       <BaseModal>
         <form className='uk-form-stacked' onSubmit={e => this.onSubmit(e)}>
           <div>
-            <h2 className={'nomargin mb-5'}>Create Tag</h2>
-            <p className='uk-text-muted'>Tags categorize tickets, making it easy to identify issues</p>
+            <h2 className={'nomargin mb-5'}>Tạo Tags</h2>
+            <p className='uk-text-muted'>Tags phân loại các yêu cầu, giúp dễ dàng xác định vấn đề</p>
 
-            <label>Tag Name</label>
+            <label>Tên Tags</label>
             <input
               type='text'
               className={'md-input'}
               name={'name'}
               data-validation='length'
               data-validation-length='min2'
-              data-validation-error-msg='Please enter a valid tag name. Tag name must contain at least 2 characters.'
+              data-validation-error-msg='Vui lòng nhập tên Tags hợp lệ. Tên Tags phải chứa ít nhất 2 ký tự.'
               value={this.state.name}
               onChange={e => this.onNameChange(e)}
             />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} extraClass={'uk-modal-close'} flat={true} waves={true} />
-            <Button text={'Create'} type={'submit'} flat={true} waves={true} style={'success'} />
+            <Button text={'Đóng'} extraClass={'uk-modal-close'} flat={true} waves={true} />
+            <Button text={'Tạo'} type={'submit'} flat={true} waves={true} style={'success'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

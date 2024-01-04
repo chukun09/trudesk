@@ -28,30 +28,30 @@ import helpers from 'lib/helpers'
 class AssigneeDropdownPartial extends React.Component {
   @observable agents = []
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
 
     this.onUpdateAssigneeList = this.onUpdateAssigneeList.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.socket.on(TICKETS_ASSIGNEE_LOAD, this.onUpdateAssigneeList)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.socket.off(TICKETS_ASSIGNEE_LOAD, this.onUpdateAssigneeList)
   }
 
-  onUpdateAssigneeList (data) {
+  onUpdateAssigneeList(data) {
     this.agents = data || []
   }
 
-  render () {
+  render() {
     return (
       <PDropDown
         ref={this.props.forwardedRef}
-        title={'Select Assignee'}
+        title={'Chọn người được giao việc'}
         id={'assigneeDropdown'}
         className={'opt-ignore-notice'}
         override={true}
@@ -68,7 +68,7 @@ class AssigneeDropdownPartial extends React.Component {
               this.props.socket.emit(TICKETS_ASSIGNEE_CLEAR, this.props.ticketId)
             }}
           >
-            Clear Assignee
+            Xóa người được giao việc
           </a>
         }
       >
@@ -98,6 +98,7 @@ class AssigneeDropdownPartial extends React.Component {
           )
         })}
       </PDropDown>
+
     )
   }
 }

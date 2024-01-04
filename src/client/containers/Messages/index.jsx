@@ -226,7 +226,7 @@ class MessagesContainer extends React.Component {
       const convoId = $li.attr('data-conversation-id')
       if (action.toLowerCase() === 'delete') {
         UIKit.modal.confirm(
-          'Are you sure you want to delete this conversation?',
+          'Bạn có muốn xóa đoạn trò chuyện này không?',
           function () {
             // Confirm
             self.deleteConversation(convoId)
@@ -234,7 +234,7 @@ class MessagesContainer extends React.Component {
           // Cancel Function
           function () {},
           {
-            labels: { Ok: 'YES' },
+            labels: { Ok: 'Có' },
             confirmButtonClass: 'md-btn-danger'
           }
         )
@@ -309,7 +309,7 @@ class MessagesContainer extends React.Component {
         <Grid>
           <GridItem width={'3-10'} extraClass={'full-height'}>
             <PageTitle
-              title={'Conversations'}
+              title={'Cuộc trò chuyện'}
               extraClasses={'page-title-border-right'}
               hideBorderBottom={true}
               rightComponent={
@@ -317,7 +317,7 @@ class MessagesContainer extends React.Component {
                   <div id='convo-actions' style={{ position: 'absolute', top: 20, right: 15 }}>
                     {!this.userListShown && (
                       <a
-                        title='Start Conversation'
+                        title='Bắt đầu cuộc trò chuyện'
                         className='no-ajaxy'
                         style={{ display: 'block', height: 28 }}
                         onClick={e => this.showUserList(e)}
@@ -413,11 +413,11 @@ class MessagesContainer extends React.Component {
                 style={{ marginBottom: '41px !important' }}
               >
                 <span className={'conversation-start'}>
-                  Conversation Started on {helpers.formatDate(currentConversation.get('createdAt'), helpers.getLongDateWithTimeFormat())}
+                  Cuộc trò chuyện bắt đầu vào {helpers.formatDate(currentConversation.get('createdAt'), helpers.getLongDateWithTimeFormat())}
                 </span>
                 {currentConversation.get('requestingUserMeta').get('deletedAt') && (
                   <span className={'conversation-deleted'}>
-                    Conversation Deleted at {helpers.formatDate(currentConversation.get('requestingUserMeta').get('deletedAt'), helpers.getLongDateWithTimeFormat())}
+                    Cuộc trò chuyện bị xóa lúc {helpers.formatDate(currentConversation.get('requestingUserMeta').get('deletedAt'), helpers.getLongDateWithTimeFormat())}
                   </span>
                 )}
                 <div ref={this.conversationScrollSpy} className={clsx('uk-text-center', 'uk-hidden')}>
@@ -514,7 +514,7 @@ class MessagesContainer extends React.Component {
         </Grid>
         <ul className='context-menu'>
           <li data-action={'delete'} style={{ color: '#d32f2f' }}>
-            Delete Conversation
+            Xóa cuộc trò chuyện
           </li>
         </ul>
       </div>

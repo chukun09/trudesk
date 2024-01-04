@@ -23,25 +23,25 @@ import $ from 'jquery'
 import helpers from 'lib/helpers'
 
 class CreateTicketTypeModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       typeName: ''
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
     helpers.formvalidator()
   }
 
-  onTypeNameChanged (e) {
+  onTypeNameChanged(e) {
     this.setState({
       typeName: e.target.value
     })
   }
 
-  onCreateTicketTypeSubmit (e) {
+  onCreateTicketTypeSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return true
@@ -50,14 +50,14 @@ class CreateTicketTypeModal extends React.Component {
     this.props.createTicketType({ name: this.state.typeName })
   }
 
-  render () {
+  render() {
     return (
       <BaseModal {...this.props} ref={i => (this.base = i)}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onCreateTicketTypeSubmit(e)}>
           <div>
-            <h2 className='nomargin mb-5'>Create Ticket Type</h2>
-            <p className='uk-text-small uk-text-muted'>Create a ticket type</p>
-            <label htmlFor='typeName'>Type name</label>
+            <h2 className='nomargin mb-5'>Tạo Loại Yêu Cầu</h2>
+            <p className='uk-text-small uk-text-muted'>Tạo một loại yêu cầu</p>
+            <label htmlFor='typeName'>Tên loại</label>
             <input
               value={this.state.typeName}
               onChange={e => this.onTypeNameChanged(e)}
@@ -66,12 +66,12 @@ class CreateTicketTypeModal extends React.Component {
               name={'typeName'}
               data-validation='length'
               data-validation-length='min3'
-              data-validation-error-msg='Please enter a valid type name. Type name must contain at least 3 characters'
+              data-validation-error-msg='Vui lòng nhập tên loại hợp lệ. Tên loại phải chứa ít nhất 3 ký tự'
             />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Create'} style={'success'} type={'submit'} />
+            <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Tạo'} style={'success'} type={'submit'} />
           </div>
         </form>
       </BaseModal>

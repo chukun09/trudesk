@@ -28,24 +28,24 @@ import Zone from 'components/ZoneBox/zone'
 import ZoneBox from 'components/ZoneBox'
 
 class GeneralSettings extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {}
-  componentWillUnmount () {}
+  componentDidMount() { }
+  componentWillUnmount() { }
 
-  getSettingsValue (name) {
+  getSettingsValue(name) {
     return this.props.settings.getIn(['settings', name, 'value'])
       ? this.props.settings.getIn(['settings', name, 'value'])
       : ''
   }
 
-  updateSetting (stateName, name, value) {
+  updateSetting(stateName, name, value) {
     this.props.updateSetting({ stateName, name, value })
   }
 
-  getTimezones () {
+  getTimezones() {
     return moment.tz
       .names()
       .map(function (name) {
@@ -62,11 +62,11 @@ class GeneralSettings extends React.Component {
       })
   }
 
-  onTimezoneChange (e) {
+  onTimezoneChange(e) {
     if (e.target.value) this.updateSetting('timezone', 'gen:timezone', e.target.value)
   }
 
-  render () {
+  render() {
     const { active } = this.props
 
     const SiteTitle = (
@@ -97,42 +97,42 @@ class GeneralSettings extends React.Component {
     return (
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
-          title='Site Title'
+          title='Tiêu Đề Trang Web'
           subtitle={
             <div>
-              Title of site. Used as page title. <i>default: Trudesk</i>
+              Tiêu đề của trang web. Được sử dụng làm tiêu đề trang. <i>mặc định: Trudesk</i>
             </div>
           }
           component={SiteTitle}
         />
         <SettingItem
-          title='Site Url'
+          title='URL Trang Web'
           subtitle={
             <div>
-              Publicly accessible URL of this site. <i>ex: {this.props.viewdata.get('hosturl')}</i>
+              URL có thể truy cập công khai của trang web này. <i>ví dụ: {this.props.viewdata.get('hosturl')}</i>
             </div>
           }
           component={SiteUrl}
         />
         <SettingItem
-          title='Server Timezone'
-          subtitle='Set the local server timezone for date display'
-          tooltip='User can override in user profile. Requires Server Restart'
+          title='Múi Giờ Máy Chủ'
+          subtitle='Đặt múi giờ máy chủ cục bộ cho hiển thị ngày tháng'
+          tooltip='Người dùng có thể ghi đè trong hồ sơ người dùng. Yêu cầu Khởi Động Lại Máy Chủ'
           component={Timezone}
         />
         <SettingItem
-          title='Time & Date Format'
+          title='Định Dạng Thời Gian & Ngày'
           subtitle={
             <a href='https://momentjs.com/docs/#/displaying/format/' rel='noopener noreferrer' target='_blank'>
-              Moment.js Format Options
+              Tùy Chọn Định Dạng Moment.js
             </a>
           }
         >
           <Zone>
             <ZoneBox>
               <SettingSubItem
-                title='Time Format'
-                subtitle='Set the format for time display'
+                title='Định Dạng Thời Gian'
+                subtitle='Đặt định dạng cho hiển thị thời gian'
                 component={
                   <InputWithSave
                     stateName='timeFormat'
@@ -145,8 +145,8 @@ class GeneralSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Short Date Format'
-                subtitle='Set the format for short dates'
+                title='Định Dạng Ngày Ngắn'
+                subtitle='Đặt định dạng cho ngày ngắn'
                 component={
                   <InputWithSave
                     stateName='shortDateFormat'
@@ -159,8 +159,8 @@ class GeneralSettings extends React.Component {
             </ZoneBox>
             <ZoneBox>
               <SettingSubItem
-                title='Long Date Format'
-                subtitle='Set the format for long dates'
+                title='Định Dạng Ngày Dài'
+                subtitle='Đặt định dạng cho ngày dài'
                 component={
                   <InputWithSave
                     stateName='longDateFormat'
@@ -174,6 +174,7 @@ class GeneralSettings extends React.Component {
           </Zone>
         </SettingItem>
       </div>
+
     )
   }
 }

@@ -150,7 +150,7 @@ util.getSettings = async callback => {
 
         const roles = await roleSchema.getRoles()
         let roleOrder = await roleOrderSchema.getOrder()
-        roleOrder = roleOrder.order
+        roleOrder = roleOrder?.order
 
         if (roleOrder.length > 0) {
           content.data.roles = _.map(roleOrder, roID => {

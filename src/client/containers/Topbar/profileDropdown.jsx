@@ -18,25 +18,25 @@ import helpers from 'lib/helpers'
 class ProfileDropdownPartial extends React.Component {
   @observable keyboardShortcutsChecked = true
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.ajaxify('#profile-drop')
 
     if (this.props.sessionUser) this.keyboardShortcutsChecked = this.props.sessionUser.preferences.keyboardShortcuts
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.sessionUser !== this.props.sessionUser) {
       this.keyboardShortcutsChecked = this.props.sessionUser.preferences.keyboardShortcuts
     }
   }
 
-  onKeyboardShortcutsChanged (e) {
+  onKeyboardShortcutsChanged(e) {
     const checked = e.target.checked
     this.props
       .saveEditAccount({
@@ -51,7 +51,7 @@ class ProfileDropdownPartial extends React.Component {
       })
   }
 
-  render () {
+  render() {
     return (
       <PDropdown
         ref={this.props.forwardedRef}
@@ -79,21 +79,21 @@ class ProfileDropdownPartial extends React.Component {
                   {this.props.sessionUser.fullname}
                 </span>
                 <span>{this.props.sessionUser.email}</span>
-                <a href='/profile'>Profile Settings</a>
+                <a href='/profile'>Cài đặt Hồ sơ</a>
               </div>
             </div>
           </div>
           {/*<Spacer showBorder={true} borderSize={1} top={0} bottom={0} />*/}
           {/*<div className={'user-action-items'}>*/}
           {/*  <EnableSwitch*/}
-          {/*    label={'Keyboard Shortcuts'}*/}
+          {/*    label={'Phím tắt bàn phím'}*/}
           {/*    sublabel={*/}
           {/*      <>*/}
           {/*        {this.keyboardShortcutsChecked && (*/}
           {/*          <div className={'sub-label'}>*/}
-          {/*            Press <code>?</code> to view{' '}*/}
+          {/*            Nhấn <code>?</code> để xem{' '}*/}
           {/*            <a href='#' className={'no-ajaxy'}>*/}
-          {/*              Shortcuts*/}
+          {/*              Phím tắt*/}
           {/*            </a>*/}
           {/*          </div>*/}
           {/*        )}*/}
@@ -110,14 +110,14 @@ class ProfileDropdownPartial extends React.Component {
           <div className={'profile-drop-actions'}>
             <div className={'action-logout'}>
               <i className='material-icons'>logout</i>
-              <a href='/logout'>Logout</a>
+              <a href='/logout'>Đăng Xuất</a>
             </div>
           </div>
         </div>
         <div className={'pdrop-footer'}>
           <div className='links'>
             <a href='https://forum.trudesk.io' target={'_blank'} rel={'noreferrer'}>
-              Community
+              Cộng Đồng
             </a>
             <span>&middot;</span>
             <a
@@ -126,14 +126,15 @@ class ProfileDropdownPartial extends React.Component {
               onClick={e => {
                 e.preventDefault()
                 helpers.hideAllpDropDowns()
-                this.props.showModal('PRIVACY_POLICY')
+                this.props.showModal('CHÍNH SÁCH BẢO MẬT')
               }}
             >
-              Privacy Policy
+              Chính Sách Bảo Mật
             </a>
           </div>
         </div>
       </PDropdown>
+
     )
   }
 }

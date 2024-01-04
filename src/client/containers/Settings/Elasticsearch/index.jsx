@@ -37,7 +37,7 @@ class ElasticsearchSettingsContainer extends React.Component {
   @observable inSyncClass = ''
   @observable disableRebuild = false
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
 
@@ -52,11 +52,11 @@ class ElasticsearchSettingsContainer extends React.Component {
     this.rebuildIndex = this.rebuildIndex.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
 
     if (!this.loaded && this.state.configured) {
@@ -65,7 +65,7 @@ class ElasticsearchSettingsContainer extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps (nextProps, state) {
+  static getDerivedStateFromProps(nextProps, state) {
     if (nextProps.settings) {
       let stateObj = { ...state }
       if (state.host === false)
@@ -81,13 +81,13 @@ class ElasticsearchSettingsContainer extends React.Component {
     return null
   }
 
-  getSetting (name) {
+  getSetting(name) {
     return this.props.settings.getIn(['settings', name, 'value'])
       ? this.props.settings.getIn(['settings', name, 'value'])
       : ''
   }
 
-  onEnableChanged (e) {
+  onEnableChanged(e) {
     const checked = e.target.checked
     const self = this
     this.props
@@ -114,13 +114,13 @@ class ElasticsearchSettingsContainer extends React.Component {
       })
   }
 
-  onInputChanged (e, settingName) {
+  onInputChanged(e, settingName) {
     this.setState({
       [settingName]: e.target.value
     })
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
 
     const payload = [
@@ -131,7 +131,7 @@ class ElasticsearchSettingsContainer extends React.Component {
     this.props.updateMultipleSettings(payload)
   }
 
-  getStatus () {
+  getStatus() {
     const self = this
     // self.esStatus = 'Please Wait...'
     // self.inSyncText = 'Please Wait...'
@@ -180,21 +180,21 @@ class ElasticsearchSettingsContainer extends React.Component {
       })
   }
 
-  rebuildIndex () {
+  rebuildIndex() {
     const self = this
     UIKit.modal.confirm(
-      'Are you sure you want to rebuild the index?',
+      'Bạn có chắc chắn muốn xây dựng lại chỉ mục không?',
       function () {
-        self.esStatus = 'Rebuilding...'
+        self.esStatus = 'Đang xây dựng lại...'
         self.inSyncText = 'Out of Sync'
         self.inSyncClass = 'bg-warn'
         self.indexCount = 0
         axios
           .get('/api/v2/es/rebuild')
           .then(() => {
-            self.esStatus = 'Rebuilding...'
+            self.esStatus = 'Đang xây dựng lại...'
             // $scope.esStatusClass = 'text-warning';
-            helpers.UI.showSnackbar('Rebuilding Index...', false)
+            helpers.UI.showSnackbar('Đang xây dựng lại Index...', false)
             self.disableRebuild = true
             setTimeout(self.getStatus, 3000)
           })
@@ -204,51 +204,51 @@ class ElasticsearchSettingsContainer extends React.Component {
           })
       },
       {
-        labels: { Ok: 'Yes', Cancel: 'No' },
+        labels: { Ok: 'Có', Cancel: 'Không' },
         confirmButtonClass: 'md-btn-danger'
       }
     )
   }
 
-  render () {
+  render() {
     return (
       <div className={this.props.active ? '' : 'hide'}>
         <SettingItem
           title={'Elasticsearch - Beta'}
-          subtitle={'Enable the Elasticsearch engine'}
+          subtitle={'Bật động cơ Elasticsearch'}
           component={
             <EnableSwitch
               stateName={'elasticSearchEnabled'}
-              label={'Enable'}
+              label={'Bật'}
               checked={this.getSetting('elasticSearchEnabled')}
               onChange={e => this.onEnableChanged(e)}
             />
           }
         />
         <SettingItem
-          title={'Connection Status'}
-          subtitle={'Current connection status to the Elasticsearch server.'}
+          title={'Trạng Thái Kết Nối'}
+          subtitle={'Trạng thái kết nối hiện tại đến máy chủ Elasticsearch.'}
           component={<h4 className={`right mr-15 mt-15 ${this.esStatusClass}`}>{this.esStatus}</h4>}
         />
         <SettingItem
-          title={'Indexed Documents'}
-          subtitle={'Current count of indexed documents.'}
+          title={'Tài Liệu Đã Được Lập Chỉ Mục'}
+          subtitle={'Số lượng tài liệu đã được lập chỉ mục hiện tại.'}
           component={<h4 className={'right mr-15 mt-15'}>{this.indexCount}</h4>}
         />
         <SettingItem
-          title={'Index Status'}
-          subtitle={'Current status of the index. if the status is not green, the index may need rebuilding.'}
+          title={'Trạng Thái Chỉ Mục'}
+          subtitle={'Trạng thái hiện tại của chỉ mục. Nếu trạng thái không phải là xanh, có thể cần phải xây dựng lại chỉ mục.'}
           extraClass={this.inSyncClass}
           component={<h4 className={'right mr-15 mt-15'}>{this.inSyncText}</h4>}
         />
         <SettingItem
-          title={'Elasticsearch Server Configuration'}
-          tooltip={'Changing server settings will require a rebuild of the index and server restart.'}
-          subtitle={'The connection settings to the Elasticsearch server.'}
+          title={'Cấu Hình Máy Chủ Elasticsearch'}
+          tooltip={'Thay đổi cài đặt máy chủ sẽ yêu cầu xây dựng lại chỉ mục và khởi động lại máy chủ.'}
+          subtitle={'Cài đặt kết nối đến máy chủ Elasticsearch.'}
         >
           <form onSubmit={e => this.onFormSubmit(e)}>
             <div className='uk-margin-medium-bottom'>
-              <label>Server</label>
+              <label>Máy Chủ</label>
               <input
                 type='text'
                 className={'md-input md-input-width-medium'}
@@ -258,7 +258,7 @@ class ElasticsearchSettingsContainer extends React.Component {
               />
             </div>
             <div className='uk-margin-medium-bottom'>
-              <label>Port</label>
+              <label>Cổng</label>
               <input
                 type='text'
                 className={'md-input md-input-width-medium'}
@@ -269,7 +269,7 @@ class ElasticsearchSettingsContainer extends React.Component {
             </div>
             <div className='uk-clearfix'>
               <Button
-                text={'Apply'}
+                text={'Áp Dụng'}
                 type={'submit'}
                 flat={true}
                 waves={true}
@@ -281,14 +281,14 @@ class ElasticsearchSettingsContainer extends React.Component {
           </form>
         </SettingItem>
         <SettingItem
-          title={'Rebuild Index'}
-          subtitle={'Wipe index and rebuild'}
+          title={'Xây Dựng Lại Chỉ Mục'}
+          subtitle={'Xóa chỉ mục và xây dựng lại'}
           tooltip={
-            'Rebuilding the index should only occur if the index is out of sync with the database, or has not been initialized. Rebuilding will take some time.'
+            'Xây dựng lại chỉ nên xảy ra nếu chỉ mục không đồng bộ với cơ sở dữ liệu hoặc chưa được khởi tạo. Quá trình xây dựng lại sẽ mất một thời gian.'
           }
           component={
             <Button
-              text={'Rebuild'}
+              text={'Xây Dựng Lại'}
               flat={false}
               waves={true}
               style={'primary'}
@@ -299,6 +299,7 @@ class ElasticsearchSettingsContainer extends React.Component {
           }
         />
       </div>
+
     )
   }
 }

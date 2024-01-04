@@ -33,28 +33,28 @@ import UIKit from 'uikit'
 import helpers from 'lib/helpers'
 
 class GroupsContainer extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchGroups({ type: 'all' })
   }
 
-  onCreateGroupClick () {
+  onCreateGroupClick() {
     this.props.showModal('CREATE_GROUP')
   }
 
-  onEditGroupClick (group) {
+  onEditGroupClick(group) {
     this.props.showModal('EDIT_GROUP', { group })
   }
 
-  onDeleteGroupClick (_id) {
+  onDeleteGroupClick(_id) {
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
-        <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
-        </p>
-        <p style="font-size: 12px;">
-            Agents may lose access to resources once this group is deleted.
-        </p>
-        <span>Groups that are associated with ticket cannot be deleted.</span>
+      `<h2>Bạn có chắc chắn không?</h2>
+      <p style="font-size: 15px;">
+          <span class="uk-text-danger" style="font-size: 15px;">Đây là một hành động vĩnh viễn.</span> 
+      </p>
+      <p style="font-size: 12px;">
+          Các nhân viên có thể mất quyền truy cập vào tài nguyên sau khi nhóm này bị xóa.
+      </p>
+      <span>Các nhóm được liên kết với ticket không thể bị xóa.</span>
         `,
       () => {
         this.props.deleteGroup({ _id })
@@ -66,7 +66,7 @@ class GroupsContainer extends React.Component {
     )
   }
 
-  render () {
+  render() {
     const { groups } = this.props
 
     const tableItems = groups.map(group => {
@@ -99,11 +99,11 @@ class GroupsContainer extends React.Component {
           <TableCell style={{ textAlign: 'right', paddingRight: 15 }}>
             <ButtonGroup>
               {helpers.canUser('groups:update', true) && (
-                <Button text={'Edit'} small={true} waves={true} onClick={() => this.onEditGroupClick(group.toJS())} />
+                <Button text={'Chỉnh sửa'} small={true} waves={true} onClick={() => this.onEditGroupClick(group.toJS())} />
               )}
               {helpers.canUser('groups:delete', true) && (
                 <Button
-                  text={'Delete'}
+                  text={'Xóa'}
                   style={'danger'}
                   small={true}
                   waves={true}
@@ -119,12 +119,12 @@ class GroupsContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Customer Groups'}
+          title={'Nhóm khách hàng'}
           rightComponent={
             <div className={'uk-grid uk-grid-collapse'}>
               <div className={'uk-width-1-1 mt-15 uk-text-right'}>
                 <Button
-                  text={'Create'}
+                  text={'Tạo'}
                   flat={false}
                   small={true}
                   waves={false}
@@ -138,9 +138,9 @@ class GroupsContainer extends React.Component {
         <PageContent padding={0} paddingBottom={0}>
           <Table
             headers={[
-              <TableHeader key={0} width={'25%'} height={40} text={'Name'} padding={'8px 8px 8px 15px'} />,
-              <TableHeader key={1} width={'50%'} text={'Group Members'} />,
-              <TableHeader key={2} width={130} text={'Group Actions'} />
+              <TableHeader key={0} width={'25%'} height={40} text={'Tên'} padding={'8px 8px 8px 15px'} />,
+              <TableHeader key={1} width={'50%'} text={'Thành viên nhóm'} />,
+              <TableHeader key={2} width={130} text={'Hành động nhóm'} />
             ]}
           >
             {tableItems}

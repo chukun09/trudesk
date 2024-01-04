@@ -97,7 +97,7 @@ const ReportTicketsByAssignee = () => {
         hover={false}
         header={
           <div style={{ padding: '10px 15px' }}>
-            <h4 style={{ width: '100%', textAlign: 'left', fontSize: '14px', margin: 0 }}>Tickets by Assignee</h4>
+            <h4 style={{ width: '100%', textAlign: 'left', fontSize: '14px', margin: 0 }}>Ticket theo Người được giao</h4>
           </div>
         }
         extraContentClass={'nopadding'}
@@ -105,7 +105,7 @@ const ReportTicketsByAssignee = () => {
           <div>
             <SpinLoader active={isLoading} />
             <p className='padding-15 nomargin uk-text-muted'>
-              Please select the start and end dates and which groups to include in the report.
+              Vui lòng chọn ngày bắt đầu và ngày kết thúc cũng như những nhóm muốn bao gồm trong báo cáo.
             </p>
             <hr className='uk-margin-large-bottom' style={{ marginTop: 0 }} />
             <div className={'padding-15'}>
@@ -113,7 +113,7 @@ const ReportTicketsByAssignee = () => {
                 <Grid>
                   <GridItem width={'1-2'}>
                     <label htmlFor='filterDate_Start' className={'uk-form-label nopadding nomargin'}>
-                      Start Date
+                      Ngày bắt đầu
                     </label>
                     <DatePicker
                       name={'filterDate_start'}
@@ -126,7 +126,7 @@ const ReportTicketsByAssignee = () => {
                   </GridItem>
                   <GridItem width={'1-2'}>
                     <label htmlFor='filterDate_End' className={'uk-form-label nopadding nomargin'}>
-                      End Date
+                      Ngày kết thúc
                     </label>
                     <DatePicker
                       name={'filterDate_End'}
@@ -140,7 +140,7 @@ const ReportTicketsByAssignee = () => {
                   <GridItem width={'1-1'}>
                     <div className='uk-margin-medium-top uk-margin-medium-bottom'>
                       <label htmlFor='groups' className={'uk-form-label'}>
-                        Groups
+                        Nhóm
                       </label>
                       <SingleSelect
                         multiple={true}
@@ -154,7 +154,7 @@ const ReportTicketsByAssignee = () => {
                   </GridItem>
                   <GridItem width={'1-1'}>
                     <div className='uk-margin-medium-top uk-margin-medium-bottom'>
-                      <label htmlFor='priorities'>Assignee</label>
+                      <label htmlFor='priorities'>Người được giao</label>
                       <SingleSelect
                         multiple={true}
                         items={agents}
@@ -169,7 +169,7 @@ const ReportTicketsByAssignee = () => {
                     <div>
                       <Button
                         disabled={isLoading}
-                        text={'Generate'}
+                        text={'Tạo báo cáo'}
                         type={'submit'}
                         style={'primary'}
                         waves={true}
@@ -184,6 +184,7 @@ const ReportTicketsByAssignee = () => {
         }
       />
     </div>
+
   )
 }
 

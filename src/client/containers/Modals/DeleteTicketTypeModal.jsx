@@ -23,36 +23,36 @@ import SingleSelect from 'components/SingleSelect'
 import helpers from 'lib/helpers'
 
 class DeleteTicketTypeModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       selectedType: ''
     }
   }
 
-  getTicketTypes () {
+  getTicketTypes() {
     return this.props.settings && this.props.settings.get('ticketTypes')
       ? this.props.settings.get('ticketTypes').toArray()
       : []
   }
 
-  onSelectChanged (e) {
+  onSelectChanged(e) {
     this.setState({
       selectedType: e.target.value
     })
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     if (!this.state.selectedType) {
-      helpers.UI.showSnackbar('Unable to get new ticket type. Aborting...', true)
+      helpers.UI.showSnackbar('Không thể nhận loại ticket mới. Đang hủy...', true)
       return true
     }
 
     this.props.deleteTicketType(this.props.type.get('_id'), this.state.selectedType)
   }
 
-  render () {
+  render() {
     const { type } = this.props
     const mappedTypes = this.getTicketTypes()
       .filter(obj => {
@@ -65,15 +65,14 @@ class DeleteTicketTypeModal extends React.Component {
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Remove Ticket Type</h2>
+            <h2>Xóa Loại Ticket</h2>
             <span>
-              Please select the ticket type you wish to reassign tickets to in order to delete this ticket type.
+              Vui lòng chọn loại ticket mà bạn muốn gán lại cho các ticket khác để xóa loại ticket này.
             </span>
-            {/*<hr style={{ margin: '10px 0' }} />*/}
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <div className='uk-float-left' style={{ width: '100%' }}>
-              <label className={'uk-form-label nopadding nomargin'}>Type</label>
+              <label className={'uk-form-label nopadding nomargin'}>Loại</label>
               <SingleSelect
                 showTextbox={false}
                 items={mappedTypes}
@@ -84,18 +83,18 @@ class DeleteTicketTypeModal extends React.Component {
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <span className='uk-text-danger'>
-              WARNING: This will change all tickets with type <strong>{type.get('name')}</strong> to the selected ticket
-              type.
+              CẢNH BÁO: Thao tác này sẽ thay đổi tất cả các ticket có loại <strong>{type.get('name')}</strong> thành loại ticket đã chọn.
               <br />
-              <strong>This is permanent!</strong>
+              <strong>Thao tác này không thể hoàn tác!</strong>
             </span>
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Cancel'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Delete'} style={'danger'} flat={true} type={'submit'} />
+            <Button text={'Hủy'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Xóa'} style={'danger'} flat={true} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

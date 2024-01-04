@@ -29,20 +29,20 @@ class LinkWarningModal extends React.Component {
     }, 300)
   }
 
-  render () {
+  render() {
     return (
       <BaseModal>
         <div>
-          <h2>Redirect Warning</h2>
-          <p>You are being redirected to a site outside this domain. Proceed with caution.</p>
+          <h2>Cảnh báo chuyển hướng</h2>
+          <p>Bạn đang được chuyển hướng đến một trang web ngoài tên miền này. Hãy cẩn thận khi tiếp tục.</p>
           <p>
             <strong>{this.props.href}</strong>
           </p>
         </div>
         <div className='uk-modal-footer uk-text-right'>
-          <Button text={'Cancel'} extraClass={'uk-modal-close'} flat={true} waves={true} />
+          <Button text={'Hủy'} extraClass={'uk-modal-close'} flat={true} waves={true} />
           <Button
-            text={'Proceed'}
+            text={'Tiếp tục'}
             type={'submit'}
             flat={true}
             waves={true}
@@ -51,6 +51,7 @@ class LinkWarningModal extends React.Component {
           />
         </div>
       </BaseModal>
+
     )
   }
 }

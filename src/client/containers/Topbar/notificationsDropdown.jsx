@@ -29,7 +29,7 @@ import 'history'
 class NotificationsDropdownPartial extends React.Component {
   @observable notifications = []
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
 
@@ -38,26 +38,26 @@ class NotificationsDropdownPartial extends React.Component {
     this.markNotificationRead = this.markNotificationRead.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.socket.on(NOTIFICATIONS_UPDATE, this.onSocketUpdateNotifications)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.socket.off(NOTIFICATIONS_UPDATE, this.onSocketUpdateNotifications)
   }
 
-  onSocketUpdateNotifications (data) {
+  onSocketUpdateNotifications(data) {
     if (!helpers.arrayIsEqual(this.notifications, data.items)) this.notifications = data.items
   }
 
-  clearNotificationsClicked (e) {
+  clearNotificationsClicked(e) {
     e.preventDefault()
     e.stopPropagation()
 
     this.props.socket.emit(NOTIFICATIONS_CLEAR)
   }
 
-  markNotificationRead (e, notification) {
+  markNotificationRead(e, notification) {
     e.preventDefault()
     e.stopPropagation()
 
@@ -66,25 +66,25 @@ class NotificationsDropdownPartial extends React.Component {
     History.pushState(null, null, `/tickets/${notification.data.ticket.uid}`)
   }
 
-  render () {
+  render() {
     const { shortDateFormat, timezone, forwardedRef } = this.props
 
     return (
       <PDropdown
         ref={forwardedRef}
         id={'notifications'}
-        title={'Notifications'}
+        title={'Thông báo'}
         topOffset={-4}
         leftOffset={4}
         rightComponent={
           <a className={'hoverUnderline no-ajaxy'} onClick={e => this.clearNotificationsClicked(e)}>
-            Clear Notifications
+            Xóa Thông báo
           </a>
         }
         footerComponent={
           <div className={'uk-text-center' + (this.notifications.length < 1 ? ' hide' : '')}>
             <a className={'no-ajaxy hoverUnderline'} onClick={this.props.onViewAllNotificationsClick}>
-              View All Notifications
+              Xem Tất cả Thông báo
             </a>
           </div>
         }
@@ -135,6 +135,7 @@ class NotificationsDropdownPartial extends React.Component {
           )
         }, this)}
       </PDropdown>
+
     )
   }
 }

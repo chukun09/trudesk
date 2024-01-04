@@ -28,22 +28,22 @@ import SingleSelect from 'components/SingleSelect'
 class DeleteRoleModal extends React.Component {
   @observable selectedRole = ''
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  onSelectChanged (e) {
+  onSelectChanged(e) {
     this.selectedRole = e.target.value
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
 
     this.props.deleteRole({ _id: this.props.role.get('_id'), newRoleId: this.selectedRole })
   }
 
-  render () {
+  render() {
     const { role } = this.props
     const mappedRoles = this.props.shared.roles
       .filter(obj => {
@@ -57,13 +57,13 @@ class DeleteRoleModal extends React.Component {
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className='uk-margin-medium-bottom uk-clearfix'>
-            <h2>Remove Role</h2>
-            <span>Please select the role you wish to assign ALL users to</span>
+            <h2>Xóa Vai Trò</h2>
+            <span>Vui lòng chọn vai trò mà bạn muốn gán cho TẤT CẢ người dùng</span>
             {/*<hr style={{ margin: '10px 0' }} />*/}
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <div className='uk-float-left' style={{ width: '100%' }}>
-              <label className={'uk-form-label nopadding nomargin'}>Type</label>
+              <label className={'uk-form-label nopadding nomargin'}>Loại</label>
               <SingleSelect
                 showTextbox={false}
                 items={mappedRoles}
@@ -74,25 +74,24 @@ class DeleteRoleModal extends React.Component {
           </div>
           <div className='uk-margin-medium-bottom uk-clearfix'>
             <span className='uk-text-danger'>
-              WARNING: This will change all accounts with role <strong>{role.get('name')}</strong> to the selected role
-              above.
+              CẢNH BÁO: Thao tác này sẽ thay đổi tất cả tài khoản với vai trò <strong>{role.get('name')}</strong> thành vai trò được chọn ở trên.
               {role.get('isAdmin') && (
                 <span className={'uk-text-danger'}>
-                  The role you are about to remove is an admin role. Please ensure there is another Admin role or you
-                  could be locked out!
+                  Vai trò bạn đang thử xóa là vai trò quản trị. Hãy đảm bảo rằng có vai trò Quản trị khác hoặc bạn có thể bị khóa ra ngoài!
                 </span>
               )}
               <br />
               <br />
-              <strong style={{ fontSize: '18px' }}>This is permanent!</strong>
+              <strong style={{ fontSize: '18px' }}>Thao tác này không thể hoàn tác!</strong>
             </span>
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Cancel'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Delete'} style={'danger'} flat={true} type={'submit'} />
+            <Button text={'Hủy'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Xóa'} style={'danger'} flat={true} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

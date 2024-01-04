@@ -33,12 +33,12 @@ import SpinLoader from 'components/SpinLoader'
 class EditGroupModal extends React.Component {
   @observable name = ''
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchAccounts({ type: 'customers', limit: -1 })
     this.name = this.props.group.name
 
@@ -47,15 +47,15 @@ class EditGroupModal extends React.Component {
     helpers.formvalidator()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.unloadAccounts()
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return false
@@ -70,11 +70,11 @@ class EditGroupModal extends React.Component {
     this.props.updateGroup(payload)
   }
 
-  onInputChange (e) {
+  onInputChange(e) {
     this.name = e.target.value
   }
 
-  render () {
+  render() {
     const mappedAccounts = this.props.accounts
       .map(account => {
         return { text: account.get('fullname'), value: account.get('_id') }
@@ -91,11 +91,11 @@ class EditGroupModal extends React.Component {
       <BaseModal>
         <SpinLoader active={this.props.accountsLoading} />
         <div className={'mb-25'}>
-          <h2>Edit Group</h2>
+          <h2>Chỉnh sửa Nhóm</h2>
         </div>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Group Name</label>
+            <label>Tên Nhóm</label>
             <input
               type='text'
               className={'md-input'}
@@ -103,33 +103,34 @@ class EditGroupModal extends React.Component {
               onChange={e => this.onInputChange(e)}
               data-validation='length'
               data-validation-length={'min2'}
-              data-validation-error-msg={'Please enter a valid Group name. (Must contain 2 characters)'}
+              data-validation-error-msg={'Vui lòng nhập tên Nhóm hợp lệ. (Phải chứa ít nhất 2 ký tự)'}
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label style={{ marginBottom: 5 }}>Group Members</label>
+            <label style={{ marginBottom: 5 }}>Thành viên Nhóm</label>
             <MultiSelect
               items={mappedAccounts}
               initialSelected={selectedMembers}
-              onChange={() => {}}
+              onChange={() => { }}
               ref={r => (this.membersSelect = r)}
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label style={{ marginBottom: 5 }}>Send Notifications To</label>
+            <label style={{ marginBottom: 5 }}>Gửi Thông báo đến</label>
             <MultiSelect
               items={mappedAccounts}
               initialSelected={selectedSendMailTo}
-              onChange={() => {}}
+              onChange={() => { }}
               ref={r => (this.sendMailToSelect = r)}
             />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Save Group'} flat={true} waves={true} style={'primary'} type={'submit'} />
+            <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Lưu Nhóm'} flat={true} waves={true} style={'primary'} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

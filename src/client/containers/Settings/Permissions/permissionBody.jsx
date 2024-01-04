@@ -28,7 +28,7 @@ import PermissionGroupPartial from './permissionGroupPartial'
 
 import helpers from 'lib/helpers'
 
-function defaultGrants () {
+function defaultGrants() {
   return {
     all: false,
     create: false,
@@ -55,12 +55,12 @@ class PermissionBody extends React.Component {
   @observable reportGrants = defaultGrants()
   @observable noticeGrants = defaultGrants()
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.isAdmin = this.props.role.get('isAdmin') || false
     this.isAgent = this.props.role.get('isAgent') || false
     this.hasHierarchy = this.props.role.get('hierarchy') || false
@@ -69,7 +69,7 @@ class PermissionBody extends React.Component {
     this.parseGrants()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (this.isAdmin === '') this.isAdmin = this.props.role.get('isAdmin') || false
     if (this.isAgent === '') this.isAgent = this.props.role.get('isAgent') || false
     if (this.hasHierarchy === '') this.hasHierarchy = this.props.role.get('hierarchy') || false
@@ -78,7 +78,7 @@ class PermissionBody extends React.Component {
     this.parseGrants()
   }
 
-  parseGrants () {
+  parseGrants() {
     if (!this.grants) return
     const parsedGrants = helpers.parseRoleGrants(this.grants)
 
@@ -103,11 +103,11 @@ class PermissionBody extends React.Component {
       this.noticeGrants = parsedGrants.notices
   }
 
-  onEnableSwitchChanged (e, name) {
+  onEnableSwitchChanged(e, name) {
     this[name] = e.target.checked
   }
 
-  static mapTicketSpecials () {
+  static mapTicketSpecials() {
     return [
       { title: 'Print', perm: 'print' },
       { title: 'Notes', perm: 'notes' },
@@ -116,18 +116,18 @@ class PermissionBody extends React.Component {
     ]
   }
 
-  static mapAccountSpecials () {
+  static mapAccountSpecials() {
     return [{ title: 'Import', perm: 'import' }]
   }
 
-  static mapNoticeSpecials () {
+  static mapNoticeSpecials() {
     return [
       { title: 'Activate', perm: 'activate' },
       { title: 'Deactivate', perm: 'deactivate' }
     ]
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault()
     const obj = {}
     obj._id = this.props.role.get('_id')
@@ -150,7 +150,7 @@ class PermissionBody extends React.Component {
     this.props.updatePermissions(obj)
   }
 
-  static buildPermArray (permGroup) {
+  static buildPermArray(permGroup) {
     let arr = []
     if (permGroup.all) arr = ['*']
     else {
@@ -164,48 +164,48 @@ class PermissionBody extends React.Component {
     return arr
   }
 
-  showDeletePermissionRole (e) {
+  showDeletePermissionRole(e) {
     e.preventDefault()
     this.props.showModal('DELETE_ROLE', { role: this.props.role })
   }
 
-  render () {
+  render() {
     return (
       <div>
         <form onSubmit={e => this.onSubmit(e)}>
           <SettingItem
-            title={'Admin'}
-            tooltip={'Role is considered an admin. Enabling management of the trudesk instance.'}
-            subtitle={'Is this role defined as an admin role?'}
+            title={'Quản Trị Viên'}
+            tooltip={'Vai trò được xem xét là một quản trị viên. Cho phép quản lý của trình trudesk.'}
+            subtitle={'Vai trò này có được xác định là vai trò quản trị viên không?'}
             component={
               <EnableSwitch
                 stateName={'isAdmin_' + this.props.role.get('_id')}
-                label={'Enable'}
+                label={'Bật'}
                 checked={this.isAdmin}
                 onChange={e => this.onEnableSwitchChanged(e, 'isAdmin')}
               />
             }
           />
           <SettingItem
-            title={'Support Agent'}
-            subtitle={'Is this role defined as an agent role?'}
-            tooltip={'Role is considered an agent role. Enabling agent views and displaying in agent lists.'}
+            title={'Nhân Viên Hỗ Trợ'}
+            subtitle={'Vai trò này có được xác định là vai trò nhân viên hỗ trợ không?'}
+            tooltip={'Vai trò được xem xét là vai trò nhân viên hỗ trợ. Cho phép xem trạng thái nhân viên và hiển thị trong danh sách nhân viên.'}
             component={
               <EnableSwitch
                 stateName={'isAgent_' + this.props.role.get('_id')}
-                label={'Enable'}
+                label={'Bật'}
                 checked={this.isAgent}
                 onChange={e => this.onEnableSwitchChanged(e, 'isAgent')}
               />
             }
           />
           <SettingItem
-            title={'Enable Hierarchy'}
-            subtitle={'Allow this role to manage resources owned by roles defined under it.'}
+            title={'Cho Phép Hệ Thống Cấp Cao'}
+            subtitle={'Cho phép vai trò này quản lý các tài nguyên thuộc sở hữu của các vai trò được xác định dưới đây.'}
             component={
               <EnableSwitch
                 stateName={'hasHierarchy_' + this.props.role.get('_id')}
-                label={'Enable'}
+                label={'Bật'}
                 checked={this.hasHierarchy}
                 onChange={e => this.onEnableSwitchChanged(e, 'hasHierarchy')}
               />
@@ -213,74 +213,74 @@ class PermissionBody extends React.Component {
           />
           <PermissionGroupPartial
             ref={i => (this.ticketPermGroup = i)}
-            title={'Tickets'}
+            title={'Ticket'}
             role={this.props.role}
             grants={this.ticketGrants}
             roleSpecials={PermissionBody.mapTicketSpecials()}
-            subtitle={'Ticket Permissions'}
+            subtitle={'Quyền Ticket'}
           />
           <PermissionGroupPartial
             ref={i => (this.commentPermGroup = i)}
-            title={'Comments'}
+            title={'Bình Luận'}
             role={this.props.role}
             grants={this.commentGrants}
-            subtitle={'Ticket Comments Permissions'}
+            subtitle={'Quyền Bình Luận Trên Ticket'}
           />
           <PermissionGroupPartial
             ref={i => (this.accountPermGroup = i)}
-            title={'Accounts'}
+            title={'Tài Khoản'}
             role={this.props.role}
             roleSpecials={PermissionBody.mapAccountSpecials()}
             grants={this.accountGrants}
-            subtitle={'Account Permissions'}
+            subtitle={'Quyền Tài Khoản'}
           />
           <PermissionGroupPartial
             ref={i => (this.groupPermGroup = i)}
-            title={'Groups'}
+            title={'Nhóm'}
             role={this.props.role}
             grants={this.groupGrants}
-            subtitle={'Group Permissions'}
+            subtitle={'Quyền Nhóm'}
           />
           <PermissionGroupPartial
             ref={i => (this.teamPermGroup = i)}
             title={'Teams'}
             role={this.props.role}
             grants={this.teamGrants}
-            subtitle={'Team Permissions'}
+            subtitle={'Quyền Teams'}
           />
           <PermissionGroupPartial
             ref={i => (this.departmentPermGroup = i)}
-            title={'Departments'}
+            title={'Phòng Ban'}
             role={this.props.role}
             grants={this.departmentGrants}
-            subtitle={'Department Permissions'}
+            subtitle={'Quyền Phòng Ban'}
           />
           <PermissionGroupPartial
             ref={i => (this.reportPermGroup = i)}
-            title={'Reports'}
+            title={'Báo Cáo'}
             role={this.props.role}
             grants={this.reportGrants}
-            subtitle={'Report Permissions'}
+            subtitle={'Quyền Báo Cáo'}
           />
           <PermissionGroupPartial
             ref={i => (this.noticePermGroup = i)}
-            title={'Notices'}
+            title={'Thông Báo'}
             role={this.props.role}
             grants={this.noticeGrants}
             roleSpecials={PermissionBody.mapNoticeSpecials()}
-            subtitle={'Notice Permissions'}
+            subtitle={'Quyền Thông Báo'}
           />
           <div className={'uk-margin-large-bottom'}>
-            <h2 className='text-light'>Danger Zone</h2>
+            <h2 className='text-light'>Vùng Nguy Hiểm</h2>
             <div className='danger-zone'>
               <div className='dz-box uk-clearfix'>
                 <div className='uk-float-left'>
-                  <h5>Delete this permission role?</h5>
-                  <p>Once you delete a permission role, there is no going back. Please be certain.</p>
+                  <h5>Xóa vai trò quyền này?</h5>
+                  <p>Khi bạn xóa vai trò quyền này, không thể hoàn tác. Hãy chắc chắn.</p>
                 </div>
                 <div className='uk-float-right' style={{ paddingTop: '10px' }}>
                   <Button
-                    text={'Delete'}
+                    text={'Xóa'}
                     small={true}
                     style={'danger'}
                     onClick={e => this.showDeletePermissionRole(e)}
@@ -293,12 +293,13 @@ class PermissionBody extends React.Component {
           <div>
             <div className='box uk-clearfix'>
               <div className='uk-float-right' style={{ paddingTop: '10px' }}>
-                <Button type={'submit'} style={'success'} waves={true} text={'Save Permissions'} />
+                <Button type={'submit'} style={'success'} waves={true} text={'Lưu Quyền'} />
               </div>
             </div>
           </div>
         </form>
       </div>
+
     )
   }
 }

@@ -42,13 +42,14 @@ class DepartmentsContainer extends React.Component {
 
   onDeleteDepartmentClick (_id) {
     UIKit.modal.confirm(
-      `<h2>Are you sure?</h2>
-        <p style="font-size: 15px;">
-            <span class="uk-text-danger" style="font-size: 15px;">This is a permanent action.</span> 
-        </p>
-        <p style="font-size: 12px;">
-            Agents may lose access to resources once this department is deleted.
-        </p>
+      `<h2>Bạn chắc chắn chứ?</h2>
+      <p style="font-size: 15px;">
+          <span class="uk-text-danger" style="font-size: 15px;">Đây là một hành động vĩnh viễn.</span> 
+      </p>
+      <p style="font-size: 12px;">
+          Các nhân viên có thể mất quyền truy cập vào tài nguyên sau khi phòng ban này bị xóa.
+      </p>
+      
         `,
       () => {
         this.props.deleteDepartment({ _id })
@@ -64,13 +65,13 @@ class DepartmentsContainer extends React.Component {
     return (
       <div>
         <PageTitle
-          title={'Departments'}
+          title={'Phòng ban'}
           shadow={false}
           rightComponent={
             <div className={'uk-grid uk-grid-collapse'}>
               <div className={'uk-width-1-1 mt-15 uk-text-right'}>
                 <Button
-                  text={'Create'}
+                  text={'Tạo'}
                   flat={false}
                   small={true}
                   waves={false}
@@ -95,11 +96,11 @@ class DepartmentsContainer extends React.Component {
                     padding: '8px 8px 8px 27px'
                   }}
                 >
-                  Name
+                  Tên
                 </th>
                 <th style={{ verticalAlign: 'middle', fontSize: 12, textTransform: 'uppercase' }}>Teams</th>
                 <th style={{ width: '25%', verticalAlign: 'middle', fontSize: 12, textTransform: 'uppercase' }}>
-                  Groups
+                  Nhóm
                 </th>
                 <th
                   style={{
@@ -109,7 +110,7 @@ class DepartmentsContainer extends React.Component {
                     textTransform: 'uppercase'
                   }}
                 >
-                  Actions
+                  Hành động
                 </th>
               </tr>
             </thead>
@@ -151,14 +152,14 @@ class DepartmentsContainer extends React.Component {
                         {department.get('allGroups') === true && (
                           <div>
                             <h6 className={'text-success'} style={{ fontWeight: 'bold' }}>
-                              All Groups
+                              Tất cả nhóm
                             </h6>
                           </div>
                         )}
                         {department.get('publicGroups') === true && (
                           <div>
                             <h6 className={'text-success'} style={{ fontWeight: 'bold' }}>
-                              All Public Groups
+                              Tất cả các nhóm công khai
                             </h6>
                           </div>
                         )}
@@ -176,7 +177,7 @@ class DepartmentsContainer extends React.Component {
                         <ButtonGroup>
                           {helpers.canUser('departments:update', true) && (
                             <Button
-                              text={'Edit'}
+                              text={'Chỉnh sửa'}
                               small={true}
                               waves={true}
                               onClick={() => this.onEditDepartmentClick(department)}
@@ -184,7 +185,7 @@ class DepartmentsContainer extends React.Component {
                           )}
                           {helpers.canUser('departments:delete', true) && (
                             <Button
-                              text={'Delete'}
+                              text={'Xóa'}
                               style={'danger'}
                               small={true}
                               waves={true}

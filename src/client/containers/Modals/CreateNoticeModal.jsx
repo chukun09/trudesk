@@ -14,7 +14,7 @@ import $ from 'jquery'
 
 @observer
 class CreateNoticeModal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     makeObservable(this)
@@ -25,7 +25,7 @@ class CreateNoticeModal extends React.Component {
   @observable color = ''
   @observable fontColor = ''
 
-  componentDidMount () {
+  componentDidMount() {
     this.color = '#4CAF50'
     this.fontColor = '#ffffff'
 
@@ -34,15 +34,15 @@ class CreateNoticeModal extends React.Component {
     helpers.formvalidator()
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     helpers.UI.reRenderInputs()
   }
 
-  onInputChange (target, e) {
+  onInputChange(target, e) {
     this[target] = e.target.value
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return false
@@ -59,15 +59,15 @@ class CreateNoticeModal extends React.Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <div className={'mb-25'}>
-          <h2>Create Notice</h2>
+          <h2>Tạo Thông Báo</h2>
         </div>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Name</label>
+            <label>Tên</label>
             <input
               type='text'
               className={'md-input'}
@@ -75,22 +75,22 @@ class CreateNoticeModal extends React.Component {
               onChange={e => this.onInputChange('name', e)}
               data-validation='length'
               data-validation-length={'min2'}
-              data-validation-error-msg={'Please enter a notice name. (Must contain 2 characters)'}
+              data-validation-error-msg={'Vui lòng nhập tên thông báo. (Phải chứa ít nhất 2 ký tự)'}
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Message</label>
+            <label>Nội Dung</label>
             <textarea
               className={'md-input'}
               value={this.message}
               onChange={e => this.onInputChange('message', e)}
               data-validation='length'
               data-validation-length={'min10'}
-              data-validation-error-msg={'Please enter a notice message. (Must contain 10 characters)'}
+              data-validation-error-msg={'Vui lòng nhập nội dung thông báo. (Phải chứa ít nhất 10 ký tự)'}
             />
           </div>
           <div>
-            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Background Color</span>
+            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Màu Nền</span>
             <PopoverColorPicker
               color={this.color}
               onChange={c => {
@@ -98,7 +98,7 @@ class CreateNoticeModal extends React.Component {
               }}
               style={{ float: 'left', marginLeft: 5, marginRight: 15 }}
             />
-            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Font Color</span>
+            <span style={{ display: 'inline-block', float: 'left', paddingTop: 5 }}>Màu Chữ</span>
             <PopoverColorPicker
               color={this.fontColor}
               onChange={c => {
@@ -109,11 +109,12 @@ class CreateNoticeModal extends React.Component {
           </div>
 
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Create Notice'} flat={true} waves={true} style={'primary'} type={'submit'} />
+            <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Tạo Thông Báo'} flat={true} waves={true} style={'primary'} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

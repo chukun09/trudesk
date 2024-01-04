@@ -97,60 +97,61 @@ class AddTagsModal extends React.Component {
 
     return (
       <BaseModal options={{ bgclose: false }}>
-        <div className={'uk-clearfix'}>
-          <h5 style={{ fontWeight: 300 }}>Add Tags</h5>
-          <div>
-            <form className='nomargin' onSubmit={e => this.onSubmit(e)}>
-              <div className='search-container'>
-                <select
-                  name='tags'
-                  id='tags'
-                  className='chosen-select'
-                  multiple
-                  data-placeholder=' '
-                  data-noresults='No Tags Found for '
-                  ref={r => (this.select = r)}
-                >
-                  {mappedTags.map(tag => (
-                    <option key={tag.value} value={tag.value}>
-                      {tag.text}
-                    </option>
-                  ))}
-                </select>
-                <button type='button' style={{ borderRadius: 0 }} onClick={e => this.onCreateTagClicked(e)}>
-                  <i className='material-icons' style={{ marginRight: 0 }}>
-                    add
-                  </i>
-                </button>
-              </div>
-
-              <div className='left' style={{ marginTop: 15 }}>
-                <Button
-                  type={'button'}
-                  text={'Clear'}
-                  small={true}
-                  flat={true}
-                  style={'danger'}
-                  onClick={e => this.onClearClicked(e)}
-                />
-              </div>
-              <div className='right' style={{ marginTop: 15 }}>
-                <Button
-                  type={'button'}
-                  text={'Cancel'}
-                  style={'secondary'}
-                  small={true}
-                  flat={true}
-                  waves={true}
-                  extraClass={'uk-modal-close'}
-                  ref={r => (this.closeButton = r)}
-                />
-                <Button type={'submit'} text={'Save Tags'} style={'success'} small={true} waves={true} />
-              </div>
-            </form>
-          </div>
+  <div className={'uk-clearfix'}>
+    <h5 style={{ fontWeight: 300 }}>Thêm Tags</h5>
+    <div>
+      <form className='nomargin' onSubmit={e => this.onSubmit(e)}>
+        <div className='search-container'>
+          <select
+            name='tags'
+            id='tags'
+            className='chosen-select'
+            multiple
+            data-placeholder=' '
+            data-noresults='Không tìm thấy Tags cho '
+            ref={r => (this.select = r)}
+          >
+            {mappedTags.map(tag => (
+              <option key={tag.value} value={tag.value}>
+                {tag.text}
+              </option>
+            ))}
+          </select>
+          <button type='button' style={{ borderRadius: 0 }} onClick={e => this.onCreateTagClicked(e)}>
+            <i className='material-icons' style={{ marginRight: 0 }}>
+              add
+            </i>
+          </button>
         </div>
-      </BaseModal>
+
+        <div className='left' style={{ marginTop: 15 }}>
+          <Button
+            type={'button'}
+            text={'Xóa'}
+            small={true}
+            flat={true}
+            style={'danger'}
+            onClick={e => this.onClearClicked(e)}
+          />
+        </div>
+        <div className='right' style={{ marginTop: 15 }}>
+          <Button
+            type={'button'}
+            text={'Hủy bỏ'}
+            style={'secondary'}
+            small={true}
+            flat={true}
+            waves={true}
+            extraClass={'uk-modal-close'}
+            ref={r => (this.closeButton = r)}
+          />
+          <Button type={'submit'} text={'Lưu Tags'} style={'success'} small={true} waves={true} />
+        </div>
+      </form>
+    </div>
+  </div>
+</BaseModal>
+
     )
   }
 }

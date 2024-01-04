@@ -32,12 +32,12 @@ import MultiSelect from 'components/MultiSelect'
 class CreateTeamModal extends React.Component {
   @observable name = ''
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     makeObservable(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchAccounts({ limit: -1 })
 
     helpers.UI.inputs()
@@ -45,19 +45,19 @@ class CreateTeamModal extends React.Component {
     helpers.formvalidator()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.unloadAccounts()
   }
 
-  onInputChange (e) {
+  onInputChange(e) {
     this.name = e.target.value
   }
 
-  onFormSubmit (e) {
+  onFormSubmit(e) {
     e.preventDefault()
     const $form = $(e.target)
     if (!$form.isValid(null, null, false)) return false
@@ -70,7 +70,7 @@ class CreateTeamModal extends React.Component {
     this.props.createTeam(payload)
   }
 
-  render () {
+  render() {
     const mappedAccounts = this.props.accounts
       .filter(account => {
         return account.getIn(['role', 'isAgent']) === true && !account.get('deleted')
@@ -83,11 +83,11 @@ class CreateTeamModal extends React.Component {
     return (
       <BaseModal {...this.props} options={{ bgclose: false }}>
         <div className={'mb-25'}>
-          <h2>Create Team</h2>
+          <h2>Tạo Teams</h2>
         </div>
         <form className={'uk-form-stacked'} onSubmit={e => this.onFormSubmit(e)}>
           <div className={'uk-margin-medium-bottom'}>
-            <label>Team Name</label>
+            <label>Tên Teams</label>
             <input
               type='text'
               className={'md-input'}
@@ -95,19 +95,20 @@ class CreateTeamModal extends React.Component {
               onChange={e => this.onInputChange(e)}
               data-validation='length'
               data-validation-length={'min2'}
-              data-validation-error-msg={'Please enter a valid Team name. (Must contain 2 characters)'}
+              data-validation-error-msg={'Vui lòng nhập tên Teams hợp lệ. (Phải chứa ít nhất 2 ký tự)'}
             />
           </div>
           <div className={'uk-margin-medium-bottom'}>
-            <label style={{ marginBottom: 5 }}>Team Members</label>
-            <MultiSelect items={mappedAccounts} onChange={() => {}} ref={r => (this.membersSelect = r)} />
+            <label style={{ marginBottom: 5 }}>Thành Viên Teams</label>
+            <MultiSelect items={mappedAccounts} onChange={() => { }} ref={r => (this.membersSelect = r)} />
           </div>
           <div className='uk-modal-footer uk-text-right'>
-            <Button text={'Close'} flat={true} waves={true} extraClass={'uk-modal-close'} />
-            <Button text={'Create Team'} flat={true} waves={true} style={'primary'} type={'submit'} />
+            <Button text={'Đóng'} flat={true} waves={true} extraClass={'uk-modal-close'} />
+            <Button text={'Tạo Teams'} flat={true} waves={true} style={'primary'} type={'submit'} />
           </div>
         </form>
       </BaseModal>
+
     )
   }
 }

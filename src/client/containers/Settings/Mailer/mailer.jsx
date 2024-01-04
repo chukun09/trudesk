@@ -25,7 +25,7 @@ import SettingItem from 'components/Settings/SettingItem'
 import EnableSwitch from 'components/Settings/EnableSwitch'
 
 class MailerSettings_Mailer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       mailerSSL: '',
@@ -37,15 +37,15 @@ class MailerSettings_Mailer extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     helpers.UI.inputs()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     helpers.UI.reRenderInputs()
   }
 
-  static getDerivedStateFromProps (nextProps, state) {
+  static getDerivedStateFromProps(nextProps, state) {
     if (nextProps.settings) {
       let stateObj = { ...state }
       if (state.mailerSSL === '')
@@ -64,13 +64,13 @@ class MailerSettings_Mailer extends React.Component {
     return null
   }
 
-  getSetting (name) {
+  getSetting(name) {
     return this.props.settings.getIn(['settings', name, 'value'])
       ? this.props.settings.getIn(['settings', name, 'value'])
       : ''
   }
 
-  onEnableMailerChanged (e) {
+  onEnableMailerChanged(e) {
     this.props.updateSetting({
       name: 'mailer:enable',
       stateName: 'mailerEnabled',
@@ -79,19 +79,19 @@ class MailerSettings_Mailer extends React.Component {
     })
   }
 
-  onMailerSSLChanged (e) {
+  onMailerSSLChanged(e) {
     this.setState({
       mailerSSL: e.target.checked
     })
   }
 
-  onInputValueChanged (e, stateName) {
+  onInputValueChanged(e, stateName) {
     this.setState({
       [stateName]: e.target.value
     })
   }
 
-  onMailerSubmit (e) {
+  onMailerSubmit(e) {
     e.preventDefault()
 
     const mailSettings = [
@@ -106,7 +106,7 @@ class MailerSettings_Mailer extends React.Component {
     this.props.updateMultipleSettings(mailSettings)
   }
 
-  testMailerSettings (e) {
+  testMailerSettings(e) {
     e.preventDefault()
     helpers.UI.showSnackbar('Testing...')
 
@@ -122,15 +122,15 @@ class MailerSettings_Mailer extends React.Component {
       })
   }
 
-  render () {
+  render() {
     return (
       <SettingItem
-        title={'Mailer'}
-        subtitle={'Preferences for trudesk to send email notifications to users.'}
+        title={'Trình Gửi Thư'}
+        subtitle={'Cài đặt cho trudesk để gửi thông báo qua email cho người dùng.'}
         component={
           <EnableSwitch
             stateName={'mailerEnabled'}
-            label={'Enabled'}
+            label={'Bật'}
             onChange={e => this.onEnableMailerChanged(e)}
             checked={this.getSetting('mailerEnabled')}
           />
@@ -141,14 +141,14 @@ class MailerSettings_Mailer extends React.Component {
             <div className={'uk-right'}>
               <EnableSwitch
                 stateName={'mailerSSL'}
-                label={'Use SSLv3'}
+                label={'Sử Dụng SSLv3'}
                 style={{ position: 'absolute', top: '5px', right: '-5px', zIndex: '99', margin: '0' }}
                 checked={this.state.mailerSSL}
                 disabled={!this.getSetting('mailerEnabled')}
                 onChange={e => this.onMailerSSLChanged(e)}
               />
             </div>
-            <label>Mail Server</label>
+            <label>Máy Chủ Email</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -159,7 +159,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>Port</label>
+            <label>Cổng</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -170,7 +170,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>Auth Username</label>
+            <label>Tên Đăng Nhập</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -181,7 +181,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>Auth Password</label>
+            <label>Mật Khẩu Đăng Nhập</label>
             <input
               type='password'
               className={'md-input md-input-width-medium'}
@@ -192,7 +192,7 @@ class MailerSettings_Mailer extends React.Component {
             />
           </div>
           <div className='uk-margin-medium-bottom'>
-            <label>From Address</label>
+            <label>Địa Chỉ Người Gửi</label>
             <input
               type='text'
               className={'md-input md-input-width-medium'}
@@ -204,7 +204,7 @@ class MailerSettings_Mailer extends React.Component {
           </div>
           <div className='uk-clearfix'>
             <Button
-              text={'Test Settings'}
+              text={'Kiểm Tra Cài Đặt'}
               type={'button'}
               flat={true}
               waves={true}
@@ -214,7 +214,7 @@ class MailerSettings_Mailer extends React.Component {
               onClick={e => this.testMailerSettings(e)}
             />
             <Button
-              text={'Apply'}
+              text={'Áp Dụng'}
               type={'submit'}
               style={'success'}
               extraClass={'uk-float-right'}
@@ -225,6 +225,7 @@ class MailerSettings_Mailer extends React.Component {
           </div>
         </form>
       </SettingItem>
+
     )
   }
 }
