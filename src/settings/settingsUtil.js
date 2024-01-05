@@ -23,7 +23,7 @@ const statusSchema = require('../models/ticketStatus')
 
 const util = {}
 
-function parseSetting (settings, name, defaultValue) {
+function parseSetting(settings, name, defaultValue) {
   let s = _.find(settings, function (x) {
     return x.name === name
   })
@@ -43,7 +43,7 @@ util.setSetting = function (setting, value, callback) {
 
 util.getSettings = async callback => {
   return new Promise((resolve, reject) => {
-    ;(async () => {
+    ; (async () => {
       try {
         const settings = await settingSchema.getSettings()
         const s = {}
@@ -148,15 +148,23 @@ util.getSettings = async callback => {
         const tagCount = await tagSchema.getTagCount()
         content.data.tags = { count: tagCount }
 
-        const roles = await roleSchema.getRoles()
-        let roleOrder = await roleOrderSchema.getOrder()
-        roleOrder = roleOrder?.order
+        try {
+          const roles = await roleSchema.getRoles();
+          let roleOrder = await roleOrderSchema.getOrder();
+          roleOrder = roleOrder?.order;
 
-        if (roleOrder.length > 0) {
-          content.data.roles = _.map(roleOrder, roID => {
-            return _.find(roles, { _id: roID })
-          })
-        } else content.data.roles = roles
+          if (roleOrder && roleOrder?.length > 0) {
+            content.data.roles = _.map(roleOrder, roID => {
+              return _.find(roles, { _id: roID });
+            });
+          } else {
+            content.data.roles = roles;
+          }
+        } catch (error) {
+          console.error("An error occurred:", error);
+          // Handle the error appropriately
+        }
+
 
         content.data.settings = s
 
