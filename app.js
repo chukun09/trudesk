@@ -57,7 +57,7 @@ checkForOldConfig()
 
 const configExists = fs.existsSync(configFile)
 
-function launchInstallServer () {
+function launchInstallServer() {
   // Load the defaults for the install server
   nconf.defaults({
     tokens: {
@@ -72,10 +72,13 @@ function launchInstallServer () {
 }
 
 if (nconf.get('install') || (!configExists && !isDocker)) {
+  console.log(nconf.get('install'), 'nconf.get(install)');
+  console.log(configExists, 'configExists');
+  console.log(isDocker, 'isDocker');
   launchInstallServer()
 }
 
-function loadConfig () {
+function loadConfig() {
   nconf.file({
     file: configFile,
     format: require('nconf-yaml')
@@ -91,7 +94,7 @@ function loadConfig () {
   })
 }
 
-function checkForOldConfig () {
+function checkForOldConfig() {
   const oldConfigFile = path.join(__dirname, '/config.json')
   if (fs.existsSync(oldConfigFile)) {
     // Convert config to yaml.
@@ -106,7 +109,7 @@ function checkForOldConfig () {
   }
 }
 
-function start () {
+function start() {
   if (!isDocker) loadConfig()
   if (isDocker) {
     // Load some defaults for JWT token that is missing when using docker
@@ -134,7 +137,7 @@ function start () {
   })
 }
 
-function launchServer (db) {
+function launchServer(db) {
   const ws = require('./src/webserver')
   ws.init(db, function (err) {
     if (err) {
@@ -233,7 +236,7 @@ function launchServer (db) {
   })
 }
 
-function dbCallback (err, db) {
+function dbCallback(err, db) {
   if (err || !db) {
     return start()
   }
