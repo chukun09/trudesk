@@ -139,7 +139,7 @@ class DashboardContainer extends React.Component {
                     <span className='uk-text-muted uk-text-small'>Thời gian phản hồi trung bình</span>
 
                     <h2 className='uk-margin-remove'>
-                      <CountUp endNumber={this.props.dashboardState.ticketAvg || 0} extraText={'hours'} />
+                      <CountUp endNumber={this.props.dashboardState.ticketAvg || 0} extraText={'tiếng'} />
                     </h2>
                   </div>
                 }

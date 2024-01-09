@@ -25,11 +25,11 @@ import { updateNavChange } from 'actions/nav'
 import Helpers from 'lib/helpers'
 
 class Sidebar extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // Helpers.UI.getPlugins((err, result) => {
     //   if (!err && result.plugins) {
     //     this.setState({ plugins: result.plugins })
@@ -41,12 +41,12 @@ class Sidebar extends React.Component {
     this.props.updateNavChange({ activeItem: sidebarRoute, activeSubItem: sidebarSubRoute })
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     Helpers.UI.initSidebar()
     Helpers.UI.bindExpand()
   }
 
-  renderPlugins () {
+  renderPlugins() {
     const { plugins, sessionUser, activeItem, activeSubItem } = this.state
     return (
       <SidebarItem
@@ -79,7 +79,7 @@ class Sidebar extends React.Component {
     )
   }
 
-  render () {
+  render() {
     const { activeItem, activeSubItem, sessionUser } = this.props
 
     return (
@@ -92,7 +92,7 @@ class Sidebar extends React.Component {
           <ul className='side-nav'>
             {sessionUser && Helpers.canUser('agent:*', true) && (
               <SidebarItem
-                text='Dashboard'
+                text='Trang chủ'
                 icon='dashboard'
                 href='/dashboard'
                 class='navHome'
@@ -111,19 +111,19 @@ class Sidebar extends React.Component {
               >
                 <Submenu id='tickets'>
                   <SubmenuItem
-                    text='Active'
+                    text='Đang hoạt động'
                     icon='timer'
                     href='/tickets/active'
                     active={activeSubItem === 'tickets-active'}
                   />
                   <SubmenuItem
-                    text='Assigned'
+                    text='Đã được giao'
                     icon='assignment_ind'
                     href='/tickets/assigned'
                     active={activeSubItem === 'tickets-assigned'}
                   />
                   <SubmenuItem
-                    text='Unassigned'
+                    text='Chưa được giao'
                     icon='person_add_disabled'
                     href='/tickets/unassigned'
                     active={activeSubItem === 'tickets-unassigned'}
@@ -132,7 +132,7 @@ class Sidebar extends React.Component {
               </SidebarItem>
             )}
             <SidebarItem
-              text='Messages'
+              text='Trò chuyện'
               icon='chat'
               href='/messages'
               class='navMessages'
@@ -140,7 +140,7 @@ class Sidebar extends React.Component {
             />
             {sessionUser && Helpers.canUser('accounts:view') && (
               <SidebarItem
-                text='Accounts'
+                text='Tài khoản'
                 icon='&#xE7FD;'
                 href='/accounts'
                 class='navAccounts'
@@ -152,14 +152,14 @@ class Sidebar extends React.Component {
                   <Submenu id='accounts'>
                     <SubmenuItem
                       href={'/accounts/customers'}
-                      text={'Customers'}
+                      text={'Người dùng'}
                       icon={'account_box'}
                       active={activeSubItem === 'accounts-customers'}
                     />
                     {sessionUser && Helpers.canUser('agent:*', true) && (
                       <SubmenuItem
                         href={'/accounts/agents'}
-                        text={'Agents'}
+                        text={'Người quản lý'}
                         icon={'account_circle'}
                         active={activeSubItem === 'accounts-agents'}
                       />
@@ -167,7 +167,7 @@ class Sidebar extends React.Component {
                     {sessionUser && Helpers.canUser('admin:*') && (
                       <SubmenuItem
                         href={'/accounts/admins'}
-                        text={'Admins'}
+                        text={'Quản trị viên'}
                         icon={'how_to_reg'}
                         active={activeSubItem === 'accounts-admins'}
                       />
@@ -178,7 +178,7 @@ class Sidebar extends React.Component {
             )}
             {sessionUser && Helpers.canUser('groups:view') && (
               <SidebarItem
-                text='Customer Groups'
+                text='Nhóm người dùng'
                 icon='supervisor_account'
                 href='/groups'
                 class='navGroups'
@@ -190,7 +190,7 @@ class Sidebar extends React.Component {
             )}
             {sessionUser && Helpers.canUser('departments:view') && (
               <SidebarItem
-                text='Departments'
+                text='Phòng ban'
                 icon='domain'
                 href='/departments'
                 class='navTeams'
@@ -199,7 +199,7 @@ class Sidebar extends React.Component {
             )}
             {sessionUser && Helpers.canUser('reports:view') && (
               <SidebarItem
-                text='Reports'
+                text='Báo cáo'
                 icon='assessment'
                 href='/reports/generate'
                 class='navReports no-ajaxy'
@@ -209,7 +209,7 @@ class Sidebar extends React.Component {
               >
                 <Submenu id='reports'>
                   <SubmenuItem
-                    text='Generate'
+                    text='Tạo báo cáo'
                     icon='timeline'
                     href='/reports/generate'
                     active={activeSubItem === 'reports-generate'}
@@ -235,7 +235,7 @@ class Sidebar extends React.Component {
 
             {sessionUser && Helpers.canUser('notices:view') && (
               <SidebarItem
-                text='Notices'
+                text='Thông báo'
                 icon='campaign'
                 href='/notices'
                 class='navNotices'
@@ -245,7 +245,7 @@ class Sidebar extends React.Component {
 
             {sessionUser && Helpers.canUser('settings:edit') && (
               <SidebarItem
-                text='Settings'
+                text='Cài đặt'
                 icon='settings'
                 href='/settings/general'
                 class='navSettings no-ajaxy'
@@ -255,19 +255,19 @@ class Sidebar extends React.Component {
               >
                 <Submenu id='settings'>
                   <SubmenuItem
-                    text='General'
+                    text='Chung'
                     icon='tune'
                     href='/settings'
                     active={activeSubItem === 'settings-general'}
                   />
                   <SubmenuItem
-                    text='Accounts'
+                    text='Tài khoản'
                     icon='tune'
                     href='/settings/accounts'
                     active={activeSubItem === 'settings-accounts'}
                   />
                   <SubmenuItem
-                    text='Appearance'
+                    text='Giao diện'
                     icon='style'
                     href='/settings/appearance'
                     active={activeSubItem === 'settings-appearance'}
@@ -279,13 +279,13 @@ class Sidebar extends React.Component {
                     active={activeSubItem === 'settings-tickets'}
                   />
                   <SubmenuItem
-                    text='Permissions'
+                    text='Quyền'
                     icon='security'
                     href='/settings/permissions'
                     active={activeSubItem === 'settings-permissions'}
                   />
                   <SubmenuItem
-                    text='Mailer'
+                    text='Gửi mail'
                     icon='email'
                     href='/settings/mailer'
                     active={activeSubItem === 'settings-mailer'}
@@ -297,7 +297,7 @@ class Sidebar extends React.Component {
                     active={activeSubItem === 'settings-elasticsearch'}
                   />
                   <SubmenuItem
-                    text='Backup/Restore'
+                    text='Sao lưu/Khôi phục'
                     icon='archive'
                     href='/settings/backup'
                     active={activeSubItem === 'settings-backup'}
@@ -309,7 +309,7 @@ class Sidebar extends React.Component {
                     active={activeSubItem === 'settings-server'}
                   />
                   <SubmenuItem
-                    text='Legal'
+                    text='Điều khoản'
                     icon='gavel'
                     href='/settings/legal'
                     active={activeSubItem === 'settings-legal'}
@@ -327,13 +327,13 @@ class Sidebar extends React.Component {
               </SidebarItem>
             )}
             <NavSeparator />
-            <SidebarItem href='/about' icon='help' text='About' active={activeItem === 'about'} />
+            {/* <SidebarItem href='/about' icon='help' text='About' active={activeItem === 'about'} /> */}
             {/*<SidebarItem href={'https://www.trudesk.io'} icon={'cloud'} text={'Cloud'} target={'_blank'} />*/}
           </ul>
         </div>
         <div className='side-nav-bottom-panel'>
           <a id='expand-menu' className='no-ajaxy' href='#'>
-            <i className='material-icons'>menu</i>Collapse Menu
+            <i className='material-icons'>menu</i>Thu gọn Menu
           </a>
         </div>
       </div>
