@@ -141,7 +141,7 @@ class CreateAccountModal extends React.Component {
       .toArray()
 
     return (
-      <BaseModal parentExtraClass={'pt-0'} extraClass={'p-0 pb-25'}>
+      <BaseModal parentExtraClass={'pt-0'} extraClass={'pb-25'}>
         <div className={'uk-clearfix'}>
           <h5 style={{ fontWeight: 300 }}>Thêm Tài Khoản</h5>
           <div>
