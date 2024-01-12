@@ -80,7 +80,7 @@ backupRestore.runBackup = function (req, res) {
     global.forks = _.remove(global.forks, function (f) {
       return f.fork !== child
     })
-
+    console.log(data);
     if (data.error) {
       result = { success: false, error: data.error }
     }
