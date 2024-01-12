@@ -58,7 +58,8 @@ if (!mongoConnectionUri.username) {
       mongoConnectionUri.database
 }
 
-if (process.env.TD_MONGODB_URI) CONNECTION_URI = process.env.TD_MONGODB_URI
+// if (process.env.TD_MONGODB_URI) CONNECTION_URI = process.env.TD_MONGODB_URI
+CONNECTION_URI = 'mongodb://root:Helpdesk2023%40%40@localhost:27018?authMechanism=DEFAULT'
 
 let options = {
   keepAlive: true,

@@ -10,7 +10,7 @@
  *    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
  *  ========================================================================
  *  Updated:    5/11/22 2:26 AM
- *  Copyright (c) 2014-2022 Trudesk, Inc. All rights reserved.
+ *  Copyright (c) 2014-2022 Helpdesk, Inc. All rights reserved.
  */
 
 const async = require('async')
@@ -67,7 +67,7 @@ function launchInstallServer() {
 
   const ws = require('./src/webserver')
   ws.installServer(function () {
-    return winston.info('Trudesk Install Server Running...')
+    return winston.info('Helpdesk Install Server Running...')
   })
 }
 

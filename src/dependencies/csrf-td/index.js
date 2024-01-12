@@ -5,7 +5,7 @@
  * Copyright(c) 2014-2016 Douglas Christopher Wilson
  * MIT Licensed
  *
- * Modified for Trudesk by Chris Brame (2022)
+ * Modified for Helpdesk by Chris Brame (2022)
  */
 
 'use strict'

@@ -154,7 +154,7 @@ middleware.checkOrigin = function (req, res, next) {
   var host = req.headers.host
 
   // Firefox Hack - Firefox Bug 1341689 & 1424076
-  // Trudesk Bug #26
+  // Helpdesk Bug #26
   // TODO: Fix this once Firefox fixes its Origin Header in same-origin POST request.
   if (!origin) {
     origin = host

@@ -86,7 +86,7 @@ before(function (done) {
             {
               username: 'trudesk',
               password: '$2a$04$350Dkwcq9EpJLFhbeLB0buFcyFkI9q3edQEPpy/zqLjROMD9LPToW',
-              fullname: 'Trudesk',
+              fullname: 'Helpdesk',
               email: 'trudesk@trudesk.io',
               role: adminRole._id,
               accessToken: 'da39a3ee5e6b4b0d3255bfef95601890afd80709'

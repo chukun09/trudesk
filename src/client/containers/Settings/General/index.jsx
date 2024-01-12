@@ -100,7 +100,7 @@ class GeneralSettings extends React.Component {
           title='Tiêu Đề Trang Web'
           subtitle={
             <div>
-              Tiêu đề của trang web. Được sử dụng làm tiêu đề trang. <i>mặc định: Trudesk</i>
+              Tiêu đề của trang web. Được sử dụng làm tiêu đề trang. <i>mặc định: Helpdesk</i>
             </div>
           }
           component={SiteTitle}

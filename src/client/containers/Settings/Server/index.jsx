@@ -130,7 +130,7 @@ class ServerSettingsController extends React.Component {
       <div className={active ? 'active' : 'hide'}>
         <SettingItem
           title={'Khởi Động Lại Máy Chủ'}
-          subtitle={'Khởi động lại Trudesk. '}
+          subtitle={'Khởi động lại Helpdesk. '}
           component={
             <Button
               text={'Khởi Động Lại'}

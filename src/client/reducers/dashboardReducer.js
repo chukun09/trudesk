@@ -9,7 +9,7 @@
  *  ========================================================================
  *  Author:     Chris Brame
  *  Updated:    7/1/22 12:16 AM
- *  Copyright (c) 2014-2022. Trudesk, Inc (Chris Brame) All rights reserved.
+ *  Copyright (c) 2014-2022. Helpdesk, Inc (Chris Brame) All rights reserved.
  */
 
 import { fromJS, Map, List } from 'immutable'

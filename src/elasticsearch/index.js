@@ -26,7 +26,7 @@ const ES = {}
 ES.indexName = process.env.ELASTICSEARCH_INDEX_NAME || 'trudesk'
 
 const checkConnection = callback => {
-  const errorText = 'Elasticsearch client not initialized. Restart Trudesk!'
+  const errorText = 'Elasticsearch client not initialized. Restart Helpdesk!'
   return new Promise((resolve, reject) => {
     ;(async () => {
       try {

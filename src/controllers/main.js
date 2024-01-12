@@ -57,7 +57,7 @@ mainController.index = function (req, res) {
       content.pageLogo = '/assets/' + settings.customPageLogoFilename.value
     }
 
-    content.bottom = 'Trudesk v' + pkg.version
+    content.bottom = 'Helpdesk v' + pkg.version
 
     res.render('login', content)
   })
@@ -259,7 +259,7 @@ mainController.forgotL2Auth = function (req, res) {
         .then(function (html) {
           const mailOptions = {
             to: savedUser.email,
-            subject: '[Trudesk] Account Recovery',
+            subject: '[Helpdesk] Account Recovery',
             html: html,
             generateTextFromHTML: true
           }
@@ -387,7 +387,7 @@ mainController.forgotPass = function (req, res) {
             return res.status(500).send(err)
           }
 
-          let subject = '[Trudesk] Password Reset Request'
+          let subject = '[Helpdesk] Password Reset Request'
           if (template) subject = global.Handlebars.compile(template.subject)(data)
 
           email
@@ -468,7 +468,7 @@ mainController.resetl2auth = function (req, res) {
           .then(function (html) {
             const mailOptions = {
               to: updated.email,
-              subject: '[Trudesk] Two-Factor Authentication Removed!',
+              subject: '[Helpdesk] Two-Factor Authentication Removed!',
               html: html,
               generateTextFromHTML: true
             }
@@ -554,7 +554,7 @@ mainController.resetPass = function (req, res) {
           .then(function (html) {
             const mailOptions = {
               to: updated.email,
-              subject: '[Trudesk] New Password',
+              subject: '[Helpdesk] New Password',
               html: html,
               generateTextFromHTML: true
             }

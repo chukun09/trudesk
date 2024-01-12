@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import useTrudeskReady from 'lib2/useTrudeskReady'
+import useHelpdeskReady from 'lib2/useHelpdeskReady'
 
 import CountUpJS from 'countup'
 
@@ -8,7 +8,7 @@ export default function CountUp (props) {
   const textRef = useRef()
   let animation = useRef()
 
-  // useTrudeskReady(() => {
+  // useHelpdeskReady(() => {
   //   if (textRef.current) {
   //     textRef.current.innerText = '--'
   //     animation = new CountUpJS(textRef.current, props.startNumber, props.endNumber, 0, props.duration)

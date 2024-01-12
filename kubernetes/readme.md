@@ -14,7 +14,7 @@
 Wait some seconds until the deployment is completed.
 
 ## Configure Elastic
-Log into Trudesk and go to Settings > Elasticsearch and define the endpoint of the elastic service
+Log into Helpdesk and go to Settings > Elasticsearch and define the endpoint of the elastic service
 
 - Server: http://elasticsearch.trudesk.svc.cluster.local
 - Port: 9200

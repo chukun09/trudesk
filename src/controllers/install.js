@@ -26,10 +26,10 @@ installController.content = {}
 
 installController.index = function (req, res) {
   const content = {}
-  content.title = 'Install Trudesk'
+  content.title = 'Install Helpdesk'
   content.layout = false
 
-  content.bottom = 'Trudesk v' + pkg.version
+  content.bottom = 'Helpdesk v' + pkg.version
   content.isDocker = process.env.TRUDESK_DOCKER || false
 
   res.render('install', content)

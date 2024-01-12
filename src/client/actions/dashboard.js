@@ -9,7 +9,7 @@
  *  ========================================================================
  *  Author:     Chris Brame
  *  Updated:    7/2/22 5:23 AM
- *  Copyright (c) 2014-2022. Trudesk Inc (Chris Brame) All rights reserved.
+ *  Copyright (c) 2014-2022. Helpdesk Inc (Chris Brame) All rights reserved.
  */
 
 import { createAction } from 'redux-actions'

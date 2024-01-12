@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trudesk &middot; {{{title}}}</title>
+    <title>Helpdesk &middot; {{{title}}}</title>
     <link rel="stylesheet" href="/css/plugins.min.css">
     <link rel="stylesheet" href="/css/app.min.css">
     <style type="text/css">
@@ -220,7 +220,7 @@
     <script src="/js/truRequire.js"></script>
 </head>
 <body>
-<svg version="1.1" id="logosvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+{{!-- <svg version="1.1" id="logosvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 288.9 70.1" xml:space="preserve" style="width: 150px; margin-bottom: 40px;">
     <style type="text/css">
         .st0 {
@@ -270,11 +270,11 @@
         c-2.1,0-5.7,2.1-10.7,6.4c-3.1,13.2-4.7,22.2-4.7,27.1c-3.4,1-7.9,1.5-13.4,1.5c-0.1-1.1-0.1-2-0.1-2.8c0-2.7,1.8-11.9,5.4-27.6
         C236.3,23.1,238.1,12.5,238.1,6.9z"></path>
     <circle class="st1" cx="284.9" cy="64.7" r="4"></circle>
-    </svg>
+    </svg> --}}
 <div class="wrapper">
     <div class="slides">
         <div class="slide">
-            <h2 style="margin-bottom: 18px;">Vấn đề Mới</h2>
+            <h2 style="margin-bottom: 18px;">Ticket Mới</h2>
             <p style="text-align: left;">
                 Hướng dẫn này sẽ hướng dẫn bạn qua quá trình gửi một vấn đề mới.
             </p>
@@ -324,7 +324,7 @@
                     <input type="text" id="ticket-subject" name="ticket-subject" class="md-input" required />
                 </div>
                 <div class="uk-margin-medium-bottom">
-                    <label for="ticket-issue">Vấn đề</label>
+                    <label for="ticket-issue">Ticket</label>
                     <textarea name="ticket-issue" id="ticket-issue" cols="30" rows="10" class="md-input" required></textarea>
                 </div>
 
@@ -347,8 +347,8 @@
         </div>
         <div id="restartSlide" class="slide hide">
             <h2 style="margin-bottom: 25px;">Thời Gian để Khởi Động Lại</h2>
-            <p style="text-align: left;"><i>Vì vậy, chúng ta ở đây, cùng nhau mài dao.</i> Trudesk cần khởi động lại để thoát khỏi chế độ cài đặt. Chỉ cần khởi động lại nó và bạn sẽ nhận được màn hình đăng nhập. (hy vọng)!</p>
-            <button class="btn md-btn md-btn-wave" type="button" id="restartTrudesk">khởi động lại!</button>
+            <p style="text-align: left;"><i>Vì vậy, chúng ta ở đây, cùng nhau mài dao.</i> Helpdesk cần khởi động lại để thoát khỏi chế độ cài đặt. Chỉ cần khởi động lại nó và bạn sẽ nhận được màn hình đăng nhập. (hy vọng)!</p>
+            <button class="btn md-btn md-btn-wave" type="button" id="restartHelpdesk">khởi động lại!</button>
         </div>
         <div id="errorSlide" class="slide hide">
             <h2 style="margin-bottom: 25px;">Ôi! Đã xảy ra điều gì đó kỳ lạ.</h2>
@@ -382,7 +382,7 @@
         <div id="ticketCreatedSlide" class="slide hide">
             <h2 style="margin-bottom: 25px; text-align: left;">Cảm ơn bạn <span id="spanfullname" style="color: #2196f3;">[fullname]</span>,</h2>
             <p style="text-align: justify;">
-                Vấn đề của bạn, <strong id="strongSubject">[Subject]</strong> đã được gửi. Vui lòng lưu trữ thông tin sau để truy cập và cập nhật vấn đề của bạn.
+                Ticket của bạn, <strong id="strongSubject">[Subject]</strong> đã được gửi. Vui lòng lưu trữ thông tin sau để truy cập và cập nhật vấn đề của bạn.
             </p>
             <p style="text-align: left;">
                 Tên người dùng: <strong id="strongUsername">[Username]</strong> <br>
