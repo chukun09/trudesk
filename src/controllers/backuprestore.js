@@ -20,7 +20,7 @@ const moment = require('moment')
 
 const backupRestore = {}
 
-function formatBytes(bytes, fixed) {
+function formatBytes (bytes, fixed) {
   if (!fixed) fixed = 2
   if (bytes < 1024) return bytes + ' Bytes'
   if (bytes < 1048576) return (bytes / 1024).toFixed(fixed) + ' KB'
@@ -72,9 +72,7 @@ backupRestore.runBackup = function (req, res) {
     env: { FORK: 1, NODE_ENV: global.env, MONGOURI: database.connectionuri, PATH: process.env.PATH }
   })
   global.forks.push({ name: 'backup', fork: child })
-  console.log({
-    env: { FORK: 1, NODE_ENV: global.env, MONGOURI: database.connectionuri, PATH: process.env.PATH }
-  });
+
   let result = null
 
   child.on('message', function (data) {
@@ -169,7 +167,7 @@ backupRestore.restoreBackup = function (req, res) {
         cache.fork.send({ name: 'cache:refresh:force' })
       }
 
-      require('../permissions').flushRoles(function () { })
+      require('../permissions').flushRoles(function () {})
 
       result = { success: true }
     } else {
