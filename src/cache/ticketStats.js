@@ -21,7 +21,7 @@ const ticketSchema = require('../models/ticket')
 
 const ex = {}
 
-function buildGraphData (arr, days, callback) {
+function buildGraphData(arr, days, callback) {
   const graphData = []
   if (arr.length < 1) {
     return callback(graphData)
@@ -31,7 +31,7 @@ function buildGraphData (arr, days, callback) {
     .minute(59)
     .second(59)
   const timespanArray = []
-  for (let i = days; i--; ) {
+  for (let i = days; i--;) {
     timespanArray.push(i)
   }
 
@@ -57,7 +57,7 @@ function buildGraphData (arr, days, callback) {
   return callback(graphData)
 }
 
-function buildAvgResponse (ticketArray, callback) {
+function buildAvgResponse(ticketArray, callback) {
   const cbObj = {}
   const $ticketAvg = []
   for (let i = 0; i < ticketArray.length; i++) {
@@ -131,7 +131,7 @@ const init = function (tickets, callback) {
               ex.e365.closedTickets = _.chain(ex.e365.tickets)
                 .map('status')
                 .filter(function (v) {
-                  return v === 3
+                  return v == '659bc00747e97f5dbe87cac4'
                 })
                 .value()
 
@@ -160,7 +160,7 @@ const init = function (tickets, callback) {
               ex.e180.closedTickets = _.chain(ex.e180.tickets)
                 .map('status')
                 .filter(function (v) {
-                  return v === 3
+                  return v == '659bc00747e97f5dbe87cac4'
                 })
                 .value()
 
@@ -188,7 +188,7 @@ const init = function (tickets, callback) {
               ex.e90.closedTickets = _.chain(ex.e90.tickets)
                 .map('status')
                 .filter(function (v) {
-                  return v === 3
+                  return v == '659bc00747e97f5dbe87cac4'
                 })
                 .value()
 
@@ -216,7 +216,7 @@ const init = function (tickets, callback) {
               ex.e60.closedTickets = _.chain(ex.e60.tickets)
                 .map('status')
                 .filter(function (v) {
-                  return v === 3
+                  return v == '659bc00747e97f5dbe87cac4'
                 })
                 .value()
 
@@ -244,7 +244,7 @@ const init = function (tickets, callback) {
               ex.e30.closedTickets = _.chain(ex.e30.tickets)
                 .map('status')
                 .filter(function (v) {
-                  return v === 3
+                  return v == '659bc00747e97f5dbe87cac4'
                 })
                 .value()
 

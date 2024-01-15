@@ -1711,7 +1711,7 @@ apiTickets.getTicketStatsForGroup = function (req, res) {
         tickets = _.sortBy(tickets, 'date')
         r.recentTickets = _.takeRight(tickets, 5)
         r.closedTickets = _.filter(tickets, function (v) {
-          return v.status === 3
+          return v.status  == '659bc00747e97f5dbe87cac4'
         })
 
         var firstDate = moment(_.first(tickets).date).subtract(30, 'd')
@@ -1793,7 +1793,7 @@ apiTickets.getTicketStatsForUser = function (req, res) {
         tickets = _.sortBy(tickets, 'date')
         r.recentTickets = _.takeRight(tickets, 5)
         r.closedTickets = _.filter(tickets, function (v) {
-          return v.status === 3
+          return v.status  == '659bc00747e97f5dbe87cac4'
         })
 
         var firstDate = moment(_.first(tickets).date).subtract(30, 'd')
