@@ -20,7 +20,7 @@
 Quickly resolve issues & task with an easy-to-use solution. Built with one goal in mind, to keep work loads organized and simple. **This is the source for Helpdesk Community Edition. For the more comprehensive, cloud-hosted version, please see Helpdesk Cloud at <a href="http://trudesk.io">Helpdesk.io</a>.**
 
 <p align="center">
-    <img src="https://files.trudesk.io/hero-td-right.png" />
+    <img src="https://trudesk.io/images/hero-td-right.png" />
 </p>
 
 #### Deploy Helpdesk Anywhere
