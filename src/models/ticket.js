@@ -741,7 +741,7 @@ ticketSchema.statics.getAll = function (callback) {
 ticketSchema.statics.getForCache = function (callback) {
   const self = this
   return new Promise((resolve, reject) => {
-    ;(async () => {
+    ; (async () => {
       try {
         const t365 = moment
           .utc()
@@ -880,7 +880,7 @@ ticketSchema.statics.getTicketsByDepartments = function (departments, object, ca
   }
 }
 
-function buildQueryWithObject (SELF, grpId, object, count) {
+function buildQueryWithObject(SELF, grpId, object, count) {
   const limit = object.limit || 10
   const page = object.page || 0
   let _status = object.status
@@ -965,14 +965,15 @@ function buildQueryWithObject (SELF, grpId, object, count) {
   if (object.owner) query.where('owner', object.owner)
   if (object.assignedSelf) query.where('assignee', object.user)
   if (object.unassigned) query.where({ assignee: { $exists: false } })
-
+  // Assignee Filter For User
+  if (object.assigneeForUser) query.where({ assignee: { $exists: true } })
   return query
 }
 
 ticketSchema.statics.getTicketsWithObject = async function (grpId, object, callback) {
   const self = this
   return new Promise((resolve, reject) => {
-    ;(async () => {
+    ; (async () => {
       try {
         if (!grpId || !_.isArray(grpId) || !_.isObject(object))
           throw new Error('Invalid parameter in - TicketSchema.GetTicketsWithObject()')
@@ -996,7 +997,7 @@ ticketSchema.statics.getTicketsWithObject = async function (grpId, object, callb
 ticketSchema.statics.getCountWithObject = async function (grpId, object, callback) {
   const self = this
   return new Promise((resolve, reject) => {
-    ;(async () => {
+    ; (async () => {
       try {
         if (!grpId || !_.isArray(grpId) || !_.isObject(object))
           throw new Error('Invalid parameter in - TicketSchema.GetCountWithObject()')
@@ -1091,7 +1092,7 @@ ticketSchema.statics.getTicketById = async function (id, callback) {
   const self = this
 
   return new Promise((resolve, reject) => {
-    ;(async () => {
+    ; (async () => {
       if (_.isUndefined(id)) {
         const error = new Error('Invalid Id - TicketSchema.GetTicketById()')
 

@@ -19,6 +19,7 @@ const apiUtils = require('../apiUtils')
 const Models = require('../../../models')
 const permissions = require('../../../permissions')
 const ticketStatusSchema = require('../../../models/ticketStatus')
+const group = require('../../../models/group')
 
 const ticketsV2 = {}
 
@@ -65,8 +66,17 @@ ticketsV2.get = async (req, res) => {
         queryObject.status = statuses.map(i => i._id.toString())
         break
       case 'assigned':
-        queryObject.filter = {
-          assignee: [req.user._id]
+        if (req.user.role.isAdmin || req.user.role.isAgent) {
+          queryObject.filter = {
+            assignee: [req.user._id]
+          }
+          queryObject.assignee = true;
+        } else {
+          queryObject.filter = {
+            owner: [req.user._id]
+          }
+          queryObject.owner = true;
+          queryObject.assigneeForUser = true;
         }
         break
       case 'unassigned':
