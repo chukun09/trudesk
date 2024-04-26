@@ -21,7 +21,7 @@ import { makeObservable, observable } from 'mobx'
 import { createAccount } from 'actions/accounts'
 import { fetchGroups, unloadGroups } from 'actions/groups'
 import { fetchTeams, unloadTeams } from 'actions/teams'
-import { fetchRoles } from 'actions/common'
+import { fetchRoles, setSessionUser } from 'actions/common'
 
 import BaseModal from './BaseModal'
 import Button from 'components/Button'
@@ -51,6 +51,7 @@ class CreateAccountModal extends React.Component {
     this.props.fetchGroups({ type: 'all' })
     this.props.fetchTeams()
     this.props.fetchRoles()
+    this.props.setSessionUser()
 
     helpers.UI.inputs()
     helpers.formvalidator()
@@ -122,9 +123,11 @@ class CreateAccountModal extends React.Component {
   }
 
   render() {
+    const isAdmin = this.props.sessionUser.role.isAdmin || false
     const roles = this.props.roles
+      .filter(role => isAdmin || (!isAdmin && role.get('isAdmin') == false))
       .map(role => {
-        return { text: role.get('name'), value: role.get('_id') }
+          return { text: role.get('name'), value: role.get('_id') }
       })
       .toArray()
 
@@ -280,14 +283,16 @@ CreateAccountModal.propTypes = {
   unloadGroups: PropTypes.func.isRequired,
   fetchTeams: PropTypes.func.isRequired,
   unloadTeams: PropTypes.func.isRequired,
-  fetchRoles: PropTypes.func.isRequired
+  fetchRoles: PropTypes.func.isRequired,
+  setSessionUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   roles: state.shared.roles,
   common: state.common,
   groups: state.groupsState.groups,
-  teams: state.teamsState.teams
+  teams: state.teamsState.teams,
+  sessionUser: state.shared.sessionUser,
 })
 
 export default connect(mapStateToProps, {
@@ -296,5 +301,6 @@ export default connect(mapStateToProps, {
   unloadGroups,
   fetchTeams,
   unloadTeams,
-  fetchRoles
+  fetchRoles,
+  setSessionUser
 })(CreateAccountModal)
