@@ -49,7 +49,7 @@ class TruCard extends React.Component {
           )}
           {this.props.header && (
             <div className={'tru-card-head ' + (this.props.extraHeadClass || '')}>
-              {this.props.menu && (
+              {this.props.menu && this.props.isShow && (
                 <div className={'tru-card-head-menu'}>
                   <DropdownTrigger pos={'bottom-right'} mode={'click'}>
                     <i className='material-icons tru-icon'>more_vert</i>
@@ -87,7 +87,8 @@ TruCard.propTypes = {
   showMoveHandle: PropTypes.bool,
   style: PropTypes.object,
   animateLoader: PropTypes.bool,
-  animateDelay: PropTypes.number
+  animateDelay: PropTypes.number,
+  isShow: PropTypes.bool
 }
 
 TruCard.defaultProps = {
@@ -96,7 +97,8 @@ TruCard.defaultProps = {
   fullSize: true,
   showMoveHandle: false,
   animateLoader: false,
-  animateDelay: 600
+  animateDelay: 600,
+  isShow: true
 }
 
 export default TruCard

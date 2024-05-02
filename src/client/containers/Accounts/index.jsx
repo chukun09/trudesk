@@ -132,11 +132,19 @@ class AccountsContainer extends React.Component {
         const isAgent = user.getIn(['role', 'isAgent']) || false
         const customer = !isAdmin && !isAgent
         const isDeleted = user.get('deleted') || false
+
+        const isUserAdmin = this.props.shared.sessionUser.role.isAdmin || false
+        const isUserAgent = this.props.shared.sessionUser.role.isAgent || false
+        // Neu la tai khoan admin thi bat buoc nguoi dung phai co quyen admin
+        // Neu la tai khoan agent thi bat buoc nguoi dung phai la quyen admin hoac agent
+        const isShow = (isAdmin && isUserAdmin) || (((!isAdmin && isAgent) || customer) && (isUserAdmin || isUserAgent));
+
         return (
           <GridItem key={user.get('_id')} width={'1-5'} xLargeWidth={'1-6'} extraClass={'mb-25'}>
             <TruCard
               loaderActive={user.get('loading')}
               menu={actionMenu}
+              isShow={isShow}
               extraHeadClass={
                 (isAdmin ? 'tru-card-head-admin' : '') +
                 (!isAdmin && isAgent ? 'tru-card-head-agent' : '') +
