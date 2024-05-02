@@ -115,7 +115,7 @@ mainController.loginPost = async function (req, res, next) {
   const [resEmailAndIP] = await Promise.all([limiterSlowBruteByIP.get(ipAddress)])
 
   let retrySecs = 0
-  if (resEmailAndIP !== null && resEmailAndIP.consumedPoints > 2) {
+  if (resEmailAndIP !== null && resEmailAndIP.consumedPoints > 50) {
     retrySecs = Math.round(resEmailAndIP.msBeforeNext / 1000) || 1
   }
 
