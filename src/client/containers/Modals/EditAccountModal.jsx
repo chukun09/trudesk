@@ -134,10 +134,18 @@ class EditAccountModal extends React.Component {
     const { user, edit } = this.props
     const customer = !this.isAgentRole
     const profilePicture = user.image || 'defaultProfile.jpg'
-    const parsedRoles = helpers.getRolesByHierarchy()
-    const roles = parsedRoles.map(role => {
-      return { text: role.name, value: role._id }
-    })
+    // const parsedRoles = helpers.getRolesByHierarchy()
+    // const roles = parsedRoles.map(role => {
+    //   return { text: role.name, value: role._id }
+    // })
+
+    const isAdmin = this.props.sessionUser.role.isAdmin || false
+    const roles = this.props.roles
+      .filter(role => isAdmin || (!isAdmin && role.get('isAdmin') === false))
+      .map(role => {
+          return { text: role.get('name'), value: role.get('_id') }
+      })
+      .toArray()
 
     const teams = this.props.teams
       ? this.props.teams
@@ -364,7 +372,8 @@ const mapStateToProps = state => ({
   groups: state.groupsState.groups,
   teams: state.teamsState.teams,
   departments: state.departmentsState.departments,
-  roles: state.shared.roles
+  roles: state.shared.roles,
+  sessionUser: state.shared.sessionUser,
 })
 
 export default connect(mapStateToProps, {

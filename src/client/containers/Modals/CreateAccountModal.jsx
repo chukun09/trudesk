@@ -125,7 +125,7 @@ class CreateAccountModal extends React.Component {
   render() {
     const isAdmin = this.props.sessionUser.role.isAdmin || false
     const roles = this.props.roles
-      .filter(role => isAdmin || (!isAdmin && role.get('isAdmin') == false))
+      .filter(role => isAdmin || (!isAdmin && role.get('isAdmin') === false))
       .map(role => {
           return { text: role.get('name'), value: role.get('_id') }
       })
